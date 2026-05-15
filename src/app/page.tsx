@@ -4,6 +4,8 @@ import {
   BadgeCheck,
   BarChart3,
   BriefcaseBusiness,
+  ChevronLeft,
+  ChevronRight,
   Cloud,
   Code2,
   Database,
@@ -13,16 +15,22 @@ import {
   Globe2,
   LineChart,
   Mail,
+  Menu,
   MapPin,
   MonitorSmartphone,
+  Package,
   PanelsTopLeft,
   Phone,
+  RefreshCw,
   Rocket,
+  Search,
   ServerCog,
   ShieldCheck,
   ShoppingBag,
   Sparkles,
+  Star,
   Store,
+  UserRound,
   WandSparkles,
   Workflow,
   Zap,
@@ -30,20 +38,31 @@ import {
 import {
   SiAsana,
   SiBitbucket,
+  SiCanva,
   SiClickup,
+  SiCloudflare,
   SiDjango,
+  SiDocker,
   SiElementor,
   SiExpress,
+  SiFigma,
   SiGit,
   SiGithub,
   SiGitlab,
   SiGmail,
   SiGoogleads,
   SiGoogleanalytics,
+  SiGooglecloud,
+  SiGoogledrive,
+  SiGooglesearchconsole,
   SiGooglesheets,
+  SiGoogletagmanager,
+  SiHotjar,
   SiHtml5,
   SiJavascript,
   SiLaravel,
+  SiMailchimp,
+  SiMeta,
   SiMongodb,
   SiMysql,
   SiNextdotjs,
@@ -53,13 +72,17 @@ import {
   SiPhp,
   SiPm2,
   SiPostgresql,
+  SiPrisma,
   SiPython,
   SiReact,
+  SiReactquery,
+  SiSemrush,
   SiShopify,
   SiSlack,
   SiStripe,
   SiSupabase,
   SiTailwindcss,
+  SiTiktok,
   SiTrello,
   SiTypescript,
   SiVercel,
@@ -68,6 +91,7 @@ import {
   SiWix,
   SiWoocommerce,
   SiWordpress,
+  SiZapier,
 } from "react-icons/si";
 
 type IconComponent = ElementType<{ className?: string }>;
@@ -92,10 +116,10 @@ const navItems: {
   href: string;
   icon: IconComponent;
 }[] = [
-  { label: "Impact", href: "#impact", icon: BarChart3 },
   { label: "Work", href: "#work", icon: BriefcaseBusiness },
+  { label: "Brand", href: "#branding", icon: WandSparkles },
+  { label: "CRO", href: "#growth", icon: LineChart },
   { label: "Tools", href: "#tools", icon: Code2 },
-  { label: "Links", href: "#links", icon: Globe2 },
   { label: "Contact", href: "#contact", icon: Mail },
 ];
 
@@ -189,6 +213,486 @@ const work = [
     ],
     stack: ["REST APIs", "JSON", "Shopify Admin", "Product sync", "Validation"],
   },
+  {
+    label: "Branding and storefront design",
+    title: "Ecommerce brand direction and page systems",
+    company: "Freelance and team-based Shopify projects",
+    period: "2023 - 2025",
+    href: site.portfolio,
+    icon: WandSparkles,
+    summary:
+      "Supported brand-aligned storefront builds by translating product positioning, visual hierarchy, and mobile-first layouts into reusable Shopify, Replo, GemPages, and Webflow page sections.",
+    wins: [
+      "Created cleaner homepage, product, collection, and landing-page structures for multiple ecommerce niches.",
+      "Improved brand consistency through typography, spacing, CTA placement, trust blocks, image rhythm, and section reuse.",
+      "Worked with designers, copywriters, store owners, and content teams to keep visual updates practical and launch-ready.",
+    ],
+    stack: ["Brand layout", "Shopify sections", "Replo", "GemPages", "Webflow", "Mobile UX"],
+  },
+  {
+    label: "Funnelish and funnel builds",
+    title: "Sales funnel pages and checkout path support",
+    company: "Ecommerce funnel work",
+    period: "2024 - 2025",
+    href: site.portfolio,
+    icon: Workflow,
+    summary:
+      "Planned and supported funnel-style page flows using Funnelish concepts, landing-page sequencing, offer clarity, CTA placement, email capture, and checkout handoff logic.",
+    wins: [
+      "Mapped simple customer journeys from offer page to product detail, cart, checkout, and follow-up touchpoints.",
+      "Structured page sections for headline clarity, benefits, social proof, urgency, FAQs, and trust signals.",
+      "Kept funnel builds realistic by focusing on message clarity, mobile usability, and measurable drop-off points.",
+    ],
+    stack: ["Funnelish", "Landing pages", "Offer flow", "CTA strategy", "Klaviyo", "Checkout QA"],
+  },
+  {
+    label: "CRO and user behavior",
+    title: "Conversion-focused storefront improvements",
+    company: "Shopify and ecommerce projects",
+    period: "2023 - 2025",
+    href: site.portfolio,
+    icon: LineChart,
+    summary:
+      "Used practical CRO checks, GA4, Shopify Analytics, Microsoft Clarity, and page-speed reviews to improve storefront usability, product-page clarity, and checkout confidence.",
+    wins: [
+      "Reviewed heatmaps, session behavior, layout friction, CTA visibility, and mobile section order.",
+      "Improved product pages with clearer benefits, trust content, image hierarchy, related offers, and stronger action paths.",
+      "Balanced design improvements with technical checks for responsiveness, loading speed, SEO basics, and analytics tracking.",
+    ],
+    stack: ["CRO", "GA4", "Clarity", "Shopify Analytics", "Heatmaps", "PageSpeed"],
+  },
+];
+
+const legacyDesignSamples = [
+  {
+    title: "Marcozo collection and brand polish",
+    project: "Marcozo",
+    category: "Jewelry ecommerce",
+    href: "https://www.marcozo.com/",
+    logo: "https://www.marcozo.com/cdn/shop/files/mobilebeigeMARCOZO_Logo_Gold_crayola_CMYK_2x-8_5_1_copy.png?crop=center&height=108&v=1760653211&width=130",
+    logoBg: "#0d0d0d",
+    palette: ["#0d0d0d", "#ab8c52", "#fcfbf9", "#806430"],
+    pageBg: "#fcfbf9",
+    headerBg: "#0d0d0d",
+    headerTextColor: "#fcfbf9",
+    textColor: "#0d0d0d",
+    heroTextColor: "#fcfbf9",
+    heroImage:
+      "https://www.marcozo.com/cdn/shop/files/26055710_2000784349962009_6465810582428627653_n_1268ee8d-c398-4875-974e-701d69aa17e7.jpg?v=1613501421",
+    heroPosition: "center",
+    announcement: "LIFETIME WARRANTY ON ALL JEWELRY | FREE U.S. SHIPPING OVER $99",
+    nav: ["Pendants", "Chains", "Rings", "Bracelets"],
+    eyebrow: "Premium men's jewelry",
+    headline: "Tarnish-resistant pieces with a clean luxury store flow.",
+    body: "Gold, silver, and black jewelry pages shaped around product trust, collection clarity, and mobile-first buying paths.",
+    cta: "Shop pendants",
+    secondaryCta: "View collections",
+    feature: "Lifetime warranty",
+    fontHeading: "Bricolage Grotesque",
+    fontBody: "DM Sans",
+    headingStack: '"Bricolage Grotesque", "Arial Black", var(--font-space-grotesk), sans-serif',
+    bodyStack: '"DM Sans", var(--font-space-grotesk), sans-serif',
+    typeStyle: "Bold grotesque headings, tight luxury spacing, warm gold accents, and clean product framing.",
+    products: ["Pendants", "Chains", "Rings"],
+    deliverables: ["Collection system", "Product-card polish", "Navigation cleanup", "Launch revisions"],
+    tools: ["Shopify", "Metafields", "Liquid", "Mobile QA"],
+  },
+  {
+    title: "Flowpouch offer funnel concept",
+    project: "Flowpouch",
+    category: "Funnelish and CRO",
+    href: "https://flowpouch.com/",
+    logo: "https://flowpouch.com/cdn/shop/files/Asset_5_43ead812-8762-4d67-b378-3f2ca09ead94.png?v=1756704893&width=600",
+    logoBg: "#ffffff",
+    palette: ["#141414", "#00a150", "#334fb4", "#e8fbf1"],
+    pageBg: "#f4eee4",
+    headerBg: "#141414",
+    headerTextColor: "#ffffff",
+    textColor: "#141414",
+    heroTextColor: "#ffffff",
+    heroImage:
+      "https://flowpouch.com/cdn/shop/files/gempages_528801600827819134-a84a337c-64bf-47ad-8abb-0c31c83823e7.png?v=3245835602198306662",
+    heroPosition: "center",
+    announcement: "NATURAL ENERGY BOOSTER | CLEAN FOCUS WITHOUT THE CRASH",
+    nav: ["Shop", "Learn", "Reviews", "FAQ"],
+    eyebrow: "Natural focus pouches",
+    headline: "Offer-page sections built for fast scanning and clear action.",
+    body: "A practical funnel direction with benefit-led copy, bundle framing, proof sections, FAQs, and CTA repetition for mobile shoppers.",
+    cta: "Claim offer",
+    secondaryCta: "See ingredients",
+    feature: "No crash. No dependency.",
+    fontHeading: "Galano Grotesque Alt Heavy",
+    fontBody: "Galano Grotesque Regular",
+    headingStack: '"Galano Grotesque Alt Heavy", "Arial Black", var(--font-space-grotesk), sans-serif',
+    bodyStack: '"Galano Grotesque Regular", var(--font-space-grotesk), sans-serif',
+    typeStyle: "Heavy rounded headlines, bright green actions, blue support cues, and CRO-first offer blocks.",
+    products: ["Offer Stack", "Bundle Cards", "FAQ Proof"],
+    deliverables: ["Funnel map", "Offer page blocks", "Checkout path", "Heatmap review"],
+    tools: ["Funnelish", "Shopify", "Klaviyo", "Clarity"],
+  },
+  {
+    title: "Pagulayan Cues premium product layout",
+    project: "Pagulayan Cues",
+    category: "Premium product design",
+    href: "https://pagulayancues.com/",
+    logo: "https://cdn.shopify.com/s/files/1/0669/8228/1438/files/PAG-Icon-White.png?v=1743601992",
+    logoBg: "#121212",
+    palette: ["#121212", "#ffcf00", "#e43a36", "#ffffff"],
+    pageBg: "#ffffff",
+    headerBg: "#121212",
+    headerTextColor: "#ffffff",
+    textColor: "#121212",
+    heroTextColor: "#ffffff",
+    heroImage:
+      "https://pagulayancues.com/cdn/shop/files/lion-merry-widow-promo-desktop-banner.webp?v=1778260933&width=2000",
+    heroPosition: "center",
+    announcement: "PREMIUM BILLIARDS SUPPLIES | INSPIRED BY A WORLD CHAMPION",
+    nav: ["Cues", "Shafts", "Cases", "Accessories"],
+    eyebrow: "Pagulayan professional gear",
+    headline: "Bold product pages for cue specs, craft details, and trust.",
+    body: "Premium billiards layouts shaped around product photography, technical specs, reviews, responsive sections, and clear collection browsing.",
+    cta: "View cues",
+    secondaryCta: "Shop accessories",
+    feature: "Cue specs and review proof",
+    fontHeading: "Poppins 700",
+    fontBody: "Poppins Regular",
+    headingStack: '"Poppins", var(--font-space-grotesk), sans-serif',
+    bodyStack: '"Poppins", var(--font-space-grotesk), sans-serif',
+    typeStyle: "Sport retail contrast with black, champion yellow, red highlights, and readable spec-driven sections.",
+    products: ["Cue Specs", "Gallery", "Klaviyo CTA"],
+    deliverables: ["Product-page layout", "Collection clarity", "Email handoff", "Responsive checks"],
+    tools: ["Shopify", "GemPages", "Klaviyo", "CRO"],
+  },
+  {
+    title: "Salted Seas landing page system",
+    project: "Salted Seas",
+    category: "Brand landing page",
+    href: "https://saltedseas.com/",
+    logo: "https://saltedseas.com/cdn/shop/files/SALTED_SEAS_PNG.png?v=1753848006&width=600",
+    logoBg: "#ffffff",
+    palette: ["#ffffff", "#0794a6", "#467c99", "#121212"],
+    pageBg: "#ffffff",
+    headerBg: "#ffffff",
+    headerTextColor: "#121212",
+    textColor: "#121212",
+    heroTextColor: "#ffffff",
+    heroImage: "https://saltedseas.com/cdn/shop/files/20250916-DSC_2869_1.jpg?v=1759424117&width=2000",
+    heroPosition: "center",
+    announcement: "SKINCARE BORN OF SALT, SEA & SCIENCE",
+    nav: ["Shop", "Ritual", "Ingredients", "About"],
+    eyebrow: "Clean coastal skincare",
+    headline: "Skincare Born of Salt, Sea & Science",
+    body: "A calm landing-page direction with visual storytelling, best-seller sections, reviews, and a smoother path from product education to checkout.",
+    cta: "Shop all products",
+    secondaryCta: "Read story",
+    feature: "Coastal science-led product story",
+    fontHeading: "Work Sans",
+    fontBody: "Work Sans",
+    headingStack: '"Work Sans", var(--font-space-grotesk), sans-serif',
+    bodyStack: '"Work Sans", var(--font-space-grotesk), sans-serif',
+    typeStyle: "Soft coastal typography, white space, teal accents, and simple product education blocks.",
+    products: ["Hero Story", "Best Sellers", "Review Strip"],
+    deliverables: ["Landing sections", "CTA rhythm", "Collection handoff", "Mobile QA"],
+    tools: ["Shopify", "Replo", "Webflow", "GA4"],
+  },
+  {
+    title: "Two Brothers Grooming storefront direction",
+    project: "Two Brothers Grooming",
+    category: "Grooming ecommerce",
+    href: "https://twobrothersgrooming.com/",
+    logo: "https://twobrothersgrooming.com/cdn/shop/files/LGpng.png?v=1773519573&width=500",
+    logoBg: "#faf8f5",
+    palette: ["#0f2a1d", "#8b7355", "#faf8f5", "#9a7540"],
+    pageBg: "#faf8f5",
+    headerBg: "#0f2a1d",
+    headerTextColor: "#faf8f5",
+    textColor: "#0f2a1d",
+    heroTextColor: "#0f2a1d",
+    heroImage:
+      "https://twobrothersgrooming.com/cdn/shop/files/Hero1_11a01e55-35b1-4add-aef3-8fde981d379f.webp?v=1775899016&width=800",
+    heroPosition: "center",
+    announcement: 'USE CODE "TB15" FOR 15% OFF YOUR FIRST ORDER | FREE SHIPPING ON ORDERS OVER $50',
+    nav: ["About", "Products", "Services", "Blog", "Contact"],
+    eyebrow: "Premium grooming",
+    headline: "Crafted for the everyday hustle.",
+    body: "Premium men's grooming essentials crafted by working barbers, with product storytelling and utility-focused shopping actions.",
+    cta: "Shop all products",
+    secondaryCta: "Our story",
+    feature: "Signature Texture Powder & Sea Salt Spray",
+    fontHeading: "Playfair Display",
+    fontBody: "Montserrat",
+    headingStack: '"Playfair Display", Georgia, "Times New Roman", serif',
+    bodyStack: '"Montserrat", var(--font-space-grotesk), sans-serif',
+    typeStyle: "Editorial serif headlines, cream backgrounds, forest green navigation, and warm barber-shop accents.",
+    products: ["Beard Oil", "Balm Set", "Routine Kit"],
+    deliverables: ["Brand color direction", "Homepage hero", "Product trust blocks", "Mobile product cards"],
+    tools: ["Shopify", "Liquid", "CRO", "Clarity"],
+  },
+  {
+    title: "Cadence hydration landing page system",
+    project: "Cadence",
+    category: "Hydration and performance",
+    href: "https://usecadence.com/",
+    logo: "https://usecadence.com/cdn/shop/files/Logo_Black.svg?crop=center&height=54&v=1743373902&width=240",
+    logoBg: "#ffffff",
+    palette: ["#191919", "#ffffff", "#f2f2f2", "#f18080"],
+    pageBg: "#f7f7f7",
+    headerBg: "#ffffff",
+    headerTextColor: "#191919",
+    textColor: "#191919",
+    heroTextColor: "#191919",
+    heroImage:
+      "https://usecadence.com/cdn/shop/files/658ee1737aa90abd23646fa1_Group_469_1.png?height=628&pad_color=ffffff&v=1708608427&width=1200",
+    heroPosition: "center",
+    announcement: "PREMIUM ELECTROLYTE HYDRATION | PERFORMANCE AND RECOVERY",
+    nav: ["Shop", "Hydration", "Performance", "About"],
+    eyebrow: "Daily discipline and recovery",
+    headline: "Hydration products with clean education and sharp offers.",
+    body: "Premium electrolyte and fueling pages shaped around product education, routine building, responsive content blocks, and conversion-focused offer paths.",
+    cta: "Build routine",
+    secondaryCta: "Explore products",
+    feature: "Hydration and fuelling system",
+    fontHeading: "PP Editorial",
+    fontBody: "Neue Montreal",
+    headingStack: '"PP Editorial", Georgia, "Times New Roman", serif',
+    bodyStack: '"Neue Montreal", var(--font-space-grotesk), sans-serif',
+    typeStyle: "Minimal editorial headings, monochrome structure, and coral offer accents for performance ecommerce.",
+    products: ["Hydration", "Performance", "Subscription"],
+    deliverables: ["Brand-led landing sections", "Product education blocks", "Offer path", "Responsive QA"],
+    tools: ["Shopify", "Brand design", "CRO", "Mobile QA"],
+  },
+];
+
+type BrandLink = {
+  label: string;
+  href: string;
+};
+
+type BrandSample = Omit<(typeof legacyDesignSamples)[number], "nav"> & {
+  layout: "marcozo" | "flowpouch" | "pagulayan" | "salted" | "two-brothers" | "cadence";
+  primaryHref: string;
+  secondaryHref: string;
+  featureHref: string;
+  nav: BrandLink[];
+  utilityLinks: BrandLink[];
+  trustBadges: string[];
+  splitHero: boolean;
+};
+
+const designSampleOverrides: Record<
+  string,
+  Partial<BrandSample> &
+    Pick<
+      BrandSample,
+      "layout" | "primaryHref" | "secondaryHref" | "featureHref" | "nav" | "utilityLinks" | "trustBadges" | "splitHero"
+    >
+> = {
+  Marcozo: {
+    layout: "marcozo",
+    primaryHref: "https://www.marcozo.com/collections/best-sellers",
+    secondaryHref: "https://www.marcozo.com/collections/necklaces",
+    featureHref: "https://www.marcozo.com/collections/best-sellers",
+    heroImage: "/brand-assets/marcozo-hero.webp",
+    heroPosition: "center",
+    announcement: "LIFETIME WARRANTY ON ALL JEWELRY",
+    nav: [
+      { label: "Best Sellers", href: "https://www.marcozo.com/collections/best-sellers" },
+      { label: "Pendants", href: "https://www.marcozo.com/collections/necklaces" },
+      { label: "Chains", href: "https://www.marcozo.com/collections/chains" },
+      { label: "Rings", href: "https://www.marcozo.com/collections/rings" },
+      { label: "Bracelets", href: "https://www.marcozo.com/collections/bracelets" },
+      { label: "Clothing", href: "https://www.marcozo.com/collections/clothing" },
+      { label: "New", href: "https://www.marcozo.com/collections/new-releases" },
+    ],
+    utilityLinks: [
+      { label: "Search", href: "https://www.marcozo.com/search" },
+      { label: "Account", href: "https://www.marcozo.com/account" },
+      { label: "Cart", href: "https://www.marcozo.com/cart" },
+    ],
+    eyebrow: "Premium jewelry",
+    headline: "Built for modern emperors",
+    body: "",
+    cta: "Shop now",
+    secondaryCta: "View collections",
+    fontHeading: "Montserrat",
+    fontBody: "Montserrat",
+    headingStack: '"Montserrat", var(--font-space-grotesk), sans-serif',
+    bodyStack: '"Montserrat", var(--font-space-grotesk), sans-serif',
+    typeStyle: "Black navigation, all-caps luxury copy, warm gold accents, and product-first hero photography.",
+    trustBadges: ["100,000 happy customers", "Free shipping", "Risk-free shopping", "Lifetime warranty"],
+    splitHero: false,
+  },
+  Flowpouch: {
+    layout: "flowpouch",
+    primaryHref: "https://flowpouch.com/products/flow-pouches",
+    secondaryHref: "https://flowpouch.com/pages/about-our-ingredients",
+    featureHref: "https://flowpouch.com/products/flow-pouches",
+    pageBg: "#f7fffc",
+    headerBg: "#f7fffc",
+    headerTextColor: "#141414",
+    heroTextColor: "#141414",
+    heroImage:
+      "https://assets.replocdn.com/projects/677275eb-0270-4145-90bf-dbef88f85b02/8cc6b1e3-890e-4ac3-a899-1b56ae3ac4b7",
+    heroPosition: "center top",
+    announcement: "",
+    nav: [
+      { label: "Shop Flow Pouches", href: "https://flowpouch.com/products/flow-pouches" },
+      { label: "About", href: "https://flowpouch.com/pages/about-us" },
+      { label: "Ingredients", href: "https://flowpouch.com/pages/about-our-ingredients" },
+      { label: "FAQ", href: "https://flowpouch.com/pages/frequently-asked-questions" },
+      { label: "Contact", href: "https://flowpouch.com/pages/contact" },
+      { label: "Blog", href: "https://flowpouch.com/blogs/news" },
+    ],
+    utilityLinks: [
+      { label: "Account", href: "https://flowpouch.com/account/login" },
+      { label: "Cart", href: "https://flowpouch.com/cart" },
+    ],
+    headline: "A natural and healthy alternative to nicotine pouches",
+    body: "A practical funnel direction with clear benefit copy, product education, bundle framing, proof sections, FAQs, and repeated mobile CTAs.",
+    cta: "Shop Flow Pouches",
+    fontHeading: "Poppins",
+    fontBody: "Poppins",
+    headingStack: '"Poppins", var(--font-space-grotesk), sans-serif',
+    bodyStack: '"Poppins", var(--font-space-grotesk), sans-serif',
+    typeStyle: "Centered athletic logo, black offer buttons, strong green product cues, and direct benefit-led copy.",
+    trustBadges: ["Nicotine-free", "Mushroom blend", "5 flavors", "Clean focus"],
+    splitHero: true,
+  },
+  "Pagulayan Cues": {
+    layout: "pagulayan",
+    primaryHref: "https://pagulayancues.com/collections/lion-pool-cues",
+    secondaryHref: "https://pagulayancues.com/collections/pristine-carbon-fiber-shafts",
+    featureHref: "https://pagulayancues.com/collections/lion-pool-cues",
+    logo: "https://pagulayancues.com/cdn/shop/files/Logo_-_Transparent_Head_1.png?v=1697189642&width=600",
+    logoBg: "#ffffff",
+    headerBg: "#ffffff",
+    headerTextColor: "#121212",
+    announcement: "",
+    nav: [{ label: "Shop", href: "https://pagulayancues.com/collections/all" }],
+    utilityLinks: [
+      { label: "Search", href: "https://pagulayancues.com/search" },
+      { label: "Account", href: "https://pagulayancues.com/account/login" },
+      { label: "Cart", href: "https://pagulayancues.com/cart" },
+    ],
+    headline: "Lion Merry Widow Series",
+    cta: "Shop now",
+    secondaryCta: "Shop shafts",
+    trustBadges: ["Merry Widow cues", "Carbon shafts", "Review proof", "Free-gift promo"],
+    splitHero: false,
+  },
+  "Salted Seas": {
+    layout: "salted",
+    primaryHref: "https://saltedseas.com/collections/all",
+    secondaryHref: "https://saltedseas.com/pages/our-story",
+    featureHref: "https://saltedseas.com/collections/all",
+    announcement: "Mothers day sale on now! Get 20% off with code (MOTHERSDAY)",
+    nav: [
+      { label: "Home", href: "https://saltedseas.com/" },
+      { label: "Our Story", href: "https://saltedseas.com/pages/our-story" },
+      { label: "Contact", href: "https://saltedseas.com/pages/contact" },
+      { label: "Shop", href: "https://saltedseas.com/collections/all" },
+      { label: "FAQs", href: "https://saltedseas.com/pages/faqs" },
+    ],
+    utilityLinks: [
+      { label: "Search", href: "https://saltedseas.com/search" },
+      { label: "Account", href: "https://saltedseas.com/account" },
+      { label: "Cart", href: "https://saltedseas.com/cart" },
+    ],
+    trustBadges: ["Cruelty-free", "Ocean-derived ingredients", "100% vegan formulas", "Made in USA", "Sustainable skincare"],
+    splitHero: false,
+  },
+  "Two Brothers Grooming": {
+    layout: "two-brothers",
+    primaryHref: "https://twobrothersgrooming.com/collections/all",
+    secondaryHref: "https://twobrothersgrooming.com/pages/our-story",
+    featureHref: "https://twobrothersgrooming.com/collections/all-product",
+    logoBg: "#0f2a1d",
+    nav: [
+      { label: "About", href: "https://twobrothersgrooming.com/pages/our-story" },
+      { label: "Products", href: "https://twobrothersgrooming.com/collections/all" },
+      { label: "Services", href: "https://twobrothersgrooming.com/pages/services" },
+      { label: "Blog", href: "https://twobrothersgrooming.com/blogs/styling-tips" },
+      { label: "Contact", href: "https://twobrothersgrooming.com/pages/contact" },
+    ],
+    utilityLinks: [
+      { label: "Search", href: "https://twobrothersgrooming.com/search" },
+      {
+        label: "Account",
+        href: "https://twobrothersgrooming.com/customer_authentication/redirect?locale=en&region_country=US",
+      },
+      { label: "Cart", href: "https://twobrothersgrooming.com/cart" },
+    ],
+    trustBadges: ["Premium quality", "Barber crafted", "Free shipping", "Limited edition"],
+    splitHero: true,
+  },
+  Cadence: {
+    layout: "cadence",
+    primaryHref: "https://usecadence.com/collections/all-products",
+    secondaryHref: "https://usecadence.com/pages/subscribe-save",
+    featureHref: "https://usecadence.com/blogs/science",
+    logo: "https://usecadence.com/cdn/shop/files/Logo_White.svg?crop=center&height=54&v=1743373957&width=240",
+    logoBg: "#111111",
+    pageBg: "#111111",
+    headerBg: "#111111",
+    headerTextColor: "#ffffff",
+    textColor: "#ffffff",
+    heroTextColor: "#ffffff",
+    heroImage:
+      "https://usecadence.com/cdn/shop/files/1207000_1207000-R1-039-18_d44b96a7-a0ab-48e4-9870-02f431ab149a.jpg?v=1777738231&width=1500",
+    announcement: "Free Shipping over GBP 50 | Subscribe & Save | Backed by Science",
+    nav: [
+      { label: "Shop", href: "https://usecadence.com/collections/all-products" },
+      { label: "Science", href: "https://usecadence.com/blogs/science" },
+      { label: "Fuel Club", href: "https://usecadence.com/pages/fuel-club" },
+      { label: "Stores", href: "https://usecadence.com/pages/store-locator" },
+      { label: "Subscription", href: "https://usecadence.com/pages/subscribe-save" },
+      { label: "Athletes", href: "https://usecadence.com/pages/athletes" },
+    ],
+    utilityLinks: [
+      { label: "Account", href: "https://usecadence.com/account" },
+      { label: "Search", href: "https://usecadence.com/search" },
+      { label: "Cart", href: "https://usecadence.com/cart" },
+    ],
+    headline: "Modern Sports Hydration",
+    body: "Science-backed hydration for daily movement, with landing sections for product education, subscription clarity, and conversion-focused offer paths.",
+    cta: "Shop all products",
+    secondaryCta: "Subscribe & save",
+    trustBadges: ["Free shipping", "Subscribe & Save", "Backed by Science"],
+    splitHero: false,
+  },
+};
+
+const designSamples = legacyDesignSamples.map((sample) => ({
+  ...sample,
+  ...designSampleOverrides[sample.project],
+})) as BrandSample[];
+
+type DesignSample = (typeof designSamples)[number];
+
+const storefrontTrustIcons = [Star, Package, RefreshCw, ShieldCheck, Sparkles];
+const storefrontUtilityIcons = [Search, UserRound, ShoppingBag];
+
+const funnelCroItems = [
+  {
+    title: "Funnel mapping",
+    text: "Plan the route from landing page to product education, cart, checkout, email capture, and follow-up so the page has a real business path.",
+    icon: Workflow,
+  },
+  {
+    title: "Funnelish implementation support",
+    text: "Build or support Funnelish-style pages with offer blocks, proof, bundles, checkout actions, tracking checks, and mobile spacing.",
+    icon: PanelsTopLeft,
+  },
+  {
+    title: "CRO audit",
+    text: "Review CTA visibility, product-page clarity, trust signals, page speed, mobile order, heatmaps, analytics, and checkout friction.",
+    icon: LineChart,
+  },
+  {
+    title: "Design iteration",
+    text: "Make realistic changes after review: better section order, stronger product messages, cleaner buttons, easier forms, and clearer navigation.",
+    icon: WandSparkles,
+  },
 ];
 
 const experience = [
@@ -235,11 +739,46 @@ const experience = [
     icon: Store,
   },
   {
+    company: "Cadence",
+    role: "Branding, design, and Shopify sample support",
+    period: "Project sample",
+    href: "https://usecadence.com/",
+    icon: WandSparkles,
+  },
+  {
+    company: "Geminos",
+    role: "Shopify store setup and launch support",
+    period: "Freelance project",
+    href: "https://geminos.store/password",
+    icon: SiShopify,
+  },
+  {
     company: "Motovan to Shopify",
     role: "B2B API integration support",
     period: "2024",
     href: "https://motovan.com/",
     icon: Workflow,
+  },
+  {
+    company: "Freelance Ecommerce Builds",
+    role: "Branding, layout, and launch support",
+    period: "2023 - 2025",
+    href: site.portfolio,
+    icon: WandSparkles,
+  },
+  {
+    company: "Shopify and Funnel Projects",
+    role: "Funnelish, CRO, and page-building support",
+    period: "2024 - 2025",
+    href: site.portfolio,
+    icon: LineChart,
+  },
+  {
+    company: "Replo, GemPages, and Webflow Builds",
+    role: "Landing-page and responsive design implementation",
+    period: "2023 - 2025",
+    href: site.portfolio,
+    icon: PanelsTopLeft,
   },
 ];
 
@@ -254,11 +793,22 @@ const toolGroups = [
       { name: "Shopify Admin", icon: Store, tone: "green" },
       { name: "Liquid sections", icon: Code2, tone: "ink" },
       { name: "Metafields", icon: Database, tone: "blue" },
+      { name: "Shopify Flow", icon: Workflow, tone: "green" },
+      { name: "Shopify Markets", icon: Globe2, tone: "blue" },
+      { name: "Brand direction", icon: WandSparkles, tone: "orange" },
+      { name: "Figma handoff", icon: SiFigma, tone: "violet" },
+      { name: "Canva assets", icon: SiCanva, tone: "cyan" },
+      { name: "UI hierarchy", icon: PanelsTopLeft, tone: "blue" },
       { name: "Replo", icon: PanelsTopLeft, tone: "pink" },
       { name: "GemPages", icon: WandSparkles, tone: "yellow" },
       { name: "Webflow", icon: SiWebflow, tone: "blue" },
       { name: "Klaviyo flows", icon: Mail, tone: "green" },
+      { name: "Mailchimp", icon: SiMailchimp, tone: "yellow" },
       { name: "Funnelish", icon: Workflow, tone: "orange" },
+      { name: "CRO", icon: LineChart, tone: "green" },
+      { name: "Offer pages", icon: Rocket, tone: "red" },
+      { name: "Upsell apps", icon: ShoppingBag, tone: "orange" },
+      { name: "Reviews apps", icon: Star, tone: "yellow" },
       { name: "Stripe", icon: SiStripe, tone: "violet" },
       { name: "Checkout QA", icon: ShoppingBag, tone: "green" },
       { name: "Cart optimization", icon: Workflow, tone: "blue" },
@@ -275,14 +825,20 @@ const toolGroups = [
       { name: "GA4 funnels", icon: Workflow, tone: "orange" },
       { name: "Google Merchant Center", icon: SiGoogleads, tone: "green" },
       { name: "Google Ads", icon: SiGoogleads, tone: "blue" },
-      { name: "Google Tag Manager", icon: Code2, tone: "ink" },
-      { name: "Search Console", icon: LineChart, tone: "green" },
+      { name: "Google Tag Manager", icon: SiGoogletagmanager, tone: "ink" },
+      { name: "Search Console", icon: SiGooglesearchconsole, tone: "green" },
       { name: "Microsoft Clarity", icon: Eye, tone: "blue" },
+      { name: "Hotjar", icon: SiHotjar, tone: "red" },
       { name: "Shopify Analytics", icon: BarChart3, tone: "green" },
       { name: "PageSpeed Insights", icon: Zap, tone: "yellow" },
       { name: "Heatmap review", icon: Eye, tone: "violet" },
       { name: "Product feed QA", icon: Database, tone: "blue" },
+      { name: "Meta Pixel", icon: SiMeta, tone: "blue" },
+      { name: "TikTok Pixel", icon: SiTiktok, tone: "ink" },
+      { name: "Looker-style reports", icon: BarChart3, tone: "blue" },
+      { name: "SEMrush basics", icon: SiSemrush, tone: "orange" },
       { name: "Google Workspace", icon: SiGmail, tone: "red" },
+      { name: "Google Drive", icon: SiGoogledrive, tone: "green" },
     ],
   },
   {
@@ -293,6 +849,7 @@ const toolGroups = [
       { name: "JavaScript", icon: SiJavascript, tone: "yellow" },
       { name: "TypeScript", icon: SiTypescript, tone: "blue" },
       { name: "React", icon: SiReact, tone: "cyan" },
+      { name: "React Native", icon: SiReact, tone: "cyan" },
       { name: "Next.js", icon: SiNextdotjs, tone: "ink" },
       { name: "Tailwind CSS", icon: SiTailwindcss, tone: "cyan" },
       { name: "HTML5", icon: SiHtml5, tone: "orange" },
@@ -304,6 +861,8 @@ const toolGroups = [
       { name: "Django", icon: SiDjango, tone: "green" },
       { name: "REST APIs", icon: Workflow, tone: "blue" },
       { name: "JSON mapping", icon: Database, tone: "green" },
+      { name: "React Query", icon: SiReactquery, tone: "red" },
+      { name: "Prisma", icon: SiPrisma, tone: "ink" },
       { name: "Auth flows", icon: ShieldCheck, tone: "violet" },
       { name: "Admin logic", icon: ServerCog, tone: "ink" },
     ],
@@ -319,6 +878,7 @@ const toolGroups = [
       { name: "PostgreSQL", icon: SiPostgresql, tone: "blue" },
       { name: "MongoDB", icon: SiMongodb, tone: "green" },
       { name: "Google Sheets", icon: SiGooglesheets, tone: "green" },
+      { name: "Zapier-style automations", icon: SiZapier, tone: "orange" },
       { name: "ClubWise reports", icon: Database, tone: "orange" },
       { name: "CSV cleanup", icon: FileText, tone: "green" },
       { name: "Data validation", icon: BadgeCheck, tone: "blue" },
@@ -347,6 +907,9 @@ const toolGroups = [
       { name: "CloudFront-ready CDN", icon: Zap, tone: "blue" },
       { name: "Route 53 DNS basics", icon: Globe2, tone: "green" },
       { name: "IAM/env hygiene", icon: ShieldCheck, tone: "violet" },
+      { name: "Google Cloud basics", icon: SiGooglecloud, tone: "blue" },
+      { name: "Cloudflare", icon: SiCloudflare, tone: "orange" },
+      { name: "Docker basics", icon: SiDocker, tone: "blue" },
       { name: "PM2", icon: SiPm2, tone: "green" },
       { name: "Nginx", icon: SiNginx, tone: "green" },
       { name: "Vercel", icon: SiVercel, tone: "ink" },
@@ -388,6 +951,8 @@ const liveLinks = [
   { name: "Pagulayan Cues", href: "https://pagulayancues.com/", type: "Billiards ecommerce" },
   { name: "Marcozo", href: "https://www.marcozo.com/", type: "Jewelry ecommerce" },
   { name: "Two Brothers Grooming", href: "https://twobrothersgrooming.com/", type: "Grooming ecommerce" },
+  { name: "Cadence", href: "https://usecadence.com/", type: "Hydration ecommerce" },
+  { name: "Geminos", href: "https://geminos.store/password", type: "Password-protected Shopify" },
   { name: "Angelic Motion", href: "https://angelicmotion.com/", type: "Streetwear ecommerce" },
   { name: "Sad Boy Saga", href: "https://sadboysaga.com/", type: "Streetwear ecommerce" },
   { name: "SudorCure", href: "https://www.sudorcure.com/", type: "Health ecommerce" },
@@ -451,7 +1016,7 @@ function ExternalAnchor({
   style,
 }: {
   href: string;
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
   label?: string;
   style?: CSSProperties;
@@ -470,9 +1035,208 @@ function ExternalAnchor({
   );
 }
 
+function BrandSampleCard({ sample, index }: { sample: DesignSample; index: number }) {
+  const heroStyle = sample.splitHero
+    ? undefined
+    : ({
+        backgroundImage: `url("${sample.heroImage}")`,
+        backgroundPosition: sample.heroPosition,
+      } as CSSProperties);
+
+  return (
+    <article
+      className="sample-card brand-sample-card surface-card"
+      style={
+        {
+          "--sample-a": sample.palette[0],
+          "--sample-b": sample.palette[1],
+          "--sample-c": sample.palette[2],
+          "--sample-d": sample.palette[3],
+          "--sample-logo-bg": sample.logoBg,
+          "--sample-page-bg": sample.pageBg,
+          "--sample-header-bg": sample.headerBg,
+          "--sample-header-text": sample.headerTextColor,
+          "--sample-text": sample.textColor,
+          "--sample-hero-text": sample.heroTextColor,
+          "--sample-heading-font": sample.fontHeading,
+          "--sample-body-font": sample.fontBody,
+          "--sample-heading-stack": sample.headingStack,
+          "--sample-body-stack": sample.bodyStack,
+          animationDelay: `${index * 70}ms`,
+        } as CSSProperties
+      }
+    >
+      <div className="brand-board">
+        <div className="brand-board-head">
+          <span
+            className="brand-logo-mark"
+            role="img"
+            aria-label={`${sample.project} logo`}
+            style={{ backgroundImage: `url("${sample.logo}")` }}
+          />
+          <span>
+            <small>Portfolio sample based on</small>
+            <strong>{sample.project}</strong>
+          </span>
+          <div className="brand-palette" aria-label={`${sample.project} sample color palette`}>
+            {sample.palette.map((color) => (
+              <span key={color} style={{ backgroundColor: color }} />
+            ))}
+          </div>
+        </div>
+
+        <div className={`storefront-preview storefront-preview--${sample.layout}`}>
+          {sample.announcement ? (
+            <ExternalAnchor href={sample.primaryHref} className="storefront-announcement">
+              <ChevronLeft className="h-3.5 w-3.5" />
+              <span>{sample.announcement}</span>
+              <ChevronRight className="h-3.5 w-3.5" />
+            </ExternalAnchor>
+          ) : null}
+
+          <div className="storefront-header">
+            {sample.layout === "flowpouch" ? (
+              <ExternalAnchor href={sample.primaryHref} className="storefront-menu-button" label={`${sample.project} menu`}>
+                <Menu className="h-4 w-4" />
+              </ExternalAnchor>
+            ) : null}
+            <ExternalAnchor
+              href={sample.href}
+              className="storefront-logo"
+              label={`${sample.project} storefront home`}
+              style={{ backgroundImage: `url("${sample.logo}")` }}
+            />
+            <nav className="storefront-nav" aria-label={`${sample.project} sample navigation`}>
+              {sample.nav.map((item) => (
+                <ExternalAnchor key={item.href} href={item.href}>
+                  {item.label}
+                </ExternalAnchor>
+              ))}
+            </nav>
+            <div className="storefront-icons">
+              {sample.utilityLinks.map((link, utilityIndex) => {
+                const UtilityIcon = storefrontUtilityIcons[utilityIndex % storefrontUtilityIcons.length];
+
+                return (
+                  <ExternalAnchor
+                    key={link.href}
+                    href={link.href}
+                    className="storefront-icon-link"
+                    label={`${sample.project} ${link.label}`}
+                  >
+                    <UtilityIcon className="h-4 w-4" />
+                    <span>{link.label}</span>
+                  </ExternalAnchor>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className={`storefront-hero${sample.splitHero ? " storefront-hero--split" : ""}`} style={heroStyle}>
+            <div className="storefront-copy">
+              <small>{sample.eyebrow}</small>
+              <h4>{sample.headline}</h4>
+              {sample.body ? <p>{sample.body}</p> : null}
+              <div className="storefront-actions">
+                <ExternalAnchor href={sample.primaryHref} className="storefront-primary-cta">
+                  {sample.cta}
+                </ExternalAnchor>
+                <ExternalAnchor href={sample.secondaryHref} className="storefront-secondary-cta">
+                  {sample.secondaryCta}
+                </ExternalAnchor>
+              </div>
+            </div>
+
+            {sample.splitHero ? (
+              <ExternalAnchor
+                href={sample.primaryHref}
+                label={`${sample.project} hero banner`}
+                className="storefront-media"
+                style={{
+                  backgroundImage: `url("${sample.heroImage}")`,
+                  backgroundPosition: sample.heroPosition,
+                }}
+              >
+                <div className="storefront-feature-card">
+                  <small>{sample.category}</small>
+                  <strong>{sample.feature}</strong>
+                  <span>{sample.cta} -&gt;</span>
+                </div>
+              </ExternalAnchor>
+            ) : (
+              <ExternalAnchor
+                href={sample.featureHref}
+                className="storefront-feature-card storefront-feature-card--floating"
+                label={`${sample.project} featured offer`}
+              >
+                <small>{sample.category}</small>
+                <strong>{sample.feature}</strong>
+                <span>{sample.cta} -&gt;</span>
+              </ExternalAnchor>
+            )}
+          </div>
+
+          <div className="storefront-trust-strip">
+            {sample.trustBadges.map((badge, badgeIndex) => {
+              const TrustIcon = storefrontTrustIcons[badgeIndex % storefrontTrustIcons.length];
+
+              return (
+                <ExternalAnchor
+                  key={badge}
+                  href={sample.primaryHref}
+                  className="storefront-trust-item"
+                  label={`${sample.project} ${badge}`}
+                >
+                  <TrustIcon className="h-4 w-4" />
+                  <span>{badge}</span>
+                </ExternalAnchor>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="brand-typography-panel">
+          <span className="type-token">Aa</span>
+          <div>
+            <small>Real typography direction</small>
+            <p>
+              <strong>{sample.fontHeading}</strong> for headings, <strong>{sample.fontBody}</strong> for body and navigation.
+            </p>
+            <em>{sample.typeStyle}</em>
+          </div>
+        </div>
+      </div>
+
+      <div className="brand-sample-copy">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <span className="sample-tag">{sample.category}</span>
+          <a href={sample.href} target="_blank" rel="noopener noreferrer" className="sample-mini-link">
+            Live brand <ExternalLink className="h-3.5 w-3.5" />
+          </a>
+        </div>
+        <h3>{sample.title}</h3>
+        <p>{sample.body}</p>
+        <ul>
+          {sample.deliverables.map((item) => (
+            <li key={item}>
+              <BadgeCheck className="h-4 w-4" />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-5 flex flex-wrap gap-2">
+          {sample.tools.map((tool) => (
+            <Chip key={tool}>{tool}</Chip>
+          ))}
+        </div>
+      </div>
+    </article>
+  );
+}
+
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-hidden">
+    <main className="min-h-screen">
       <div className="loader-screen" aria-hidden="true">
         <div className="loader-card">
           <div className="loader-mark">{site.initials}</div>
@@ -489,23 +1253,23 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="mx-auto w-full max-w-7xl px-5 pb-28 pt-5 sm:px-8 lg:px-10 lg:pb-16">
-        <header className="sticky top-4 z-40">
+      <div className="portfolio-shell mx-auto w-full max-w-7xl px-5 pb-28 sm:px-8 lg:px-10 lg:pb-16">
+        <header className="portfolio-header">
           <div className="nav-shell surface-card px-4 py-3 sm:px-5">
             <div className="header-main">
-              <a href="#top" className="group flex min-w-0 items-center gap-3">
+              <a href="#top" className="brand-lockup group">
                 <span className="logo-mark">{site.initials}</span>
-                <span className="min-w-0">
-                  <span className="block truncate font-display text-base font-bold">
+                <span className="brand-copy">
+                  <span className="brand-name">
                     {site.name}
                   </span>
-                  <span className="block truncate text-xs font-bold uppercase tracking-[0.16em] text-muted">
+                  <span className="brand-role">
                     Ecommerce + Software Engineer
                   </span>
                 </span>
               </a>
 
-              <div className="flex items-center gap-2">
+              <div className="header-actions">
                 <a
                   href={site.emailLink}
                   className="contact-icon"
@@ -522,7 +1286,7 @@ export default function Home() {
                 </ExternalAnchor>
                 <a
                   href="#contact"
-                  className="button-base button-primary hidden sm:inline-flex"
+                  className="button-base button-primary header-hire-link"
                 >
                   <span>Hire me</span>
                   <ArrowUpRight className="h-4 w-4" />
@@ -553,7 +1317,7 @@ export default function Home() {
 
         <section
           id="top"
-          className="grid min-h-[calc(100vh-92px)] gap-8 pt-16 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-center"
+          className="grid min-h-[calc(100vh-92px)] gap-8 pt-10 sm:pt-16 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-center"
         >
           <div className="page-enter">
             <div className="inline-flex items-center gap-3 border-l-4 border-accent bg-white/70 px-4 py-3 text-sm font-bold text-foreground shadow-sm lg:hidden">
@@ -561,18 +1325,33 @@ export default function Home() {
               Available for remote full-stack, Shopify, and operations projects
             </div>
 
-            <h1 className="hero-title mt-7 max-w-5xl text-5xl text-foreground sm:text-6xl xl:text-7xl">
-              Developer for ecommerce funnels, admin systems, and API-connected
-              growth.
+            <h1 className="hero-title mt-6 max-w-5xl text-4xl text-foreground sm:mt-7 sm:text-6xl xl:text-7xl">
+              <span className="hero-role-label">Available as</span>
+              <span className="role-rotator" aria-hidden="true">
+                {[
+                  "Fullstack Developer",
+                  "Shopify Developer",
+                ].map((role, index) => (
+                  <span
+                    key={role}
+                    style={{ "--role-index": index } as CSSProperties}
+                  >
+                    {role}
+                  </span>
+                ))}
+              </span>
+              <span className="sr-only">
+                Fullstack Developer and Shopify Developer
+              </span>
             </h1>
 
-            <p className="mt-6 max-w-3xl text-xl leading-9 text-muted">
-              I help teams turn messy business workflows into polished web
-              experiences - from Shopify storefronts and checkout journeys to
-              custom CRM dashboards, data cleanup, reporting, and integrations.
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-muted sm:mt-6 sm:text-xl sm:leading-9">
+              I build Shopify storefronts, admin dashboards, data workflows,
+              and API integrations that make daily work clearer, faster, and
+              easier to manage.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-5 flex flex-wrap gap-3 sm:mt-8">
               <a href={site.emailLink} className="button-base button-primary">
                 <SiGmail className="h-5 w-5" />
                 <span>Email me</span>
@@ -708,7 +1487,7 @@ export default function Home() {
           <SectionTitle
             eyebrow="Selected work"
             title="Business-shaped builds with visible operational impact"
-            text="The strongest stories are not just about frameworks. They are about better admin visibility, cleaner product data, smoother storefront journeys, and faster team execution."
+            text="The strongest stories are not just about frameworks. They are also about brand clarity, better admin visibility, cleaner product data, smoother storefront journeys, and more confident buying paths."
           />
 
           <div className="mt-10 grid gap-4 lg:grid-cols-3">
@@ -748,6 +1527,40 @@ export default function Home() {
                 </div>
               </article>
             ))}
+          </div>
+        </section>
+
+        <section id="branding" className="pt-24">
+          <SectionTitle
+            eyebrow="Branding and design samples"
+            title="Realistic brand boards and ecommerce design samples based on past project work"
+            text="These are portfolio sample boards, not random inspiration screenshots. Each one is built from the kind of work in my experience: Shopify brand direction, landing pages, product layouts, mobile-first design, Funnelish-style offers, CRO, and launch-ready store polish."
+          />
+
+          <div className="mt-10 grid gap-5">
+            {designSamples.map((sample, index) => (
+              <BrandSampleCard key={sample.title} sample={sample} index={index} />
+            ))}
+          </div>
+        </section>
+
+        <section id="growth" className="pt-24">
+          <div className="growth-panel surface-card-strong">
+            <SectionTitle
+              eyebrow="Funnelish and CRO"
+              title="A stronger growth story for clients who need sales pages, not just pretty pages"
+              text="This part highlights the business side of the work: Funnelish-style flows, CRO reviews, product-page clarity, heatmap learning, checkout confidence, and realistic optimization based on analytics and customer behavior."
+            />
+
+            <div className="mt-10 grid gap-4 lg:grid-cols-4">
+              {funnelCroItems.map((item, index) => (
+                <article key={item.title} className="growth-card">
+                  <IconBox icon={item.icon} tone={index % 2 ? "blue" : "green"} />
+                  <h3 className="mt-5 font-display text-xl font-bold">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-muted">{item.text}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
