@@ -53,6 +53,7 @@
 
 html {
   min-height: 100%;
+  overflow-y: auto;
   scroll-behavior: smooth;
   background:
     linear-gradient(135deg, rgba(0, 166, 125, 0.12), transparent 28%),
@@ -62,6 +63,7 @@ html {
 
 body {
   min-height: 100vh;
+  overflow-y: auto;
   background:
     linear-gradient(120deg, rgba(255, 255, 255, 0.9), transparent 36%),
     linear-gradient(180deg, #f8faf3 0%, #edf7e8 56%, #fbf8ef 100%);
@@ -111,6 +113,10 @@ a {
 
 main {
   overflow: visible;
+}
+
+section[id] {
+  scroll-margin-top: 13rem;
 }
 
 ::selection {
@@ -531,12 +537,69 @@ main {
     gap: 0.4rem;
   }
 
+  @media (min-width: 760px) {
+    .desktop-nav-panel {
+      display: grid;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .availability-pill {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .desktop-nav {
+      width: 100%;
+      flex: none;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      gap: 0.25rem;
+    }
+
+    .nav-link {
+      flex: 1 1 0;
+      justify-content: center;
+      gap: 0.35rem;
+      padding: 0.62rem 0.45rem;
+      font-size: 0.78rem;
+    }
+
+    .hero-mobile-pill {
+      display: none !important;
+    }
+  }
+
   @media (min-width: 1024px) {
+    section[id] {
+      scroll-margin-top: 11.5rem;
+    }
+
     .desktop-nav-panel {
       display: flex;
-      align-items: center;
       justify-content: space-between;
       gap: 1rem;
+    }
+
+    .availability-pill {
+      width: auto;
+      min-width: 17rem;
+      flex: 1 1 18rem;
+    }
+
+    .desktop-nav {
+      width: auto;
+      flex: 1 1 28rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.4rem;
+    }
+
+    .nav-link {
+      flex: 0 0 auto;
+      gap: 0.45rem;
+      padding: 0.72rem 0.85rem;
+      font-size: 0.82rem;
     }
   }
 
@@ -646,7 +709,7 @@ main {
     transform: translateY(-2px);
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 760px) {
     .mobile-nav-dock {
       display: none;
     }
@@ -1540,9 +1603,9 @@ main {
       inset 0 1px 0 rgba(255, 255, 255, 0.72);
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 760px) {
     .portfolio-shell {
-      padding-top: 9rem;
+      padding-top: 10.5rem;
     }
   }
 
@@ -2155,6 +2218,98 @@ main {
     font-size: 0.76rem;
     font-weight: 800;
     letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .review-card {
+    display: flex;
+    min-height: 19rem;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.2rem;
+    padding: 1.3rem;
+    transition:
+      border-color 180ms ease,
+      box-shadow 180ms ease,
+      transform 180ms ease;
+  }
+
+  .review-card:hover {
+    border-color: rgba(0, 166, 125, 0.26);
+    box-shadow: 0 24px 68px rgba(21, 40, 32, 0.13);
+    transform: translateY(-3px);
+  }
+
+  .review-stars {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    gap: 0.22rem;
+    border: 1px solid rgba(213, 155, 0, 0.22);
+    border-radius: 999px;
+    background:
+      linear-gradient(135deg, rgba(213, 155, 0, 0.15), rgba(255, 255, 255, 0.72)),
+      rgba(255, 255, 255, 0.76);
+    padding: 0.42rem 0.62rem;
+    color: var(--yellow);
+  }
+
+  .review-stars span {
+    margin-left: 0.25rem;
+    color: var(--foreground);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+  }
+
+  .review-quote {
+    color: rgba(17, 23, 19, 0.78);
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.8;
+  }
+
+  .review-author {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    border-top: 1px solid rgba(17, 23, 19, 0.08);
+    padding-top: 1rem;
+  }
+
+  .review-author > span {
+    display: inline-flex;
+    width: 2.6rem;
+    height: 2.6rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0, 166, 125, 0.24);
+    border-radius: 999px;
+    background: rgba(0, 166, 125, 0.1);
+    color: var(--accent-strong);
+    font-family: var(--font-space-grotesk), sans-serif;
+    font-weight: 900;
+  }
+
+  .review-author strong,
+  .review-author small {
+    display: block;
+  }
+
+  .review-author strong {
+    font-family: var(--font-space-grotesk), sans-serif;
+    font-size: 1rem;
+    font-weight: 900;
+  }
+
+  .review-author small {
+    margin-top: 0.18rem;
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    line-height: 1.45;
     text-transform: uppercase;
   }
 

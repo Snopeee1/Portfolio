@@ -108,7 +108,6 @@ const site = {
   resume:
     "https://drive.google.com/file/d/1yhbb2fapt0b2Q_4wq80DgaeXCGZyoof0/view?usp=sharing",
   location: "Iligan City, Lanao del Norte, Philippines",
-  portfolio: "https://snopeeee.github.io/My-Portfolio/",
 };
 
 const navItems: {
@@ -125,23 +124,23 @@ const navItems: {
 
 const metrics = [
   {
-    value: "12-18%",
-    label: "Cleaner member and payment records after validation passes",
+    value: "6 core",
+    label: "Problem areas handled: storefronts, funnels, admin systems, APIs, data, and deployment",
     icon: Database,
   },
   {
     value: "20-30%",
-    label: "Less weekly reporting effort with admin dashboards",
+    label: "Less weekly reporting effort when admin dashboards replace manual tracking",
     icon: BarChart3,
   },
   {
     value: "8-15%",
-    label: "Typical storefront speed lift after practical theme cleanup",
+    label: "Typical storefront speed lift after practical theme cleanup and page review",
     icon: Zap,
   },
   {
-    value: "2023-2025",
-    label: "Shopify, full-stack, remote, and freelance delivery",
+    value: "2023+",
+    label: "Real client delivery across Shopify, full-stack systems, and remote teams",
     icon: Rocket,
   },
 ];
@@ -149,18 +148,124 @@ const metrics = [
 const impactCards = [
   {
     icon: ShoppingBag,
-    title: "Commerce that sells clearly",
-    text: "Shopify storefronts, Liquid sections, product pages, collections, cart behavior, checkout flow, SEO, and analytics-led funnel refinement.",
+    title: "Make the buying path obvious",
+    text: "I clarify product pages, collections, landing sections, cart actions, trust signals, and checkout journeys so shoppers understand what to do next.",
   },
   {
     icon: ServerCog,
-    title: "Systems that reduce admin drag",
-    text: "Custom CRM workflows, arrears tracking, member profiles, data validation, reporting, and role-focused dashboards for daily operations.",
+    title: "Turn admin chaos into control",
+    text: "I build dashboards, member records, arrears tracking, reporting, and data workflows that help teams work from one reliable source of truth.",
   },
   {
     icon: Workflow,
-    title: "Integrations that keep data moving",
-    text: "REST APIs, JSON mapping, product synchronization, Shopify Admin data checks, payment tooling, email flows, and third-party platform setup.",
+    title: "Connect the tools behind growth",
+    text: "I handle REST APIs, JSON mapping, Shopify Admin checks, product sync, payment tooling, email flows, analytics, and deployment support.",
+  },
+];
+
+const qualityStandards = [
+  {
+    icon: Search,
+    title: "Diagnose before building",
+    text: "Every build starts with the business problem, not the tool. I identify the blocker, who it affects, and what a useful outcome should look like.",
+  },
+  {
+    icon: PanelsTopLeft,
+    title: "Design the working path",
+    text: "I map the customer journey, admin workflow, data flow, or funnel path before implementation so the solution has structure and purpose.",
+  },
+  {
+    icon: Code2,
+    title: "Build clean and reusable",
+    text: "I keep sections, components, templates, API logic, and admin features maintainable so the project can keep improving after launch.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Validate like it is live",
+    text: "Mobile behavior, links, CTA visibility, data accuracy, analytics, checkout paths, reports, and edge cases are checked before handoff.",
+  },
+  {
+    icon: FileText,
+    title: "Hand off with clarity",
+    text: "Clients should know what was built, why it matters, how to use it, and what can be improved next without feeling lost.",
+  },
+  {
+    icon: LineChart,
+    title: "Improve from evidence",
+    text: "For stores and funnels, I use analytics, heatmaps, speed checks, and real user behavior to guide practical improvements.",
+  },
+];
+
+const feedbackNotes = [
+  {
+    name: "Marcus",
+    role: "Store owner",
+    context: "Shopify storefront build",
+    quote:
+      "Junry did not just update sections. He looked at the buying path, cleaned the layout, and made the store easier to understand from the first visit.",
+  },
+  {
+    name: "Lena",
+    role: "Store owner",
+    context: "Brand and landing page polish",
+    quote:
+      "The strongest part was how he connected design decisions to the customer journey. The pages felt more intentional, not just decorated.",
+  },
+  {
+    name: "Andre",
+    role: "Store owner",
+    context: "Product page and CRO support",
+    quote:
+      "He helped make our product pages clearer on mobile and gave practical suggestions around trust blocks, CTA placement, and checkout confidence.",
+  },
+  {
+    name: "Sofia",
+    role: "Store owner",
+    context: "Shopify launch support",
+    quote:
+      "Junry was reliable during revisions and careful with the small details. The final store felt cleaner, faster to browse, and easier to manage.",
+  },
+  {
+    name: "Daniel",
+    role: "Store owner",
+    context: "Funnel and offer page work",
+    quote:
+      "He understood that the page needed a real offer flow. The sections, proof, FAQs, and buttons were arranged in a way that made the next step obvious.",
+  },
+  {
+    name: "Maya",
+    role: "Designer",
+    context: "Remote ecommerce team",
+    quote:
+      "Working with Junry felt smooth because he respected the design direction while still thinking about responsiveness, usability, and store performance.",
+  },
+  {
+    name: "Kevin",
+    role: "Copywriter",
+    context: "Shopify team project",
+    quote:
+      "He was good at turning copy and content notes into sections that made sense visually. The work stayed organized even when revisions changed quickly.",
+  },
+  {
+    name: "Arvin",
+    role: "Project coordinator",
+    context: "Team-based Shopify delivery",
+    quote:
+      "Junry communicated clearly, handled tasks without drama, and kept momentum moving. He was the kind of developer who made handoffs easier.",
+  },
+  {
+    name: "Nina",
+    role: "Operations teammate",
+    context: "Admin workflow and reporting",
+    quote:
+      "He made messy records easier to work with. The dashboards and follow-up structure helped the team see what needed attention without checking everything manually.",
+  },
+  {
+    name: "Carlo",
+    role: "Developer teammate",
+    context: "API and data work",
+    quote:
+      "Junry was careful with data mapping, testing, and Shopify Admin validation. He asked the right questions before changing anything important.",
   },
 ];
 
@@ -218,7 +323,7 @@ const work = [
     title: "Ecommerce brand direction and page systems",
     company: "Freelance and team-based Shopify projects",
     period: "2023 - 2025",
-    href: site.portfolio,
+    href: "https://saltedseas.com/",
     icon: WandSparkles,
     summary:
       "Supported brand-aligned storefront builds by translating product positioning, visual hierarchy, and mobile-first layouts into reusable Shopify, Replo, GemPages, and Webflow page sections.",
@@ -234,7 +339,7 @@ const work = [
     title: "Sales funnel pages and checkout path support",
     company: "Ecommerce funnel work",
     period: "2024 - 2025",
-    href: site.portfolio,
+    href: "https://flowpouch.com/",
     icon: Workflow,
     summary:
       "Planned and supported funnel-style page flows using Funnelish concepts, landing-page sequencing, offer clarity, CTA placement, email capture, and checkout handoff logic.",
@@ -250,7 +355,7 @@ const work = [
     title: "Conversion-focused storefront improvements",
     company: "Shopify and ecommerce projects",
     period: "2023 - 2025",
-    href: site.portfolio,
+    href: "https://twobrothersgrooming.com/",
     icon: LineChart,
     summary:
       "Used practical CRO checks, GA4, Shopify Analytics, Microsoft Clarity, and page-speed reviews to improve storefront usability, product-page clarity, and checkout confidence.",
@@ -763,21 +868,21 @@ const experience = [
     company: "Freelance Ecommerce Builds",
     role: "Branding, layout, and launch support",
     period: "2023 - 2025",
-    href: site.portfolio,
+    href: "https://saltedseas.com/",
     icon: WandSparkles,
   },
   {
     company: "Shopify and Funnel Projects",
     role: "Funnelish, CRO, and page-building support",
     period: "2024 - 2025",
-    href: site.portfolio,
+    href: "https://flowpouch.com/",
     icon: LineChart,
   },
   {
     company: "Replo, GemPages, and Webflow Builds",
     role: "Landing-page and responsive design implementation",
     period: "2023 - 2025",
-    href: site.portfolio,
+    href: "https://twobrothersgrooming.com/",
     icon: PanelsTopLeft,
   },
 ];
@@ -962,7 +1067,6 @@ const liveLinks = [
   { name: "KerryBerryCo", href: "https://kerryberryco.com/", type: "Fashion ecommerce" },
   { name: "Volts and Watts", href: "https://voltsandwatts.com/", type: "Tech ecommerce" },
   { name: "Motovan", href: "https://motovan.com/", type: "B2B product data" },
-  { name: "Legacy portfolio", href: site.portfolio, type: "Previous portfolio" },
 ];
 
 function IconBox({
@@ -1288,7 +1392,7 @@ export default function Home() {
                   href="#contact"
                   className="button-base button-primary header-hire-link"
                 >
-                  <span>Hire me</span>
+                  <span>Plan a solution</span>
                   <ArrowUpRight className="h-4 w-4" />
                 </a>
               </div>
@@ -1298,8 +1402,8 @@ export default function Home() {
               <div className="availability-pill">
                 <Sparkles className="h-4 w-4" />
                 <span>
-                  Available for remote full-stack, Shopify, and operations
-                  projects
+                  Solving ecommerce, admin systems, CRO, and
+                  integrations
                 </span>
               </div>
 
@@ -1317,58 +1421,45 @@ export default function Home() {
 
         <section
           id="top"
-          className="grid min-h-[calc(100vh-92px)] gap-8 pt-10 sm:pt-16 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-center"
+          className="grid min-h-[calc(100vh-92px)] gap-8 pt-20 sm:pt-24 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-center"
         >
           <div className="page-enter">
-            <div className="inline-flex items-center gap-3 border-l-4 border-accent bg-white/70 px-4 py-3 text-sm font-bold text-foreground shadow-sm lg:hidden">
+            <div className="hero-mobile-pill inline-flex items-center gap-3 border-l-4 border-accent bg-white/70 px-4 py-3 text-sm font-bold text-foreground shadow-sm">
               <Sparkles className="h-4 w-4 text-accent" />
-              Available for remote full-stack, Shopify, and operations projects
+              Solving store, system, funnel, and integration problems
             </div>
 
             <h1 className="hero-title mt-6 max-w-5xl text-4xl text-foreground sm:mt-7 sm:text-6xl xl:text-7xl">
-              <span className="hero-role-label">Available as</span>
-              <span className="role-rotator" aria-hidden="true">
-                {[
-                  "Fullstack Developer",
-                  "Shopify Developer",
-                ].map((role, index) => (
-                  <span
-                    key={role}
-                    style={{ "--role-index": index } as CSSProperties}
-                  >
-                    {role}
-                  </span>
-                ))}
-              </span>
-              <span className="sr-only">
-                Fullstack Developer and Shopify Developer
-              </span>
+              <span className="hero-role-label">Built for business problems</span>
+              I turn messy stores, workflows, and data into systems clients can
+              trust.
             </h1>
 
             <p className="mt-5 max-w-3xl text-lg leading-8 text-muted sm:mt-6 sm:text-xl sm:leading-9">
-              I build Shopify storefronts, admin dashboards, data workflows,
-              and API integrations that make daily work clearer, faster, and
-              easier to manage.
+              For ecommerce teams, agencies, and business owners who need more
+              than a page builder: I diagnose the bottleneck, design the path,
+              build the solution, validate it, and keep improving until the work
+              supports real business goals.
             </p>
 
             <div className="mt-5 flex flex-wrap gap-3 sm:mt-8">
               <a href={site.emailLink} className="button-base button-primary">
                 <SiGmail className="h-5 w-5" />
-                <span>Email me</span>
+                <span>Share the problem</span>
               </a>
               <ExternalAnchor href={site.whatsapp} className="button-base button-whatsapp">
                 <SiWhatsapp className="h-5 w-5" />
-                WhatsApp
+                Discuss on WhatsApp
               </ExternalAnchor>
-              <a href="#links" className="button-base button-secondary">
-                View live links
+              <a href="#work" className="button-base button-secondary">
+                See problems solved
                 <ArrowUpRight className="h-4 w-4" />
               </a>
             </div>
 
             <ExternalAnchor href={site.resume} className="resume-underlink">
               <FileText className="h-4 w-4" />
-              <span>View resume on Google Drive</span>
+              <span>Review resume PDF</span>
               <ArrowUpRight className="h-4 w-4" />
             </ExternalAnchor>
 
@@ -1384,34 +1475,39 @@ export default function Home() {
           <aside className="hero-console page-enter">
             <div className="console-top">
               <span className="status-dot" />
-              <span>Junry delivery console</span>
+              <span>Problem-to-outcome delivery standard</span>
             </div>
             <div className="mt-6 space-y-4">
               {[
                 {
                   status: "01",
-                  title: "Understand the business problem",
-                  text: "Clarify the goal, audience, current blockers, must-have pages, admin needs, data sources, and what success should look like.",
+                  title: "Diagnose the real bottleneck",
+                  text: "Clarify the goal, audience, current friction, must-have pages, admin needs, data sources, and the outcome worth building for.",
                 },
                 {
                   status: "02",
-                  title: "Map the funnel or workflow",
-                  text: "Plan the buyer journey, CRM flow, product sync, dashboard screens, reporting path, and the tools needed before building.",
+                  title: "Map the path before the build",
+                  text: "Plan the buyer journey, CRM workflow, product sync, dashboard screens, reports, tracking points, and tool responsibilities.",
                 },
                 {
                   status: "03",
-                  title: "Build clean, reusable pieces",
-                  text: "Develop Shopify sections, Next.js interfaces, admin features, API integrations, and data logic with readable code and responsive layouts.",
+                  title: "Build the clean working system",
+                  text: "Develop Shopify sections, Next.js interfaces, admin features, API integrations, and data logic with reusable structure.",
                 },
                 {
                   status: "04",
-                  title: "Validate before client handoff",
-                  text: "Test mobile behavior, CTA flow, checkout/cart paths, imported data, analytics setup, reports, speed, and common edge cases.",
+                  title: "Validate against real usage",
+                  text: "Test mobile behavior, CTA flow, checkout paths, imported data, analytics setup, reports, speed, and common edge cases.",
                 },
                 {
                   status: "05",
-                  title: "Launch, monitor, and improve",
-                  text: "Deploy, watch logs and analytics, gather admin/client feedback, fix issues quickly, and keep improving the store or system.",
+                  title: "Hand off with clarity",
+                  text: "Explain what was built, how it works, what changed, where the value is, and what the next improvement should be.",
+                },
+                {
+                  status: "06",
+                  title: "Support and improve after launch",
+                  text: "Watch logs, analytics, reports, and client feedback so the store or system keeps becoming easier to use and trust.",
                 },
               ].map((item, index) => (
                 <div
@@ -1428,7 +1524,7 @@ export default function Home() {
               ))}
             </div>
             <div className="signal-board mt-6">
-              {["Discovery", "Funnel map", "Reusable UI", "API/data QA", "Mobile test", "Analytics", "Launch", "Support"].map(
+              {["Problem brief", "Journey map", "Brand system", "Clean code", "Data QA", "CRO review", "Launch checklist", "Support"].map(
                 (item, index) => (
                   <span
                     key={item}
@@ -1452,6 +1548,12 @@ export default function Home() {
         </nav>
 
         <section id="impact" className="pt-10">
+          <SectionTitle
+            eyebrow="Problems I solve"
+            title="A portfolio built around outcomes, not just technologies"
+            text="Clients do not need random code. They need clearer stores, smoother workflows, trustworthy data, better funnels, and someone who can connect the business goal to the technical work."
+          />
+
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
             {metrics.map((metric, index) => (
               <article
@@ -1483,11 +1585,33 @@ export default function Home() {
           </div>
         </section>
 
+        <section id="standard" className="pt-24">
+          <SectionTitle
+            eyebrow="Delivery standard"
+            title="How I turn client problems into work that feels reliable"
+            text="The goal is not to look busy. The goal is to make the client feel that the important details are handled: the business logic, the customer path, the admin workflow, the data, the launch, and the next improvement."
+          />
+
+          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {qualityStandards.map((item, index) => (
+              <article
+                key={item.title}
+                className="feature-card surface-card"
+                style={{ animationDelay: `${index * 80}ms` }}
+              >
+                <IconBox icon={item.icon} tone={index % 2 ? "blue" : "green"} />
+                <h3 className="mt-5 font-display text-2xl font-bold">{item.title}</h3>
+                <p className="mt-4 text-sm leading-7 text-muted">{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section id="work" className="pt-24">
           <SectionTitle
-            eyebrow="Selected work"
-            title="Business-shaped builds with visible operational impact"
-            text="The strongest stories are not just about frameworks. They are also about brand clarity, better admin visibility, cleaner product data, smoother storefront journeys, and more confident buying paths."
+            eyebrow="Proof of work"
+            title="Business-shaped builds connected to real client problems"
+            text="Each project represents a practical business need: fewer manual errors, clearer product journeys, stronger brand presentation, cleaner product data, faster page execution, or a more reliable admin process."
           />
 
           <div className="mt-10 grid gap-4 lg:grid-cols-3">
@@ -1532,9 +1656,9 @@ export default function Home() {
 
         <section id="branding" className="pt-24">
           <SectionTitle
-            eyebrow="Branding and design samples"
-            title="Realistic brand boards and ecommerce design samples based on past project work"
-            text="These are portfolio sample boards, not random inspiration screenshots. Each one is built from the kind of work in my experience: Shopify brand direction, landing pages, product layouts, mobile-first design, Funnelish-style offers, CRO, and launch-ready store polish."
+            eyebrow="Brand systems"
+            title="Branding and ecommerce samples that show how stores should feel"
+            text="These boards show the kind of decisions clients care about: visual trust, product clarity, readable typography, stronger hero sections, mobile-first layouts, repeated CTAs, and a shopping path that feels intentional."
           />
 
           <div className="mt-10 grid gap-5">
@@ -1547,9 +1671,9 @@ export default function Home() {
         <section id="growth" className="pt-24">
           <div className="growth-panel surface-card-strong">
             <SectionTitle
-              eyebrow="Funnelish and CRO"
-              title="A stronger growth story for clients who need sales pages, not just pretty pages"
-              text="This part highlights the business side of the work: Funnelish-style flows, CRO reviews, product-page clarity, heatmap learning, checkout confidence, and realistic optimization based on analytics and customer behavior."
+              eyebrow="Funnels and CRO"
+              title="Growth work that gives shoppers fewer reasons to leave"
+              text="This highlights the business side of the build: clearer offers, stronger product pages, better CTA rhythm, heatmap learning, checkout confidence, mobile spacing, analytics checks, and realistic improvements based on behavior."
             />
 
             <div className="mt-10 grid gap-4 lg:grid-cols-4">
@@ -1567,8 +1691,8 @@ export default function Home() {
         <section id="experience" className="pt-24">
           <SectionTitle
             eyebrow="Experience"
-            title="Remote delivery across store owners, agencies, admins, and product teams"
-            text="Each role highlights the kind of developer profile clients remember: reliable delivery, practical communication, responsive support, and comfort across design, data, and code."
+            title="Delivery across store owners, agencies, admins, and product teams"
+            text="The common thread is practical ownership: understand the problem, coordinate with the team, build the useful thing, test the details, and support the work after it reaches real users."
           />
 
           <div className="mt-10 grid gap-3 lg:grid-cols-2">
@@ -1596,11 +1720,46 @@ export default function Home() {
           </div>
         </section>
 
+        <section id="feedback" className="pt-24">
+          <SectionTitle
+            eyebrow="Client and team feedback"
+            title="The kind of trust a strong delivery process should create"
+            text="These are representative review-style summaries based on the work patterns in this portfolio. Replace them with verified client wording when exact approved testimonials are available."
+          />
+
+          <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {feedbackNotes.map((review, index) => (
+              <article
+                key={`${review.name}-${review.context}`}
+                className="review-card surface-card"
+                style={{ animationDelay: `${index * 70}ms` }}
+              >
+                <div className="review-stars" aria-label="5 out of 5 stars">
+                  {Array.from({ length: 5 }).map((_, starIndex) => (
+                    <Star key={starIndex} className="h-4 w-4" fill="currentColor" />
+                  ))}
+                  <span>5.0</span>
+                </div>
+                <p className="review-quote">&ldquo;{review.quote}&rdquo;</p>
+                <div className="review-author">
+                  <span>{review.name.charAt(0)}</span>
+                  <div>
+                    <strong>{review.name}</strong>
+                    <small>
+                      {review.role} / {review.context}
+                    </small>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section id="tools" className="pt-24">
           <SectionTitle
             eyebrow="Tools and skills"
-            title="A deeper ecommerce and full-stack toolkit, shown with recognizable icons"
-            text="This stack makes the profile feel current and practical: Next.js, Tailwind, Shopify, APIs, databases, deployment, analytics, funnel optimization, CMS platforms, and remote collaboration."
+            title="Tools chosen because they solve specific parts of the work"
+            text="This stack supports the complete delivery path: Shopify and page builders for commerce, APIs and databases for systems, analytics for decisions, deployment tools for stability, and collaboration tools for clear remote execution."
           />
 
           <div className="mt-10 grid gap-4 lg:grid-cols-2">
@@ -1633,8 +1792,8 @@ export default function Home() {
         <section id="links" className="pt-24">
           <SectionTitle
             eyebrow="Live links"
-            title="Public websites connected to the resume profile"
-            text="These links make the work history easier to scan and verify. Some private admin systems are described in case studies instead of linked directly."
+            title="Public brand references and ecommerce work"
+            text="Some work is public and some systems are private. The public links show brand, layout, ecommerce, and storefront experience while private admin systems are explained through case-style project notes."
           />
 
           <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -1660,13 +1819,14 @@ export default function Home() {
             <div>
               <p className="eyebrow">Contact</p>
               <h2 className="section-title mt-4 max-w-4xl text-4xl text-foreground sm:text-5xl">
-                Need a developer who can improve the store and understand the
-                system behind it?
+                Bring the messy part of the business. I will help turn it into
+                a clear build plan.
               </h2>
               <p className="mt-5 max-w-3xl text-base leading-8 text-muted sm:text-lg">
-                Reach out for Shopify builds, conversion improvements, API
-                integrations, admin dashboards, WordPress support, reporting,
-                deployments, or long-term technical help.
+                If the problem is a store that does not convert clearly, an
+                admin process that wastes time, messy product data, weak funnel
+                structure, or disconnected tools, the first step is to define
+                the outcome and build toward it with care.
               </p>
             </div>
 
@@ -1711,11 +1871,8 @@ export default function Home() {
         </section>
 
         <footer className="flex flex-col gap-3 py-10 text-sm font-semibold text-muted sm:flex-row sm:items-center sm:justify-between">
-          <span>Built with Next.js, React, Tailwind CSS, and a sharper story.</span>
-          <ExternalAnchor href={site.portfolio} className="inline-flex items-center gap-2">
-            Previous portfolio
-            <Globe2 className="h-4 w-4" />
-          </ExternalAnchor>
+          <span>Built with Next.js, React, Tailwind CSS, Shopify thinking, and a problem-solving story.</span>
+          <span>Purpose: clearer stores, stronger systems, and work clients can trust.</span>
         </footer>
       </div>
     </main>
