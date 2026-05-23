@@ -56,8 +56,10 @@ html {
   overflow-y: auto;
   scroll-behavior: smooth;
   background:
-    linear-gradient(135deg, rgba(0, 166, 125, 0.12), transparent 28%),
-    linear-gradient(225deg, rgba(31, 102, 209, 0.11), transparent 30%),
+    radial-gradient(circle at 18% 12%, rgba(0, 166, 125, 0.2), transparent 24rem),
+    radial-gradient(circle at 82% 24%, rgba(31, 102, 209, 0.16), transparent 28rem),
+    linear-gradient(135deg, rgba(0, 166, 125, 0.14), transparent 28%),
+    linear-gradient(225deg, rgba(31, 102, 209, 0.13), transparent 30%),
     #f8faf3;
 }
 
@@ -65,8 +67,16 @@ body {
   min-height: 100vh;
   overflow-y: auto;
   background:
-    linear-gradient(120deg, rgba(255, 255, 255, 0.9), transparent 36%),
-    linear-gradient(180deg, #f8faf3 0%, #edf7e8 56%, #fbf8ef 100%);
+    linear-gradient(rgba(0, 126, 102, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 126, 102, 0.045) 1px, transparent 1px),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.76), transparent 34%),
+    linear-gradient(180deg, #f8faf3 0%, #edf7e8 46%, #fbf8ef 100%);
+  background-attachment: fixed;
+  background-size:
+    5.5rem 5.5rem,
+    5.5rem 5.5rem,
+    100% 100%,
+    100% 100%;
   color: var(--foreground);
   font-family: var(--font-manrope), sans-serif;
 }
@@ -75,20 +85,42 @@ body::before {
   position: fixed;
   inset: 0;
   z-index: -2;
+  overflow: hidden;
+  color: rgba(0, 126, 102, 0.075);
+  content: "FULLSTACK  SHOPIFY  SYSTEMS\A APIS  DATA  DASHBOARDS\A STOREFRONTS  CRO  FUNNELS\A DEPLOYMENT  ADMIN  INTEGRATIONS";
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: clamp(6.5rem, 17vw, 16rem);
+  font-weight: 900;
+  letter-spacing: -0.09em;
+  line-height: 0.78;
+  padding-top: 6vh;
+  text-transform: uppercase;
+  white-space: nowrap;
   background-image:
-    linear-gradient(rgba(17, 23, 19, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(17, 23, 19, 0.04) 1px, transparent 1px),
-    linear-gradient(120deg, transparent 0 46%, rgba(0, 166, 125, 0.08) 46% 47%, transparent 47% 100%);
+    linear-gradient(rgba(17, 23, 19, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17, 23, 19, 0.05) 1px, transparent 1px),
+    linear-gradient(120deg, transparent 0 46%, rgba(0, 166, 125, 0.11) 46% 47%, transparent 47% 100%),
+    radial-gradient(circle at 20% 18%, rgba(0, 166, 125, 0.2), transparent 26rem),
+    radial-gradient(circle at 78% 64%, rgba(31, 102, 209, 0.13), transparent 30rem);
   background-position:
+    0 0,
+    0 0,
     0 0,
     0 0,
     0 0;
   background-size:
     72px 72px,
     72px 72px,
-    280px 280px;
-  content: "";
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.72), transparent 88%);
+    280px 280px,
+    100% 100%,
+    100% 100%;
+  opacity: 1;
+  pointer-events: none;
+  text-shadow: 0 24px 100px rgba(0, 166, 125, 0.14);
+  transform: translate3d(-12vw, 0, 0) rotate(-5deg);
+  -webkit-text-stroke: 2px rgba(0, 126, 102, 0.24);
+  text-stroke: 2px rgba(0, 126, 102, 0.24);
+  animation: global-word-field 22s ease-in-out infinite alternate;
 }
 
 body::after {
@@ -96,11 +128,15 @@ body::after {
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(90deg, transparent, rgba(0, 166, 125, 0.05), transparent),
-    linear-gradient(180deg, transparent, rgba(31, 102, 209, 0.04), transparent);
+    linear-gradient(90deg, transparent, rgba(0, 166, 125, 0.09), transparent),
+    linear-gradient(180deg, transparent, rgba(31, 102, 209, 0.065), transparent),
+    linear-gradient(90deg, transparent 0 9%, rgba(0, 126, 102, 0.08) 9% calc(9% + 1px), transparent calc(9% + 1px) 100%),
+    linear-gradient(90deg, transparent 0 91%, rgba(31, 102, 209, 0.07) 91% calc(91% + 1px), transparent calc(91% + 1px) 100%);
   background-size:
     420px 100%,
-    100% 420px;
+    100% 420px,
+    100% 100%,
+    100% 100%;
   content: "";
   pointer-events: none;
   animation: scan-field 18s linear infinite;
@@ -116,6 +152,7 @@ main {
 }
 
 section[id] {
+  position: relative;
   scroll-margin-top: 13rem;
 }
 
@@ -140,13 +177,65 @@ section[id] {
   from {
     background-position:
       -420px 0,
-      0 -420px;
+      0 -420px,
+      0 0,
+      0 0;
   }
 
   to {
     background-position:
       420px 0,
-      0 420px;
+      0 420px,
+      4rem 0,
+      -4rem 0;
+  }
+}
+
+@keyframes global-word-field {
+  from {
+    opacity: 0.86;
+    transform: translate3d(-12vw, 2vh, 0) rotate(-5deg);
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.9;
+    transform: translate3d(-34vw, -3vh, 0) rotate(-5deg);
+  }
+}
+
+@keyframes side-word-left {
+  from {
+    opacity: 0.2;
+    transform: translate3d(-3vw, 4vh, 0) rotate(-7deg);
+  }
+
+  50% {
+    opacity: 0.34;
+  }
+
+  to {
+    opacity: 0.24;
+    transform: translate3d(3vw, -4vh, 0) rotate(-7deg);
+  }
+}
+
+@keyframes side-word-right {
+  from {
+    opacity: 0.18;
+    transform: translate3d(4vw, -3vh, 0) rotate(6deg);
+  }
+
+  50% {
+    opacity: 0.32;
+  }
+
+  to {
+    opacity: 0.22;
+    transform: translate3d(-3vw, 4vh, 0) rotate(6deg);
   }
 }
 
@@ -251,7 +340,313 @@ section[id] {
   }
 }
 
+@keyframes scroll-progress-grow {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes scroll-reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(4.5rem) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes scroll-reveal-left {
+  from {
+    opacity: 0;
+    transform: translateX(-4rem) rotate(-1deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) rotate(0);
+  }
+}
+
+@keyframes scroll-reveal-right {
+  from {
+    opacity: 0;
+    transform: translateX(4rem) rotate(1deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) rotate(0);
+  }
+}
+
+@keyframes scroll-scale-focus {
+  from {
+    opacity: 0.55;
+    transform: scale(0.92);
+    filter: saturate(0.75);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: saturate(1.05);
+  }
+}
+
+@keyframes section-word-drift {
+  from {
+    opacity: 0.32;
+    transform: translate3d(-38%, 2.8rem, 0) rotate(-5deg) scale(0.96);
+  }
+
+  42%,
+  68% {
+    opacity: 0.68;
+  }
+
+  to {
+    opacity: 0.34;
+    transform: translate3d(-64%, -2rem, 0) rotate(-5deg) scale(1.04);
+  }
+}
+
+@keyframes section-grid-sweep {
+  from {
+    opacity: 0.42;
+    transform: translate3d(-5.5rem, 3rem, 0) scale(0.96);
+  }
+
+  38%,
+  72% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.48;
+    transform: translate3d(5.5rem, -3rem, 0) scale(1.05);
+  }
+}
+
+@keyframes section-title-editorial {
+  from {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(4.4rem) skewY(2deg);
+  }
+
+  58% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+    clip-path: inset(0);
+    transform: translateY(0) skewY(0);
+  }
+}
+
+@keyframes section-copy-focus {
+  from {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(3.2rem);
+  }
+
+  to {
+    opacity: 1;
+    clip-path: inset(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes card-editorial-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8rem, 0) rotate(1.4deg) scale(0.94);
+    filter: saturate(0.86);
+  }
+
+  65% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0) scale(1);
+    filter: saturate(1);
+  }
+}
+
+@keyframes card-editorial-left {
+  from {
+    opacity: 0;
+    transform: translate3d(-8rem, 4rem, 0) rotate(-2.2deg) scale(0.94);
+    filter: saturate(0.86);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0) scale(1);
+    filter: saturate(1);
+  }
+}
+
+@keyframes card-editorial-right {
+  from {
+    opacity: 0;
+    transform: translate3d(8rem, 4rem, 0) rotate(2.2deg) scale(0.94);
+    filter: saturate(0.86);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0) scale(1);
+    filter: saturate(1);
+  }
+}
+
 @layer components {
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 120;
+    width: 100%;
+    height: 0.25rem;
+    background: linear-gradient(90deg, var(--accent), var(--blue), var(--pink));
+    box-shadow: 0 0 22px rgba(0, 166, 125, 0.36);
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+
+  .portfolio-shell {
+    position: relative;
+    isolation: isolate;
+    overflow-x: clip;
+  }
+
+  .portfolio-shell::before,
+  .portfolio-shell::after {
+    position: fixed;
+    top: 8vh;
+    z-index: 0;
+    width: min(42vw, 34rem);
+    color: rgba(0, 126, 102, 0.08);
+    font-family: var(--font-space-grotesk), sans-serif;
+    font-size: clamp(4.3rem, 9vw, 10.8rem);
+    font-weight: 900;
+    letter-spacing: -0.09em;
+    line-height: 0.82;
+    pointer-events: none;
+    text-transform: uppercase;
+    white-space: pre;
+    mix-blend-mode: multiply;
+    text-shadow: 0 24px 90px rgba(0, 166, 125, 0.18);
+    -webkit-text-stroke: 1.5px rgba(0, 126, 102, 0.32);
+    text-stroke: 1.5px rgba(0, 126, 102, 0.32);
+  }
+
+  .portfolio-shell::before {
+    left: max(-2rem, calc((100vw - 82rem) / 2 - 9rem));
+    content: "SOFTWARE\A SYSTEMS\A BACKEND\A DATABASE";
+    animation: side-word-left 18s ease-in-out infinite alternate;
+  }
+
+  .portfolio-shell::after {
+    right: max(-2rem, calc((100vw - 82rem) / 2 - 9rem));
+    content: "SHOPIFY\A STORES\A FUNNELS\A CRO";
+    text-align: right;
+    animation: side-word-right 20s ease-in-out infinite alternate;
+  }
+
+  .portfolio-shell > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  .motion-section {
+    position: relative;
+    isolation: isolate;
+    overflow-x: clip;
+    overflow-y: visible;
+    perspective: 1200px;
+    view-timeline-axis: block;
+    view-timeline-name: --section-motion;
+  }
+
+  .motion-section > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .motion-section::before,
+  .motion-section::after {
+    position: absolute;
+    z-index: 0;
+    content: "";
+    pointer-events: none;
+  }
+
+  .motion-section::before {
+    top: clamp(0.6rem, 5vw, 3.5rem);
+    left: 50%;
+    width: max-content;
+    max-width: none;
+    color: rgba(0, 126, 102, 0.1);
+    content: attr(data-motion-label);
+    font-family: var(--font-space-grotesk), sans-serif;
+    font-size: clamp(6.8rem, 21vw, 19.5rem);
+    font-weight: 900;
+    letter-spacing: -0.1em;
+    line-height: 0.78;
+    opacity: 0.46;
+    text-transform: uppercase;
+    white-space: nowrap;
+    mix-blend-mode: multiply;
+    text-shadow: 0 24px 80px rgba(0, 166, 125, 0.18);
+    -webkit-text-stroke: 2px rgba(0, 126, 102, 0.68);
+    text-stroke: 2px rgba(0, 126, 102, 0.68);
+  }
+
+  .motion-section::after {
+    inset: clamp(2.4rem, 7vw, 5.5rem) -2vw auto;
+    height: min(82%, 58rem);
+    border-top: 1px solid rgba(0, 126, 102, 0.28);
+    border-bottom: 1px solid rgba(0, 126, 102, 0.24);
+    background-image:
+      linear-gradient(90deg, transparent 0 12%, rgba(0, 126, 102, 0.36) 12% calc(12% + 1px), transparent calc(12% + 1px)),
+      linear-gradient(90deg, transparent 0 50%, rgba(31, 102, 209, 0.26) 50% calc(50% + 1px), transparent calc(50% + 1px)),
+      linear-gradient(90deg, transparent 0 88%, rgba(0, 126, 102, 0.36) 88% calc(88% + 1px), transparent calc(88% + 1px)),
+      linear-gradient(rgba(0, 126, 102, 0.18) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 126, 102, 0.12) 1px, transparent 1px),
+      radial-gradient(circle at 14% 0%, rgba(0, 166, 125, 0.18), transparent 30%),
+      radial-gradient(circle at 82% 45%, rgba(31, 102, 209, 0.15), transparent 32%);
+    background-size:
+      100% 100%,
+      100% 100%,
+      100% 100%,
+      100% 4.5rem,
+      5.5rem 100%,
+      100% 100%,
+      100% 100%;
+    opacity: 0.58;
+    transform: translateY(2rem);
+  }
+
+  .hero-motion::before {
+    top: 7.25rem;
+    left: 50%;
+    font-size: clamp(5.4rem, 17vw, 14rem);
+    opacity: 0.52;
+  }
+
   .loader-screen {
     position: fixed;
     inset: 0;
@@ -2424,7 +2819,29 @@ section[id] {
   }
 
   .contact-panel {
+    position: relative;
+    z-index: 3;
+    border-color: rgba(0, 126, 102, 0.2);
+    background:
+      linear-gradient(135deg, rgba(255, 255, 252, 0.96), rgba(247, 255, 249, 0.94)),
+      #fffffb;
     padding: 1.75rem;
+    box-shadow: 0 38px 120px rgba(21, 40, 32, 0.2);
+  }
+
+  .contact-panel::before {
+    position: absolute;
+    inset: 0.65rem;
+    z-index: 0;
+    border: 1px solid rgba(0, 126, 102, 0.12);
+    border-radius: 6px;
+    content: "";
+    pointer-events: none;
+  }
+
+  .contact-panel > * {
+    position: relative;
+    z-index: 1;
   }
 
   @media (min-width: 640px) {
@@ -2437,10 +2854,13 @@ section[id] {
     display: flex;
     align-items: center;
     gap: 1rem;
-    border: 1px solid rgba(17, 23, 19, 0.1);
+    border: 1px solid rgba(17, 23, 19, 0.14);
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.66);
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 255, 250, 0.92)),
+      #ffffff;
     padding: 1rem;
+    box-shadow: 0 14px 32px rgba(21, 40, 32, 0.08);
     transition:
       border-color 180ms ease,
       box-shadow 180ms ease,
@@ -2467,8 +2887,195 @@ section[id] {
     text-transform: uppercase;
   }
 
+  #contact {
+    padding-bottom: 4rem;
+  }
+
+  #contact::before {
+    color: rgba(0, 126, 102, 0.045);
+    opacity: 0.2;
+    -webkit-text-stroke-color: rgba(0, 126, 102, 0.2);
+    text-stroke-color: rgba(0, 126, 102, 0.2);
+  }
+
+  #contact::after {
+    opacity: 0.26;
+  }
+
   .page-enter {
     animation: rise-in 0.7s ease both;
+  }
+
+  @supports (animation-timeline: view()) {
+    .scroll-progress {
+      animation: scroll-progress-grow linear both;
+      animation-timeline: scroll(root);
+    }
+
+    .motion-section::before {
+      animation: section-word-drift linear both;
+      animation-range: entry -20% exit 120%;
+      animation-timeline: --section-motion;
+    }
+
+    .motion-section::after {
+      animation: section-grid-sweep linear both;
+      animation-range: entry -8% exit 108%;
+      animation-timeline: --section-motion;
+    }
+
+    .section-intro,
+    #contact .contact-panel > div:first-child {
+      animation: section-copy-focus linear both;
+      animation-range: entry 0% cover 38%;
+      animation-timeline: view();
+    }
+
+    .section-intro .eyebrow,
+    #contact .contact-panel > div:first-child .eyebrow {
+      animation: scroll-reveal-left linear both;
+      animation-range: entry 0% cover 30%;
+      animation-timeline: view();
+    }
+
+    .section-intro .section-title,
+    #contact .contact-panel > div:first-child .section-title {
+      transform-origin: left bottom;
+      animation: section-title-editorial linear both;
+      animation-range: entry 0% cover 46%;
+      animation-timeline: view();
+    }
+
+    .section-intro > p:last-child,
+    #contact .contact-panel > div:first-child > p:last-child {
+      animation: scroll-reveal-up linear both;
+      animation-range: entry 8% cover 42%;
+      animation-timeline: view();
+    }
+
+    .metric-card,
+    .feature-card,
+    .work-card,
+    .sample-card,
+    .system-card,
+    .growth-card,
+    .experience-row,
+    .review-card,
+    .tool-panel,
+    .tool-tile,
+    .site-link,
+    .contact-card {
+      opacity: 1;
+      animation: card-editorial-rise linear both !important;
+      animation-delay: 0ms !important;
+      animation-range: entry 0% cover 52%;
+      animation-timeline: view();
+    }
+
+    .metric-card:nth-child(3n + 2),
+    .feature-card:nth-child(3n + 2),
+    .work-card:nth-child(3n + 2),
+    .sample-card:nth-child(3n + 2),
+    .system-card:nth-child(3n + 2),
+    .growth-card:nth-child(3n + 2),
+    .experience-row:nth-child(3n + 2),
+    .review-card:nth-child(3n + 2),
+    .tool-panel:nth-child(3n + 2),
+    .tool-tile:nth-child(3n + 2),
+    .site-link:nth-child(3n + 2),
+    .contact-card:nth-child(3n + 2) {
+      animation-range: entry 8% cover 58%;
+    }
+
+    .metric-card:nth-child(3n),
+    .feature-card:nth-child(3n),
+    .work-card:nth-child(3n),
+    .sample-card:nth-child(3n),
+    .system-card:nth-child(3n),
+    .growth-card:nth-child(3n),
+    .experience-row:nth-child(3n),
+    .review-card:nth-child(3n),
+    .tool-panel:nth-child(3n),
+    .tool-tile:nth-child(3n),
+    .site-link:nth-child(3n),
+    .contact-card:nth-child(3n) {
+      animation-range: entry 14% cover 64%;
+    }
+
+    .work-card:nth-child(even),
+    .experience-row:nth-child(even),
+    .review-card:nth-child(even),
+    .tool-panel:nth-child(even),
+    .tool-tile:nth-child(even) {
+      animation-name: card-editorial-right !important;
+    }
+
+    .feature-card:nth-child(even),
+    .system-card:nth-child(even),
+    .growth-card:nth-child(even),
+    .site-link:nth-child(even) {
+      animation-name: card-editorial-left !important;
+    }
+
+    .hero-console {
+      animation: scroll-scale-focus linear both;
+      animation-range: entry 0% exit 80%;
+      animation-timeline: view();
+    }
+
+    .storefront-preview,
+    .brand-typography-panel,
+    .system-panel,
+    .growth-panel,
+    .contact-panel {
+      animation: scroll-scale-focus linear both;
+      animation-range: entry 8% cover 48%;
+      animation-timeline: view();
+    }
+
+    .storefront-copy,
+    .storefront-media,
+    .brand-sample-copy {
+      animation: card-editorial-rise linear both;
+      animation-range: entry 6% cover 38%;
+      animation-timeline: view();
+    }
+
+    #contact::before {
+      animation: none !important;
+      opacity: 0.14 !important;
+    }
+
+    #contact::after {
+      animation: none !important;
+      opacity: 0.18 !important;
+    }
+
+    #growth .section-intro,
+    #growth .section-title,
+    #growth .growth-panel,
+    #growth .growth-card,
+    #experience .section-intro,
+    #experience .section-title,
+    #experience .experience-row,
+    #feedback .section-intro,
+    #feedback .section-title,
+    #feedback .review-card,
+    #tools .section-intro,
+    #tools .section-title,
+    #tools .tool-panel,
+    #tools .tool-tile,
+    #links .section-intro,
+    #links .section-title,
+    #links .site-link,
+    #contact .contact-panel,
+    #contact .contact-panel > div:first-child,
+    #contact .section-title,
+    #contact .contact-card {
+      clip-path: none !important;
+      filter: none !important;
+      opacity: 1 !important;
+    }
   }
 }
 

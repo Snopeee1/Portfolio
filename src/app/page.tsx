@@ -1183,7 +1183,7 @@ function SectionTitle({
   text: string;
 }) {
   return (
-    <div className="max-w-4xl">
+    <div className="section-intro max-w-4xl">
       <p className="eyebrow">{eyebrow}</p>
       <h2 className="section-title mt-4 text-4xl text-foreground sm:text-5xl">
         {title}
@@ -1422,6 +1422,7 @@ function BrandSampleCard({ sample, index }: { sample: DesignSample; index: numbe
 export default function Home() {
   return (
     <main className="min-h-screen">
+      <div className="scroll-progress" aria-hidden="true" />
       <div className="loader-screen" aria-hidden="true">
         <div className="loader-card">
           <div className="loader-mark">{site.initials}</div>
@@ -1502,7 +1503,8 @@ export default function Home() {
 
         <section
           id="top"
-          className="grid min-h-[calc(100vh-92px)] gap-8 pt-20 sm:pt-24 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-center"
+          data-motion-label="Full-stack"
+          className="motion-section hero-motion grid min-h-[calc(100vh-92px)] gap-8 pt-20 sm:pt-24 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-center"
         >
           <div className="page-enter">
             <div className="hero-mobile-pill inline-flex items-center gap-3 border-l-4 border-accent bg-white/70 px-4 py-3 text-sm font-bold text-foreground shadow-sm">
@@ -1642,7 +1644,7 @@ export default function Home() {
           ))}
         </nav>
 
-        <section id="impact" className="pt-10">
+        <section id="impact" data-motion-label="Problems" className="motion-section pt-10">
           <SectionTitle
             eyebrow="Problems I solve"
             title="Software that connects the business goal to the working system"
@@ -1680,7 +1682,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="standard" className="pt-24">
+        <section id="standard" data-motion-label="Process" className="motion-section pt-24">
           <SectionTitle
             eyebrow="Delivery standard"
             title="How I turn client problems into reliable software"
@@ -1702,7 +1704,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="systems" className="pt-24">
+        <section id="systems" data-motion-label="Systems" className="motion-section pt-24">
           <div className="system-panel surface-card-strong">
             <SectionTitle
               eyebrow="Software engineering"
@@ -1731,7 +1733,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="work" className="pt-24">
+        <section id="work" data-motion-label="Work" className="motion-section pt-24">
           <SectionTitle
             eyebrow="Proof of work"
             title="Software, systems, and ecommerce builds connected to real client problems"
@@ -1778,7 +1780,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="branding" className="pt-24">
+        <section id="branding" data-motion-label="Brand" className="motion-section pt-24">
           <SectionTitle
             eyebrow="Brand systems"
             title="Branding and ecommerce samples that show how stores should feel"
@@ -1792,7 +1794,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="growth" className="pt-24">
+        <section id="growth" data-motion-label="CRO" className="motion-section pt-24">
           <div className="growth-panel surface-card-strong">
             <SectionTitle
               eyebrow="Funnels and CRO"
@@ -1812,7 +1814,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="experience" className="pt-24">
+        <section id="experience" data-motion-label="Experience" className="motion-section pt-24">
           <SectionTitle
             eyebrow="Experience"
             title="Delivery across store owners, agencies, admins, and product teams"
@@ -1844,7 +1846,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="feedback" className="pt-24">
+        <section id="feedback" data-motion-label="Reviews" className="motion-section pt-24">
           <SectionTitle
             eyebrow="Client and team feedback"
             title="The kind of trust a strong delivery process should create"
@@ -1896,7 +1898,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="tools" className="pt-24">
+        <section id="tools" data-motion-label="Tools" className="motion-section pt-24">
           <SectionTitle
             eyebrow="Tools and skills"
             title="Tools chosen for full software delivery, not only storefront design"
@@ -1930,7 +1932,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="links" className="pt-24">
+        <section id="links" data-motion-label="Links" className="motion-section pt-24">
           <SectionTitle
             eyebrow="Live links"
             title="Public brand references and ecommerce work"
@@ -1955,7 +1957,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contact" className="pt-24">
+        <section id="contact" data-motion-label="Contact" className="motion-section pt-24">
           <div className="contact-panel surface-card-strong">
             <div>
               <p className="eyebrow">Contact</p>
@@ -2012,10 +2014,6 @@ export default function Home() {
           </div>
         </section>
 
-        <footer className="flex flex-col gap-3 py-10 text-sm font-semibold text-muted sm:flex-row sm:items-center sm:justify-between">
-          <span>Built with Next.js, React, Tailwind CSS, full-stack engineering, and Shopify thinking.</span>
-          <span>Purpose: reliable software systems, clearer operations, and work clients can trust.</span>
-        </footer>
       </div>
     </main>
   );
