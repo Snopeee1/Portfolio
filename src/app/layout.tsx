@@ -1,12 +1,25 @@
 import type { Metadata, Viewport } from "next";
+import { Bodoni_Moda, Manrope } from "next/font/google";
 import "./globals.css";
+
+const bodoni = Bodoni_Moda({
+  subsets: ["latin"],
+  variable: "--font-bodoni",
+  display: "swap",
+});
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+  display: "swap",
+});
 
 const site = {
   name: "Junry Jumawan Gallego",
-  title: "Junry Gallego | Full-Stack and Shopify Developer",
+  title: "Junry Gallego | Software Engineer and Shopify Developer",
   description:
-    "Full-stack developer building Shopify storefronts, admin systems, and API-connected experiences with clean code, better funnels, and practical business impact.",
-  portfolioUrl: "https://snopeeee.github.io/My-Portfolio/",
+    "Software engineer building complete business systems, Shopify storefronts, APIs, data workflows, admin tools, and production-ready web experiences.",
+  portfolioUrl: "https://junry-portfolio.vercel.app",
 };
 
 export const metadata: Metadata = {
@@ -17,7 +30,8 @@ export const metadata: Metadata = {
   creator: site.name,
   keywords: [
     "Junry Gallego",
-    "Full-Stack Web Developer",
+    "Software Engineer",
+    "Full-Stack Developer",
     "Shopify Developer",
     "Next.js portfolio",
     "Tailwind CSS portfolio",
@@ -45,7 +59,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f8faf3",
+  themeColor: "#f6f1e7",
   colorScheme: "light",
 };
 
@@ -58,7 +72,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className="h-full antialiased"
+      className={`${bodoni.variable} ${manrope.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-background font-sans text-foreground">
         {children}

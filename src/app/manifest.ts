@@ -5,11 +5,11 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Junry Jumawan Gallego",
     short_name: "JG",
     description:
-      "Full-stack developer building Shopify storefronts, admin systems, and API-connected experiences.",
+      "Software engineer building complete business systems, Shopify storefronts, APIs, data workflows, and production-ready web experiences.",
     start_url: "/",
     display: "standalone",
-    background_color: "#f4ede1",
-    theme_color: "#f4ede1",
+    background_color: "#f6f1e7",
+    theme_color: "#f6f1e7",
     icons: [
       {
         src: "/icon.svg",

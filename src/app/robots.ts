@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const portfolioUrl = "https://snopeeee.github.io/My-Portfolio/";
+const portfolioUrl = "https://junry-portfolio.vercel.app/";
 
 export default function robots(): MetadataRoute.Robots {
   return {

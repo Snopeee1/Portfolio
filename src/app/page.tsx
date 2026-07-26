@@ -1,68 +1,64 @@
-import type { CSSProperties, ElementType, ReactNode } from "react";
+"use client";
+
+import Image from "next/image";
 import {
+  type CSSProperties,
+  type ElementType,
+  type FormEvent,
+  useEffect,
+  useState,
+} from "react";
+import {
+  ArrowDown,
+  ArrowRight,
   ArrowUpRight,
   BadgeCheck,
   BarChart3,
   BriefcaseBusiness,
-  ChevronLeft,
+  Check,
   ChevronRight,
+  CircleDot,
+  ClipboardCheck,
   Cloud,
   Code2,
+  Copy,
   Database,
   ExternalLink,
   FileText,
-  Eye,
-  Globe2,
+  Gauge,
   LineChart,
   Mail,
-  Menu,
   MapPin,
+  Menu,
+  MessageCircle,
   MonitorSmartphone,
-  Package,
-  PanelsTopLeft,
+  Network,
   Phone,
-  RefreshCw,
-  Rocket,
   Search,
   ServerCog,
   ShieldCheck,
   ShoppingBag,
-  Sparkles,
-  Star,
   Store,
-  UserRound,
-  WandSparkles,
   Workflow,
-  Zap,
+  X,
 } from "lucide-react";
+import { FaAws } from "react-icons/fa6";
 import {
   SiAsana,
   SiBitbucket,
-  SiCanva,
-  SiClickup,
   SiCloudflare,
   SiDjango,
   SiDocker,
-  SiElementor,
   SiExpress,
   SiFigma,
-  SiGit,
   SiGithub,
+  SiGithubactions,
   SiGitlab,
-  SiGmail,
   SiGoogleads,
   SiGoogleanalytics,
-  SiGooglecloud,
-  SiGoogledrive,
-  SiGooglesearchconsole,
-  SiGooglesheets,
-  SiGoogletagmanager,
-  SiHotjar,
-  SiHtml5,
   SiJavascript,
   SiLaravel,
   SiMailchimp,
-  SiMeta,
   SiMongodb,
   SiMysql,
   SiNextdotjs,
@@ -70,24 +66,21 @@ import {
   SiNodedotjs,
   SiNotion,
   SiPhp,
-  SiPm2,
   SiPostgresql,
-  SiPrisma,
+  SiPostman,
   SiPython,
   SiReact,
-  SiReactquery,
-  SiSemrush,
+  SiRedis,
+  SiSentry,
   SiShopify,
   SiSlack,
   SiStripe,
   SiSupabase,
   SiTailwindcss,
-  SiTiktok,
   SiTrello,
   SiTypescript,
   SiVercel,
   SiWebflow,
-  SiWhatsapp,
   SiWix,
   SiWoocommerce,
   SiWordpress,
@@ -98,1923 +91,1387 @@ type IconComponent = ElementType<{ className?: string }>;
 
 const site = {
   name: "Junry Jumawan Gallego",
-  initials: "JG",
-  role: "Full-Stack Web Developer",
+  title: "Software Engineer and Shopify Developer",
   email: "junry.jumawan4@gmail.com",
-  emailLink: "mailto:junry.jumawan4@gmail.com",
+  emailLink:
+    "mailto:junry.jumawan4@gmail.com?subject=Project%20inquiry%20for%20Junry",
   phone: "+63 965-861-4859",
   phoneLink: "tel:+639658614859",
-  whatsapp: "https://wa.me/639658614859",
+  whatsapp:
+    "https://wa.me/639658614859?text=Hi%20Junry%2C%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project.",
   resume:
     "https://drive.google.com/file/d/1yhbb2fapt0b2Q_4wq80DgaeXCGZyoof0/view?usp=sharing",
   location: "Iligan City, Lanao del Norte, Philippines",
 };
 
-const navItems: {
-  label: string;
-  href: string;
-  icon: IconComponent;
-}[] = [
-  { label: "Work", href: "#work", icon: BriefcaseBusiness },
+const roleTitles = ["Software Engineer", "Shopify Developer"] as const;
+
+const navItems = [
   { label: "Systems", href: "#systems", icon: ServerCog },
-  { label: "Brand", href: "#branding", icon: WandSparkles },
+  { label: "Work", href: "#work", icon: BriefcaseBusiness },
+  { label: "Commerce", href: "#commerce", icon: Store },
   { label: "CRO", href: "#growth", icon: LineChart },
   { label: "Tools", href: "#tools", icon: Code2 },
   { label: "Contact", href: "#contact", icon: Mail },
-];
+] as const;
 
-const metrics = [
+const deliveryLayers = [
   {
-    value: "Full-stack",
-    label: "Software delivery across UI, backend logic, APIs, databases, admin tools, and deployment",
-    icon: Code2,
+    index: "01",
+    icon: MonitorSmartphone,
+    title: "Experience layer",
+    text: "Responsive storefronts, admin dashboards, forms, reports, role-based screens, and interfaces people can understand quickly.",
+    stack: ["Next.js", "React", "Tailwind CSS", "Shopify Liquid"],
   },
   {
-    value: "20-30%",
-    label: "Less weekly reporting effort when admin dashboards replace manual tracking",
-    icon: BarChart3,
-  },
-  {
-    value: "8-15%",
-    label: "Typical storefront speed lift after practical theme cleanup and page review",
-    icon: Zap,
-  },
-  {
-    value: "2023+",
-    label: "Real client delivery across software systems, ecommerce builds, APIs, and remote teams",
-    icon: Rocket,
-  },
-];
-
-const impactCards = [
-  {
-    icon: ShoppingBag,
-    title: "Make the buying path obvious",
-    text: "I clarify product pages, collections, landing sections, cart actions, trust signals, and checkout journeys so shoppers understand what to do next.",
-  },
-  {
+    index: "02",
     icon: ServerCog,
-    title: "Build the system behind the work",
-    text: "I build admin dashboards, server logic, database-backed records, reports, status workflows, and deployment setups that support daily operations.",
-  },
-  {
-    icon: Workflow,
-    title: "Connect the tools behind growth",
-    text: "I handle REST APIs, JSON mapping, Shopify Admin checks, product sync, payment tooling, email flows, analytics, and deployment support.",
-  },
-  {
-    icon: Database,
-    title: "Make data reliable and useful",
-    text: "I clean, validate, migrate, structure, and report on data so teams can trust the system instead of guessing from scattered spreadsheets.",
-  },
-];
-
-const qualityStandards = [
-  {
-    icon: Search,
-    title: "Diagnose before building",
-    text: "Every build starts with the business problem, not the tool. I identify the blocker, who it affects, and what a useful outcome should look like.",
-  },
-  {
-    icon: PanelsTopLeft,
-    title: "Design the working system",
-    text: "I map screens, user roles, admin workflows, database needs, API responsibilities, and customer paths before implementation.",
-  },
-  {
-    icon: Code2,
-    title: "Build clean and maintainable",
-    text: "I keep components, routes, server logic, schemas, API handlers, templates, and admin features structured so the project can keep growing.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Validate like it is live",
-    text: "Mobile behavior, links, CTA visibility, data accuracy, analytics, checkout paths, reports, and edge cases are checked before handoff.",
-  },
-  {
-    icon: FileText,
-    title: "Hand off with clarity",
-    text: "Clients should know what was built, why it matters, how to use it, and what can be improved next without feeling lost.",
-  },
-  {
-    icon: LineChart,
-    title: "Improve from evidence",
-    text: "For stores and funnels, I use analytics, heatmaps, speed checks, and real user behavior to guide practical improvements.",
-  },
-];
-
-const systemCapabilities = [
-  {
-    icon: PanelsTopLeft,
-    title: "Frontend application layer",
-    text: "Build responsive interfaces, dashboards, forms, tables, role-based screens, reusable components, and polished customer-facing pages.",
-    stack: ["Next.js", "React", "Tailwind", "Responsive UI"],
-  },
-  {
-    icon: ServerCog,
-    title: "Backend and business logic",
-    text: "Create server-side logic for records, statuses, reports, authentication flows, validations, payments, and operational rules.",
+    title: "Application logic",
+    text: "Authentication flows, validation, payment states, status workflows, reports, automations, and the business rules behind each screen.",
     stack: ["Node.js", "Express", "Laravel", "Django"],
   },
   {
+    index: "03",
     icon: Database,
-    title: "Database and data workflows",
-    text: "Plan schemas, clean messy data, validate imports, process CSV/spreadsheet records, and make reports useful for daily decisions.",
+    title: "Data layer",
+    text: "Schema planning, imports, cleanup, migrations, member or product records, structured reporting, and reliable daily data handling.",
     stack: ["PostgreSQL", "MySQL", "Supabase", "MongoDB"],
   },
   {
-    icon: Workflow,
-    title: "API and third-party integration",
-    text: "Connect systems through REST APIs, JSON mapping, Shopify Admin workflows, product sync, payment tools, email flows, and Google tools.",
-    stack: ["REST APIs", "JSON", "Shopify Admin", "Stripe"],
+    index: "04",
+    icon: Network,
+    title: "Connected services",
+    text: "REST APIs, JSON mapping, Shopify Admin workflows, product sync, payments, email systems, analytics, and third-party operations.",
+    stack: ["REST APIs", "Shopify Admin", "Stripe", "Google APIs"],
   },
   {
+    index: "05",
     icon: Cloud,
-    title: "Deployment and production support",
-    text: "Deploy and support applications with server configuration, process management, environment variables, logs, domain/DNS basics, and launch checks.",
+    title: "Production layer",
+    text: "Deployment, environment configuration, process management, reverse proxy setup, launch QA, monitoring, and production support.",
     stack: ["AWS EC2", "PM2", "Nginx", "Vercel"],
   },
   {
-    icon: ShieldCheck,
-    title: "Quality, handoff, and improvement",
-    text: "Test links, mobile behavior, data accuracy, access flows, reports, tracking, edge cases, and document what was built for the client team.",
-    stack: ["QA", "Docs", "Analytics", "Support"],
+    index: "06",
+    icon: ClipboardCheck,
+    title: "Quality and handoff",
+    text: "Mobile checks, edge cases, tracking verification, data accuracy, documentation, clear handoff, and improvement after real use.",
+    stack: ["QA", "Documentation", "Analytics", "Support"],
   },
-];
+] as const;
 
-const feedbackNotes = [
+const selectedWork = [
   {
-    name: "Marcus",
-    role: "Store owner",
-    context: "Shopify storefront build",
-    rating: 4.9,
-    quote:
-      "Junry did not just update sections. He looked at the buying path, cleaned the layout, and made the store easier to understand from the first visit.",
-  },
-  {
-    name: "Lena",
-    role: "Store owner",
-    context: "Brand and landing page polish",
-    rating: 5.0,
-    quote:
-      "The strongest part was how he connected design decisions to the customer journey. The pages felt more intentional, not just decorated.",
-  },
-  {
-    name: "Andre",
-    role: "Store owner",
-    context: "Product page and CRO support",
-    rating: 4.8,
-    quote:
-      "He helped make our product pages clearer on mobile and gave practical suggestions around trust blocks, CTA placement, and checkout confidence.",
-  },
-  {
-    name: "Sofia",
-    role: "Store owner",
-    context: "Shopify launch support",
-    rating: 4.9,
-    quote:
-      "Junry was reliable during revisions and careful with the small details. The final store felt cleaner, faster to browse, and easier to manage.",
-  },
-  {
-    name: "Daniel",
-    role: "Store owner",
-    context: "Funnel and offer page work",
-    rating: 4.8,
-    quote:
-      "He understood that the page needed a real offer flow. The sections, proof, FAQs, and buttons were arranged in a way that made the next step obvious.",
-  },
-  {
-    name: "Bianca",
-    role: "Store owner",
-    context: "Store cleanup and support",
-    rating: 4.9,
-    quote:
-      "He helped organize the store updates without making the process feel complicated. The improvements were practical, clear, and easy for our team to continue using.",
-  },
-  {
-    name: "Maya",
-    role: "Designer",
-    context: "Remote ecommerce team",
-    rating: 5.0,
-    quote:
-      "Working with Junry felt smooth because he respected the design direction while still thinking about responsiveness, usability, and store performance.",
-  },
-  {
-    name: "Kevin",
-    role: "Copywriter",
-    context: "Shopify team project",
-    rating: 4.9,
-    quote:
-      "He was good at turning copy and content notes into sections that made sense visually. The work stayed organized even when revisions changed quickly.",
-  },
-  {
-    name: "Arvin",
-    role: "Project coordinator",
-    context: "Team-based Shopify delivery",
-    rating: 4.8,
-    quote:
-      "Junry communicated clearly, handled tasks without drama, and kept momentum moving. He was the kind of developer who made handoffs easier.",
-  },
-  {
-    name: "Nina",
-    role: "Operations teammate",
-    context: "Admin workflow and reporting",
-    rating: 4.9,
-    quote:
-      "He made messy records easier to work with. The dashboards and follow-up structure helped the team see what needed attention without checking everything manually.",
-  },
-  {
-    name: "Carlo",
-    role: "Developer teammate",
-    context: "API and data work",
-    rating: 4.8,
-    quote:
-      "Junry was careful with data mapping, testing, and Shopify Admin validation. He asked the right questions before changing anything important.",
-  },
-  {
-    name: "Rafael",
-    role: "Marketing teammate",
-    context: "Analytics and funnel updates",
-    rating: 4.9,
-    quote:
-      "He understood the marketing side enough to make better technical choices. The tracking, page flow, and CTA updates were easier to review after his work.",
-  },
-];
-
-const work = [
-  {
-    label: "Full-stack operations system",
-    title: "Custom Gym Debt Management and CRM",
-    company: "Anytime Fitness SEB Group",
+    number: "01",
+    label: "Operations software",
+    title: "Gym Debt Management and CRM",
+    client:
+      "Anytime Fitness SEB Group & JYM Group | Australia & United Kingdom",
     period: "2024 - Present",
-    href: "https://www.anytimefitness.com/",
     icon: ServerCog,
     summary:
-      "Built and maintained a production web system with admin screens, member profiles, arrears tracking, payment visibility, follow-up workflows, reporting, deployment, and ongoing support.",
-    wins: [
-      "Designed practical workflows for member records, statuses, arrears tracking, payment checks, and admin follow-up tasks.",
-      "Improved day-to-day data consistency by roughly 12-18% with validation, cleanup, and reporting structure.",
-      "Reduced weekly report preparation time by roughly 20-30% with dashboards and exports.",
-      "Deployed on AWS EC2 with PM2 and Nginx for stable production support.",
+      "A production web system supporting SEB Group and JYM Group operations in Australia and the United Kingdom by turning member arrears, payment data, notes, statuses, and follow-up work into a structured admin workflow.",
+    impact: [
+      "Member profiles, arrears records, payment visibility, and status-based follow-up.",
+      "Dashboard reporting and exports that reduce repeated spreadsheet preparation.",
+      "ClubWise and DebitSuccess data cleanup, validation, reconciliation, and migration.",
+      "AWS EC2 deployment with PM2, Nginx, monitoring, and ongoing production support.",
     ],
-    stack: ["Full-stack app", "Admin dashboards", "Data workflows", "Reports", "AWS EC2", "PM2", "Nginx"],
+    stack: ["Full-stack app", "CRM", "PostgreSQL", "AWS", "Reporting"],
+    private: true,
   },
   {
-    label: "Shopify storefront",
-    title: "Salted Seas conversion-focused build",
-    company: "Salted Seas",
-    period: "2025",
-    href: "https://saltedseas.com/",
-    icon: SiShopify,
-    summary:
-      "Collaborated with designers, copywriters, and the store owner to refine a branded Shopify storefront around the customer journey.",
-    wins: [
-      "Implemented page sections aligned from landing pages to checkout.",
-      "Improved content hierarchy, CTA placement, and product-page interaction.",
-      "Used Shopify Liquid, Replo, Webflow, Asana, Slack, and analytics feedback.",
-    ],
-    stack: ["Shopify", "Liquid", "Replo", "Webflow", "GA4", "Clarity"],
-  },
-  {
-    label: "API integration",
-    title: "Motovan B2B product data to Shopify",
-    company: "Motovan to Shopify",
+    number: "02",
+    label: "B2B data integration",
+    title: "Motovan product data to Shopify",
+    client: "Motovan to Shopify",
     period: "2024",
     href: "https://motovan.com/",
     icon: Workflow,
     summary:
-      "Mapped JSON-based B2B product data into Shopify workflows for SKUs, pricing, inventory, and product details.",
-    wins: [
-      "Supported REST API consumption and troubleshooting.",
-      "Validated imported data inside Shopify Admin.",
-      "Helped keep connected product listings accurate and consistent.",
+      "A REST and JSON product synchronization workflow for mapping SKUs, pricing, inventory, and product details into Shopify.",
+    impact: [
+      "Mapped B2B product fields into Shopify-ready product structures.",
+      "Validated imported listings and inventory values inside Shopify Admin.",
+      "Investigated API mismatches and reduced avoidable catalog inconsistencies.",
     ],
-    stack: ["REST APIs", "JSON", "Shopify Admin", "Product sync", "Validation"],
+    stack: ["REST API", "JSON", "Shopify Admin", "Product sync"],
+    private: false,
   },
   {
-    label: "Branding and storefront design",
-    title: "Ecommerce brand direction and page systems",
-    company: "Freelance and team-based Shopify projects",
+    number: "03",
+    label: "Shopify commerce systems",
+    title: "Reusable storefront and launch delivery",
+    client: "Team and contract projects",
     period: "2023 - 2025",
     href: "https://saltedseas.com/",
-    icon: WandSparkles,
+    icon: SiShopify,
     summary:
-      "Supported brand-aligned storefront builds by translating product positioning, visual hierarchy, and mobile-first layouts into reusable Shopify, Replo, GemPages, and Webflow page sections.",
-    wins: [
-      "Created cleaner homepage, product, collection, and landing-page structures for multiple ecommerce niches.",
-      "Improved brand consistency through typography, spacing, CTA placement, trust blocks, image rhythm, and section reuse.",
-      "Worked with designers, copywriters, store owners, and content teams to keep visual updates practical and launch-ready.",
+      "Reusable Liquid sections, metafields, product and collection architecture, mobile-first content systems, checkout support, and launch QA.",
+    impact: [
+      "Built and refined storefronts across beauty, wellness, jewelry, grooming, and specialist retail.",
+      "Connected content, product data, email tools, tracking, and conversion-focused page structure.",
+      "Delivered revisions with designers, copywriters, editors, owners, and remote project teams.",
     ],
-    stack: ["Brand layout", "Shopify sections", "Replo", "GemPages", "Webflow", "Mobile UX"],
+    stack: ["Shopify", "Liquid", "Metafields", "Replo", "GemPages"],
+    private: false,
   },
   {
-    label: "Funnelish and funnel builds",
-    title: "Sales funnel pages and checkout path support",
-    company: "Ecommerce funnel work",
+    number: "04",
+    label: "Funnel and CRO",
+    title: "Offer pages and measurable buying paths",
+    client: "Ecommerce projects",
     period: "2024 - 2025",
     href: "https://flowpouch.com/",
-    icon: Workflow,
-    summary:
-      "Planned and supported funnel-style page flows using Funnelish concepts, landing-page sequencing, offer clarity, CTA placement, email capture, and checkout handoff logic.",
-    wins: [
-      "Mapped simple customer journeys from offer page to product detail, cart, checkout, and follow-up touchpoints.",
-      "Structured page sections for headline clarity, benefits, social proof, urgency, FAQs, and trust signals.",
-      "Kept funnel builds realistic by focusing on message clarity, mobile usability, and measurable drop-off points.",
-    ],
-    stack: ["Funnelish", "Landing pages", "Offer flow", "CTA strategy", "Klaviyo", "Checkout QA"],
-  },
-  {
-    label: "CRO and user behavior",
-    title: "Conversion-focused storefront improvements",
-    company: "Shopify and ecommerce projects",
-    period: "2023 - 2025",
-    href: "https://twobrothersgrooming.com/",
     icon: LineChart,
     summary:
-      "Used practical CRO checks, GA4, Shopify Analytics, Microsoft Clarity, and page-speed reviews to improve storefront usability, product-page clarity, and checkout confidence.",
-    wins: [
-      "Reviewed heatmaps, session behavior, layout friction, CTA visibility, and mobile section order.",
-      "Improved product pages with clearer benefits, trust content, image hierarchy, related offers, and stronger action paths.",
-      "Balanced design improvements with technical checks for responsiveness, loading speed, SEO basics, and analytics tracking.",
+      "Funnelish-style offer pages and storefront improvements shaped around clearer messaging, proof, mobile action, checkout confidence, and behavior data.",
+    impact: [
+      "Mapped landing, product, cart, checkout, email, and follow-up touchpoints.",
+      "Reviewed CTA visibility, mobile section order, heatmaps, speed, and tracking.",
+      "Built practical offer blocks, bundles, FAQs, trust sections, and repeated actions.",
     ],
-    stack: ["CRO", "GA4", "Clarity", "Shopify Analytics", "Heatmaps", "PageSpeed"],
+    stack: ["Funnelish", "GA4", "Clarity", "Klaviyo", "PageSpeed"],
+    private: false,
   },
-];
+] as const;
 
-const legacyDesignSamples = [
+const commerceSamples = [
   {
-    title: "Marcozo collection and brand polish",
-    project: "Marcozo",
+    name: "Marcozo",
     category: "Jewelry ecommerce",
     href: "https://www.marcozo.com/",
-    logo: "https://www.marcozo.com/cdn/shop/files/mobilebeigeMARCOZO_Logo_Gold_crayola_CMYK_2x-8_5_1_copy.png?crop=center&height=108&v=1760653211&width=130",
-    logoBg: "#0d0d0d",
-    palette: ["#0d0d0d", "#ab8c52", "#fcfbf9", "#806430"],
-    pageBg: "#fcfbf9",
-    headerBg: "#0d0d0d",
-    headerTextColor: "#fcfbf9",
-    textColor: "#0d0d0d",
-    heroTextColor: "#fcfbf9",
-    heroImage:
-      "https://www.marcozo.com/cdn/shop/files/26055710_2000784349962009_6465810582428627653_n_1268ee8d-c398-4875-974e-701d69aa17e7.jpg?v=1613501421",
-    heroPosition: "center",
-    announcement: "LIFETIME WARRANTY ON ALL JEWELRY | FREE U.S. SHIPPING OVER $99",
-    nav: ["Pendants", "Chains", "Rings", "Bracelets"],
-    eyebrow: "Premium men's jewelry",
-    headline: "Tarnish-resistant pieces with a clean luxury store flow.",
-    body: "Gold, silver, and black jewelry pages shaped around product trust, collection clarity, and mobile-first buying paths.",
-    cta: "Shop pendants",
-    secondaryCta: "View collections",
-    feature: "Lifetime warranty",
-    fontHeading: "Bricolage Grotesque",
-    fontBody: "DM Sans",
-    headingStack: '"Bricolage Grotesque", "Arial Black", var(--font-space-grotesk), sans-serif',
-    bodyStack: '"DM Sans", var(--font-space-grotesk), sans-serif',
-    typeStyle: "Bold grotesque headings, tight luxury spacing, warm gold accents, and clean product framing.",
-    products: ["Pendants", "Chains", "Rings"],
-    deliverables: ["Collection system", "Product-card polish", "Navigation cleanup", "Launch revisions"],
-    tools: ["Shopify", "Metafields", "Liquid", "Mobile QA"],
+    image: "/brand-assets/marcozo-hero.webp",
+    alt: "Marcozo premium jewelry hero with gold pieces arranged on dark volcanic stone",
+    accent: "#b9872c",
+    title: "A luxury storefront built around product confidence.",
+    text: "Shopify setup, theme structure, reusable Liquid sections, metafields, product layouts, collections, navigation, responsive refinement, and launch revisions.",
+    tools: ["Shopify", "Liquid", "Metafields", "Mobile QA"],
   },
   {
-    title: "Flowpouch offer funnel concept",
-    project: "Flowpouch",
-    category: "Funnelish and CRO",
+    name: "Flowpouch",
+    category: "Wellness ecommerce and funnel",
     href: "https://flowpouch.com/",
-    logo: "https://flowpouch.com/cdn/shop/files/Asset_5_43ead812-8762-4d67-b378-3f2ca09ead94.png?v=1756704893&width=600",
-    logoBg: "#ffffff",
-    palette: ["#141414", "#00a150", "#334fb4", "#e8fbf1"],
-    pageBg: "#f4eee4",
-    headerBg: "#141414",
-    headerTextColor: "#ffffff",
-    textColor: "#141414",
-    heroTextColor: "#ffffff",
-    heroImage:
-      "https://flowpouch.com/cdn/shop/files/gempages_528801600827819134-a84a337c-64bf-47ad-8abb-0c31c83823e7.png?v=3245835602198306662",
-    heroPosition: "center",
-    announcement: "NATURAL ENERGY BOOSTER | CLEAN FOCUS WITHOUT THE CRASH",
-    nav: ["Shop", "Learn", "Reviews", "FAQ"],
-    eyebrow: "Natural focus pouches",
-    headline: "Offer-page sections built for fast scanning and clear action.",
-    body: "A practical funnel direction with benefit-led copy, bundle framing, proof sections, FAQs, and CTA repetition for mobile shoppers.",
-    cta: "Claim offer",
-    secondaryCta: "See ingredients",
-    feature: "No crash. No dependency.",
-    fontHeading: "Galano Grotesque Alt Heavy",
-    fontBody: "Galano Grotesque Regular",
-    headingStack: '"Galano Grotesque Alt Heavy", "Arial Black", var(--font-space-grotesk), sans-serif',
-    bodyStack: '"Galano Grotesque Regular", var(--font-space-grotesk), sans-serif',
-    typeStyle: "Heavy rounded headlines, bright green actions, blue support cues, and CRO-first offer blocks.",
-    products: ["Offer Stack", "Bundle Cards", "FAQ Proof"],
-    deliverables: ["Funnel map", "Offer page blocks", "Checkout path", "Heatmap review"],
-    tools: ["Funnelish", "Shopify", "Klaviyo", "Clarity"],
+    image: "/brand-assets/flowpouch-hero.webp",
+    alt: "Flowpouch mushroom pouch product suspended above clean product pieces",
+    accent: "#00a85a",
+    title: "An offer-led page system with a clear next step.",
+    text: "Team-based Shopify delivery with responsive sections, product education, benefit hierarchy, proof, email flow support, and practical Funnelish and CRO thinking.",
+    tools: ["Shopify", "GemPages", "Klaviyo", "Funnelish"],
   },
   {
-    title: "Pagulayan Cues premium product layout",
-    project: "Pagulayan Cues",
-    category: "Premium product design",
+    name: "Pagulayan Cues",
+    category: "Specialist retail",
     href: "https://pagulayancues.com/",
-    logo: "https://cdn.shopify.com/s/files/1/0669/8228/1438/files/PAG-Icon-White.png?v=1743601992",
-    logoBg: "#121212",
-    palette: ["#121212", "#ffcf00", "#e43a36", "#ffffff"],
-    pageBg: "#ffffff",
-    headerBg: "#121212",
-    headerTextColor: "#ffffff",
-    textColor: "#121212",
-    heroTextColor: "#ffffff",
-    heroImage:
-      "https://pagulayancues.com/cdn/shop/files/lion-merry-widow-promo-desktop-banner.webp?v=1778260933&width=2000",
-    heroPosition: "center",
-    announcement: "PREMIUM BILLIARDS SUPPLIES | INSPIRED BY A WORLD CHAMPION",
-    nav: ["Cues", "Shafts", "Cases", "Accessories"],
-    eyebrow: "Pagulayan professional gear",
-    headline: "Bold product pages for cue specs, craft details, and trust.",
-    body: "Premium billiards layouts shaped around product photography, technical specs, reviews, responsive sections, and clear collection browsing.",
-    cta: "View cues",
-    secondaryCta: "Shop accessories",
-    feature: "Cue specs and review proof",
-    fontHeading: "Poppins 700",
-    fontBody: "Poppins Regular",
-    headingStack: '"Poppins", var(--font-space-grotesk), sans-serif',
-    bodyStack: '"Poppins", var(--font-space-grotesk), sans-serif',
-    typeStyle: "Sport retail contrast with black, champion yellow, red highlights, and readable spec-driven sections.",
-    products: ["Cue Specs", "Gallery", "Klaviyo CTA"],
-    deliverables: ["Product-page layout", "Collection clarity", "Email handoff", "Responsive checks"],
-    tools: ["Shopify", "GemPages", "Klaviyo", "CRO"],
+    image: "/brand-assets/pagulayan-hero.webp",
+    alt: "Pagulayan Cues Lion Merry Widow collection banner with premium wooden pool cues",
+    accent: "#f3bd16",
+    title: "Technical product detail presented with champion-level clarity.",
+    text: "Theme editing, product and collection structure, responsive layout, navigation refinement, analytics support, Merchant Center, Clarity, and Klaviyo integration.",
+    tools: ["Shopify", "GemPages", "GA4", "Merchant Center"],
   },
   {
-    title: "Salted Seas landing page system",
-    project: "Salted Seas",
-    category: "Brand landing page",
+    name: "Salted Seas",
+    category: "Skincare ecommerce",
     href: "https://saltedseas.com/",
-    logo: "https://saltedseas.com/cdn/shop/files/SALTED_SEAS_PNG.png?v=1753848006&width=600",
-    logoBg: "#ffffff",
-    palette: ["#ffffff", "#0794a6", "#467c99", "#121212"],
-    pageBg: "#ffffff",
-    headerBg: "#ffffff",
-    headerTextColor: "#121212",
-    textColor: "#121212",
-    heroTextColor: "#ffffff",
-    heroImage: "https://saltedseas.com/cdn/shop/files/20250916-DSC_2869_1.jpg?v=1759424117&width=2000",
-    heroPosition: "center",
-    announcement: "SKINCARE BORN OF SALT, SEA & SCIENCE",
-    nav: ["Shop", "Ritual", "Ingredients", "About"],
-    eyebrow: "Clean coastal skincare",
-    headline: "Skincare Born of Salt, Sea & Science",
-    body: "A calm landing-page direction with visual storytelling, best-seller sections, reviews, and a smoother path from product education to checkout.",
-    cta: "Shop all products",
-    secondaryCta: "Read story",
-    feature: "Coastal science-led product story",
-    fontHeading: "Work Sans",
-    fontBody: "Work Sans",
-    headingStack: '"Work Sans", var(--font-space-grotesk), sans-serif',
-    bodyStack: '"Work Sans", var(--font-space-grotesk), sans-serif',
-    typeStyle: "Soft coastal typography, white space, teal accents, and simple product education blocks.",
-    products: ["Hero Story", "Best Sellers", "Review Strip"],
-    deliverables: ["Landing sections", "CTA rhythm", "Collection handoff", "Mobile QA"],
-    tools: ["Shopify", "Replo", "Webflow", "GA4"],
+    image: "/brand-assets/salted-seas-hero.jpg",
+    alt: "Salted Seas skincare products displayed on a sunlit beach",
+    accent: "#099bb2",
+    title: "A calm visual system that keeps product education moving.",
+    text: "Cross-functional page building with clear content hierarchy, landing-to-checkout flow, CTA placement, Replo, Webflow, analytics feedback, and responsive QA.",
+    tools: ["Shopify", "Replo", "Webflow", "Clarity"],
   },
   {
-    title: "Two Brothers Grooming storefront direction",
-    project: "Two Brothers Grooming",
+    name: "Two Brothers Grooming",
     category: "Grooming ecommerce",
     href: "https://twobrothersgrooming.com/",
-    logo: "https://twobrothersgrooming.com/cdn/shop/files/LGpng.png?v=1773519573&width=500",
-    logoBg: "#faf8f5",
-    palette: ["#0f2a1d", "#8b7355", "#faf8f5", "#9a7540"],
-    pageBg: "#faf8f5",
-    headerBg: "#0f2a1d",
-    headerTextColor: "#faf8f5",
-    textColor: "#0f2a1d",
-    heroTextColor: "#0f2a1d",
-    heroImage:
-      "https://twobrothersgrooming.com/cdn/shop/files/Hero1_11a01e55-35b1-4add-aef3-8fde981d379f.webp?v=1775899016&width=800",
-    heroPosition: "center",
-    announcement: 'USE CODE "TB15" FOR 15% OFF YOUR FIRST ORDER | FREE SHIPPING ON ORDERS OVER $50',
-    nav: ["About", "Products", "Services", "Blog", "Contact"],
-    eyebrow: "Premium grooming",
-    headline: "Crafted for the everyday hustle.",
-    body: "Premium men's grooming essentials crafted by working barbers, with product storytelling and utility-focused shopping actions.",
-    cta: "Shop all products",
-    secondaryCta: "Our story",
-    feature: "Signature Texture Powder & Sea Salt Spray",
-    fontHeading: "Playfair Display",
-    fontBody: "Montserrat",
-    headingStack: '"Playfair Display", Georgia, "Times New Roman", serif',
-    bodyStack: '"Montserrat", var(--font-space-grotesk), sans-serif',
-    typeStyle: "Editorial serif headlines, cream backgrounds, forest green navigation, and warm barber-shop accents.",
-    products: ["Beard Oil", "Balm Set", "Routine Kit"],
-    deliverables: ["Brand color direction", "Homepage hero", "Product trust blocks", "Mobile product cards"],
-    tools: ["Shopify", "Liquid", "CRO", "Clarity"],
+    image: "/brand-assets/two-brothers-hero.webp",
+    alt: "Two Brothers Grooming texture powder and sea salt spray in a premium product scene",
+    accent: "#183c2d",
+    title: "Editorial grooming commerce with product utility up front.",
+    text: "Brand-aligned storefront support, reusable page sections, product storytelling, mobile-first shopping actions, trust content, and conversion-focused refinement.",
+    tools: ["Shopify", "Liquid", "CRO", "Responsive UI"],
   },
   {
-    title: "Cadence hydration landing page system",
-    project: "Cadence",
-    category: "Hydration and performance",
-    href: "https://usecadence.com/",
-    logo: "https://usecadence.com/cdn/shop/files/Logo_Black.svg?crop=center&height=54&v=1743373902&width=240",
-    logoBg: "#ffffff",
-    palette: ["#191919", "#ffffff", "#f2f2f2", "#f18080"],
-    pageBg: "#f7f7f7",
-    headerBg: "#ffffff",
-    headerTextColor: "#191919",
-    textColor: "#191919",
-    heroTextColor: "#191919",
-    heroImage:
-      "https://usecadence.com/cdn/shop/files/658ee1737aa90abd23646fa1_Group_469_1.png?height=628&pad_color=ffffff&v=1708608427&width=1200",
-    heroPosition: "center",
-    announcement: "PREMIUM ELECTROLYTE HYDRATION | PERFORMANCE AND RECOVERY",
-    nav: ["Shop", "Hydration", "Performance", "About"],
-    eyebrow: "Daily discipline and recovery",
-    headline: "Hydration products with clean education and sharp offers.",
-    body: "Premium electrolyte and fueling pages shaped around product education, routine building, responsive content blocks, and conversion-focused offer paths.",
-    cta: "Build routine",
-    secondaryCta: "Explore products",
-    feature: "Hydration and fuelling system",
-    fontHeading: "PP Editorial",
-    fontBody: "Neue Montreal",
-    headingStack: '"PP Editorial", Georgia, "Times New Roman", serif',
-    bodyStack: '"Neue Montreal", var(--font-space-grotesk), sans-serif',
-    typeStyle: "Minimal editorial headings, monochrome structure, and coral offer accents for performance ecommerce.",
-    products: ["Hydration", "Performance", "Subscription"],
-    deliverables: ["Brand-led landing sections", "Product education blocks", "Offer path", "Responsive QA"],
-    tools: ["Shopify", "Brand design", "CRO", "Mobile QA"],
+    name: "SudorCure",
+    category: "Health ecommerce",
+    href: "https://www.sudorcure.com/",
+    image: "/brand-assets/sudorcure-hero.webp",
+    alt: "SudorCure Saalio iontophoresis treatment device with two treatment trays",
+    accent: "#0d7db5",
+    title: "Complex treatment information shaped into a confident buying path.",
+    text: "Shopify ecommerce work supporting treatment discovery, product education, trust, navigation, responsive shopping journeys, and clear conversion actions.",
+    tools: ["Shopify", "Product education", "UX", "Mobile QA"],
   },
-];
+] as const;
 
-type BrandLink = {
-  label: string;
-  href: string;
-};
-
-type BrandSample = Omit<(typeof legacyDesignSamples)[number], "nav"> & {
-  layout: "marcozo" | "flowpouch" | "pagulayan" | "salted" | "two-brothers" | "cadence";
-  primaryHref: string;
-  secondaryHref: string;
-  featureHref: string;
-  nav: BrandLink[];
-  utilityLinks: BrandLink[];
-  trustBadges: string[];
-  splitHero: boolean;
-};
-
-const designSampleOverrides: Record<
-  string,
-  Partial<BrandSample> &
-    Pick<
-      BrandSample,
-      "layout" | "primaryHref" | "secondaryHref" | "featureHref" | "nav" | "utilityLinks" | "trustBadges" | "splitHero"
-    >
-> = {
-  Marcozo: {
-    layout: "marcozo",
-    primaryHref: "https://www.marcozo.com/collections/best-sellers",
-    secondaryHref: "https://www.marcozo.com/collections/necklaces",
-    featureHref: "https://www.marcozo.com/collections/best-sellers",
-    heroImage: "/brand-assets/marcozo-hero.webp",
-    heroPosition: "center",
-    announcement: "LIFETIME WARRANTY ON ALL JEWELRY",
-    nav: [
-      { label: "Best Sellers", href: "https://www.marcozo.com/collections/best-sellers" },
-      { label: "Pendants", href: "https://www.marcozo.com/collections/necklaces" },
-      { label: "Chains", href: "https://www.marcozo.com/collections/chains" },
-      { label: "Rings", href: "https://www.marcozo.com/collections/rings" },
-      { label: "Bracelets", href: "https://www.marcozo.com/collections/bracelets" },
-      { label: "Clothing", href: "https://www.marcozo.com/collections/clothing" },
-      { label: "New", href: "https://www.marcozo.com/collections/new-releases" },
-    ],
-    utilityLinks: [
-      { label: "Search", href: "https://www.marcozo.com/search" },
-      { label: "Account", href: "https://www.marcozo.com/account" },
-      { label: "Cart", href: "https://www.marcozo.com/cart" },
-    ],
-    eyebrow: "Premium jewelry",
-    headline: "Built for modern emperors",
-    body: "",
-    cta: "Shop now",
-    secondaryCta: "View collections",
-    fontHeading: "Montserrat",
-    fontBody: "Montserrat",
-    headingStack: '"Montserrat", var(--font-space-grotesk), sans-serif',
-    bodyStack: '"Montserrat", var(--font-space-grotesk), sans-serif',
-    typeStyle: "Black navigation, all-caps luxury copy, warm gold accents, and product-first hero photography.",
-    trustBadges: ["100,000 happy customers", "Free shipping", "Risk-free shopping", "Lifetime warranty"],
-    splitHero: false,
-  },
-  Flowpouch: {
-    layout: "flowpouch",
-    primaryHref: "https://flowpouch.com/products/flow-pouches",
-    secondaryHref: "https://flowpouch.com/pages/about-our-ingredients",
-    featureHref: "https://flowpouch.com/products/flow-pouches",
-    pageBg: "#f7fffc",
-    headerBg: "#f7fffc",
-    headerTextColor: "#141414",
-    heroTextColor: "#141414",
-    heroImage:
-      "https://assets.replocdn.com/projects/677275eb-0270-4145-90bf-dbef88f85b02/8cc6b1e3-890e-4ac3-a899-1b56ae3ac4b7",
-    heroPosition: "center top",
-    announcement: "",
-    nav: [
-      { label: "Shop Flow Pouches", href: "https://flowpouch.com/products/flow-pouches" },
-      { label: "About", href: "https://flowpouch.com/pages/about-us" },
-      { label: "Ingredients", href: "https://flowpouch.com/pages/about-our-ingredients" },
-      { label: "FAQ", href: "https://flowpouch.com/pages/frequently-asked-questions" },
-      { label: "Contact", href: "https://flowpouch.com/pages/contact" },
-      { label: "Blog", href: "https://flowpouch.com/blogs/news" },
-    ],
-    utilityLinks: [
-      { label: "Account", href: "https://flowpouch.com/account/login" },
-      { label: "Cart", href: "https://flowpouch.com/cart" },
-    ],
-    headline: "A natural and healthy alternative to nicotine pouches",
-    body: "A practical funnel direction with clear benefit copy, product education, bundle framing, proof sections, FAQs, and repeated mobile CTAs.",
-    cta: "Shop Flow Pouches",
-    fontHeading: "Poppins",
-    fontBody: "Poppins",
-    headingStack: '"Poppins", var(--font-space-grotesk), sans-serif',
-    bodyStack: '"Poppins", var(--font-space-grotesk), sans-serif',
-    typeStyle: "Centered athletic logo, black offer buttons, strong green product cues, and direct benefit-led copy.",
-    trustBadges: ["Nicotine-free", "Mushroom blend", "5 flavors", "Clean focus"],
-    splitHero: true,
-  },
-  "Pagulayan Cues": {
-    layout: "pagulayan",
-    primaryHref: "https://pagulayancues.com/collections/lion-pool-cues",
-    secondaryHref: "https://pagulayancues.com/collections/pristine-carbon-fiber-shafts",
-    featureHref: "https://pagulayancues.com/collections/lion-pool-cues",
-    logo: "https://pagulayancues.com/cdn/shop/files/Logo_-_Transparent_Head_1.png?v=1697189642&width=600",
-    logoBg: "#ffffff",
-    headerBg: "#ffffff",
-    headerTextColor: "#121212",
-    announcement: "",
-    nav: [{ label: "Shop", href: "https://pagulayancues.com/collections/all" }],
-    utilityLinks: [
-      { label: "Search", href: "https://pagulayancues.com/search" },
-      { label: "Account", href: "https://pagulayancues.com/account/login" },
-      { label: "Cart", href: "https://pagulayancues.com/cart" },
-    ],
-    headline: "Lion Merry Widow Series",
-    cta: "Shop now",
-    secondaryCta: "Shop shafts",
-    trustBadges: ["Merry Widow cues", "Carbon shafts", "Review proof", "Free-gift promo"],
-    splitHero: false,
-  },
-  "Salted Seas": {
-    layout: "salted",
-    primaryHref: "https://saltedseas.com/collections/all",
-    secondaryHref: "https://saltedseas.com/pages/our-story",
-    featureHref: "https://saltedseas.com/collections/all",
-    announcement: "Mothers day sale on now! Get 20% off with code (MOTHERSDAY)",
-    nav: [
-      { label: "Home", href: "https://saltedseas.com/" },
-      { label: "Our Story", href: "https://saltedseas.com/pages/our-story" },
-      { label: "Contact", href: "https://saltedseas.com/pages/contact" },
-      { label: "Shop", href: "https://saltedseas.com/collections/all" },
-      { label: "FAQs", href: "https://saltedseas.com/pages/faqs" },
-    ],
-    utilityLinks: [
-      { label: "Search", href: "https://saltedseas.com/search" },
-      { label: "Account", href: "https://saltedseas.com/account" },
-      { label: "Cart", href: "https://saltedseas.com/cart" },
-    ],
-    trustBadges: ["Cruelty-free", "Ocean-derived ingredients", "100% vegan formulas", "Made in USA", "Sustainable skincare"],
-    splitHero: false,
-  },
-  "Two Brothers Grooming": {
-    layout: "two-brothers",
-    primaryHref: "https://twobrothersgrooming.com/collections/all",
-    secondaryHref: "https://twobrothersgrooming.com/pages/our-story",
-    featureHref: "https://twobrothersgrooming.com/collections/all-product",
-    logoBg: "#0f2a1d",
-    nav: [
-      { label: "About", href: "https://twobrothersgrooming.com/pages/our-story" },
-      { label: "Products", href: "https://twobrothersgrooming.com/collections/all" },
-      { label: "Services", href: "https://twobrothersgrooming.com/pages/services" },
-      { label: "Blog", href: "https://twobrothersgrooming.com/blogs/styling-tips" },
-      { label: "Contact", href: "https://twobrothersgrooming.com/pages/contact" },
-    ],
-    utilityLinks: [
-      { label: "Search", href: "https://twobrothersgrooming.com/search" },
-      {
-        label: "Account",
-        href: "https://twobrothersgrooming.com/customer_authentication/redirect?locale=en&region_country=US",
-      },
-      { label: "Cart", href: "https://twobrothersgrooming.com/cart" },
-    ],
-    trustBadges: ["Premium quality", "Barber crafted", "Free shipping", "Limited edition"],
-    splitHero: true,
-  },
-  Cadence: {
-    layout: "cadence",
-    primaryHref: "https://usecadence.com/collections/all-products",
-    secondaryHref: "https://usecadence.com/pages/subscribe-save",
-    featureHref: "https://usecadence.com/blogs/science",
-    logo: "https://usecadence.com/cdn/shop/files/Logo_White.svg?crop=center&height=54&v=1743373957&width=240",
-    logoBg: "#111111",
-    pageBg: "#111111",
-    headerBg: "#111111",
-    headerTextColor: "#ffffff",
-    textColor: "#ffffff",
-    heroTextColor: "#ffffff",
-    heroImage:
-      "https://usecadence.com/cdn/shop/files/1207000_1207000-R1-039-18_d44b96a7-a0ab-48e4-9870-02f431ab149a.jpg?v=1777738231&width=1500",
-    announcement: "Free Shipping over GBP 50 | Subscribe & Save | Backed by Science",
-    nav: [
-      { label: "Shop", href: "https://usecadence.com/collections/all-products" },
-      { label: "Science", href: "https://usecadence.com/blogs/science" },
-      { label: "Fuel Club", href: "https://usecadence.com/pages/fuel-club" },
-      { label: "Stores", href: "https://usecadence.com/pages/store-locator" },
-      { label: "Subscription", href: "https://usecadence.com/pages/subscribe-save" },
-      { label: "Athletes", href: "https://usecadence.com/pages/athletes" },
-    ],
-    utilityLinks: [
-      { label: "Account", href: "https://usecadence.com/account" },
-      { label: "Search", href: "https://usecadence.com/search" },
-      { label: "Cart", href: "https://usecadence.com/cart" },
-    ],
-    headline: "Modern Sports Hydration",
-    body: "Science-backed hydration for daily movement, with landing sections for product education, subscription clarity, and conversion-focused offer paths.",
-    cta: "Shop all products",
-    secondaryCta: "Subscribe & save",
-    trustBadges: ["Free shipping", "Subscribe & Save", "Backed by Science"],
-    splitHero: false,
-  },
-};
-
-const designSamples = legacyDesignSamples.map((sample) => ({
-  ...sample,
-  ...designSampleOverrides[sample.project],
-})) as BrandSample[];
-
-type DesignSample = (typeof designSamples)[number];
-
-const storefrontTrustIcons = [Star, Package, RefreshCw, ShieldCheck, Sparkles];
-const storefrontUtilityIcons = [Search, UserRound, ShoppingBag];
-
-const funnelCroItems = [
+const growthChecks = [
   {
-    title: "Funnel mapping",
-    text: "Plan the route from landing page to product education, cart, checkout, email capture, and follow-up so the page has a real business path.",
+    icon: Search,
+    title: "Find the friction",
+    text: "Review landing pages, product pages, navigation, mobile order, speed, search behavior, cart actions, and checkout confidence.",
+  },
+  {
     icon: Workflow,
+    title: "Map the full path",
+    text: "Connect the offer, product education, proof, cart, checkout, email capture, and post-purchase or follow-up journey.",
   },
   {
-    title: "Funnelish implementation support",
-    text: "Build or support Funnelish-style pages with offer blocks, proof, bundles, checkout actions, tracking checks, and mobile spacing.",
-    icon: PanelsTopLeft,
+    icon: BarChart3,
+    title: "Read the evidence",
+    text: "Use GA4, Shopify Analytics, Microsoft Clarity, Merchant Center, heatmaps, and session behavior to prioritize useful changes.",
   },
   {
-    title: "CRO audit",
-    text: "Review CTA visibility, product-page clarity, trust signals, page speed, mobile order, heatmaps, analytics, and checkout friction.",
-    icon: LineChart,
+    icon: Gauge,
+    title: "Improve and verify",
+    text: "Refine copy hierarchy, CTA rhythm, trust blocks, forms, imagery, responsiveness, tracking, and page performance.",
   },
-  {
-    title: "Design iteration",
-    text: "Make realistic changes after review: better section order, stronger product messages, cleaner buttons, easier forms, and clearer navigation.",
-    icon: WandSparkles,
-  },
-];
+] as const;
 
 const experience = [
   {
-    company: "Anytime Fitness SEB Group",
+    company:
+      "Anytime Fitness SEB Group & JYM Group | Australia & United Kingdom",
     role: "Software Developer and Administrator",
     period: "2024 - Present",
     href: "https://www.anytimefitness.com/",
-    icon: BriefcaseBusiness,
+    type: "Software systems",
   },
   {
     company: "Salted Seas",
-    role: "Shopify Developer, team contract",
+    role: "Shopify Developer - team contract",
     period: "2025",
     href: "https://saltedseas.com/",
-    icon: SiShopify,
-  },
-  {
-    company: "Flowpouch",
-    role: "Shopify Developer, team environment",
-    period: "2024",
-    href: "https://flowpouch.com/",
-    icon: Store,
-  },
-  {
-    company: "Pagulayan Cues",
-    role: "Shopify Developer, team environment",
-    period: "2023",
-    href: "https://pagulayancues.com/",
-    icon: Store,
+    type: "Commerce",
   },
   {
     company: "Marcozo",
-    role: "Shopify Developer, contract build",
+    role: "Shopify Developer - contract build",
     period: "2024",
     href: "https://www.marcozo.com/",
-    icon: SiShopify,
+    type: "Commerce",
+  },
+  {
+    company: "Flowpouch",
+    role: "Shopify Developer - team environment",
+    period: "2024",
+    href: "https://flowpouch.com/",
+    type: "Commerce",
+  },
+  {
+    company: "SudorCure",
+    role: "Shopify ecommerce project",
+    period: "Project work",
+    href: "https://www.sudorcure.com/",
+    type: "Commerce",
+  },
+  {
+    company: "Pagulayan Cues",
+    role: "Shopify Developer - team environment",
+    period: "2023",
+    href: "https://pagulayancues.com/",
+    type: "Commerce",
   },
   {
     company: "Two Brothers Grooming",
     role: "Ecommerce storefront project",
-    period: "Live site",
+    period: "Project work",
     href: "https://twobrothersgrooming.com/",
-    icon: Store,
-  },
-  {
-    company: "Cadence",
-    role: "Branding, design, and Shopify sample support",
-    period: "Project sample",
-    href: "https://usecadence.com/",
-    icon: WandSparkles,
-  },
-  {
-    company: "Geminos",
-    role: "Shopify store setup and launch support",
-    period: "Freelance project",
-    href: "https://geminos.store/password",
-    icon: SiShopify,
+    type: "Commerce",
   },
   {
     company: "Motovan to Shopify",
     role: "B2B API integration support",
     period: "2024",
     href: "https://motovan.com/",
-    icon: Workflow,
+    type: "Integration",
   },
   {
-    company: "Freelance Ecommerce Builds",
-    role: "Branding, layout, and launch support",
-    period: "2023 - 2025",
-    href: "https://saltedseas.com/",
-    icon: WandSparkles,
+    company: "Geminos",
+    role: "Store setup and launch support",
+    period: "Freelance project",
+    href: "https://geminos.store/password",
+    type: "Commerce",
   },
-  {
-    company: "Shopify and Funnel Projects",
-    role: "Funnelish, CRO, and page-building support",
-    period: "2024 - 2025",
-    href: "https://flowpouch.com/",
-    icon: LineChart,
-  },
-  {
-    company: "Replo, GemPages, and Webflow Builds",
-    role: "Landing-page and responsive design implementation",
-    period: "2023 - 2025",
-    href: "https://twobrothersgrooming.com/",
-    icon: PanelsTopLeft,
-  },
-];
+] as const;
 
-const toolGroups = [
+const toolGroups: {
+  title: string;
+  summary: string;
+  icon: IconComponent;
+  tools: { name: string; icon: IconComponent }[];
+}[] = [
   {
-    title: "Ecommerce and funnels",
-    icon: ShoppingBag,
-    summary:
-      "Shopify builds, buying journeys, landing pages, product pages, cart, checkout, email flows, and funnel tooling.",
+    title: "Frontend engineering",
+    summary: "Responsive interfaces, reusable systems, and customer-facing experiences.",
+    icon: MonitorSmartphone,
     tools: [
-      { name: "Shopify", icon: SiShopify, tone: "green" },
-      { name: "Shopify Admin", icon: Store, tone: "green" },
-      { name: "Liquid sections", icon: Code2, tone: "ink" },
-      { name: "Metafields", icon: Database, tone: "blue" },
-      { name: "Shopify Flow", icon: Workflow, tone: "green" },
-      { name: "Shopify Markets", icon: Globe2, tone: "blue" },
-      { name: "Brand direction", icon: WandSparkles, tone: "orange" },
-      { name: "Figma handoff", icon: SiFigma, tone: "violet" },
-      { name: "Canva assets", icon: SiCanva, tone: "cyan" },
-      { name: "UI hierarchy", icon: PanelsTopLeft, tone: "blue" },
-      { name: "Replo", icon: PanelsTopLeft, tone: "pink" },
-      { name: "GemPages", icon: WandSparkles, tone: "yellow" },
-      { name: "Webflow", icon: SiWebflow, tone: "blue" },
-      { name: "Klaviyo flows", icon: Mail, tone: "green" },
-      { name: "Mailchimp", icon: SiMailchimp, tone: "yellow" },
-      { name: "Funnelish", icon: Workflow, tone: "orange" },
-      { name: "CRO", icon: LineChart, tone: "green" },
-      { name: "Offer pages", icon: Rocket, tone: "red" },
-      { name: "Upsell apps", icon: ShoppingBag, tone: "orange" },
-      { name: "Reviews apps", icon: Star, tone: "yellow" },
-      { name: "Stripe", icon: SiStripe, tone: "violet" },
-      { name: "Checkout QA", icon: ShoppingBag, tone: "green" },
-      { name: "Cart optimization", icon: Workflow, tone: "blue" },
-      { name: "Technical SEO", icon: LineChart, tone: "ink" },
+      { name: "Next.js", icon: SiNextdotjs },
+      { name: "React", icon: SiReact },
+      { name: "TypeScript", icon: SiTypescript },
+      { name: "JavaScript", icon: SiJavascript },
+      { name: "Tailwind CSS", icon: SiTailwindcss },
+      { name: "Figma", icon: SiFigma },
     ],
   },
   {
-    title: "Google, analytics, and growth",
-    icon: BarChart3,
-    summary:
-      "Tracking, merchant visibility, funnel review, heatmaps, SEO checks, and data-driven improvement work.",
+    title: "Backend and APIs",
+    summary: "Business logic, validation, integrations, data services, and authentication flows.",
+    icon: ServerCog,
     tools: [
-      { name: "Google Analytics 4", icon: SiGoogleanalytics, tone: "orange" },
-      { name: "GA4 funnels", icon: Workflow, tone: "orange" },
-      { name: "Google Merchant Center", icon: SiGoogleads, tone: "green" },
-      { name: "Google Ads", icon: SiGoogleads, tone: "blue" },
-      { name: "Google Tag Manager", icon: SiGoogletagmanager, tone: "ink" },
-      { name: "Search Console", icon: SiGooglesearchconsole, tone: "green" },
-      { name: "Microsoft Clarity", icon: Eye, tone: "blue" },
-      { name: "Hotjar", icon: SiHotjar, tone: "red" },
-      { name: "Shopify Analytics", icon: BarChart3, tone: "green" },
-      { name: "PageSpeed Insights", icon: Zap, tone: "yellow" },
-      { name: "Heatmap review", icon: Eye, tone: "violet" },
-      { name: "Product feed QA", icon: Database, tone: "blue" },
-      { name: "Meta Pixel", icon: SiMeta, tone: "blue" },
-      { name: "TikTok Pixel", icon: SiTiktok, tone: "ink" },
-      { name: "Looker-style reports", icon: BarChart3, tone: "blue" },
-      { name: "SEMrush basics", icon: SiSemrush, tone: "orange" },
-      { name: "Google Workspace", icon: SiGmail, tone: "red" },
-      { name: "Google Drive", icon: SiGoogledrive, tone: "green" },
-    ],
-  },
-  {
-    title: "Full-stack engineering",
-    icon: Code2,
-    summary: "Modern UI, server logic, APIs, auth, data handling, and admin workflows.",
-    tools: [
-      { name: "JavaScript", icon: SiJavascript, tone: "yellow" },
-      { name: "TypeScript", icon: SiTypescript, tone: "blue" },
-      { name: "React", icon: SiReact, tone: "cyan" },
-      { name: "React Native", icon: SiReact, tone: "cyan" },
-      { name: "Next.js", icon: SiNextdotjs, tone: "ink" },
-      { name: "Tailwind CSS", icon: SiTailwindcss, tone: "cyan" },
-      { name: "HTML5", icon: SiHtml5, tone: "orange" },
-      { name: "PHP", icon: SiPhp, tone: "violet" },
-      { name: "Python", icon: SiPython, tone: "blue" },
-      { name: "Node.js", icon: SiNodedotjs, tone: "green" },
-      { name: "Express.js", icon: SiExpress, tone: "ink" },
-      { name: "Laravel", icon: SiLaravel, tone: "red" },
-      { name: "Django", icon: SiDjango, tone: "green" },
-      { name: "REST APIs", icon: Workflow, tone: "blue" },
-      { name: "JSON mapping", icon: Database, tone: "green" },
-      { name: "React Query", icon: SiReactquery, tone: "red" },
-      { name: "Prisma", icon: SiPrisma, tone: "ink" },
-      { name: "Auth flows", icon: ShieldCheck, tone: "violet" },
-      { name: "Admin logic", icon: ServerCog, tone: "ink" },
+      { name: "Node.js", icon: SiNodedotjs },
+      { name: "Express", icon: SiExpress },
+      { name: "Laravel", icon: SiLaravel },
+      { name: "Django", icon: SiDjango },
+      { name: "PHP", icon: SiPhp },
+      { name: "Python", icon: SiPython },
+      { name: "Postman", icon: SiPostman },
+      { name: "Stripe", icon: SiStripe },
     ],
   },
   {
     title: "Data and admin operations",
+    summary: "Reliable records, schemas, imports, cleanup, reports, and operational workflows.",
     icon: Database,
-    summary:
-      "CRM-style records, spreadsheet cleanup, Supabase/Postgres-ready data, B2B product sync, reports, validation, and operational dashboards.",
     tools: [
-      { name: "Supabase", icon: SiSupabase, tone: "green" },
-      { name: "MySQL", icon: SiMysql, tone: "blue" },
-      { name: "PostgreSQL", icon: SiPostgresql, tone: "blue" },
-      { name: "MongoDB", icon: SiMongodb, tone: "green" },
-      { name: "Google Sheets", icon: SiGooglesheets, tone: "green" },
-      { name: "Zapier-style automations", icon: SiZapier, tone: "orange" },
-      { name: "ClubWise reports", icon: Database, tone: "orange" },
-      { name: "CSV cleanup", icon: FileText, tone: "green" },
-      { name: "Data validation", icon: BadgeCheck, tone: "blue" },
-      { name: "Data migration", icon: Workflow, tone: "violet" },
-      { name: "Admin dashboards", icon: BarChart3, tone: "green" },
-      { name: "Member profiles", icon: BriefcaseBusiness, tone: "ink" },
-      { name: "Arrears tracking", icon: LineChart, tone: "red" },
-      { name: "Status workflows", icon: Workflow, tone: "blue" },
-      { name: "Payment tracking", icon: SiStripe, tone: "violet" },
-      { name: "Payment reconciliation", icon: BadgeCheck, tone: "green" },
-      { name: "B2B product sync", icon: Workflow, tone: "blue" },
-      { name: "Schema planning", icon: Database, tone: "violet" },
-      { name: "SQL reporting", icon: BarChart3, tone: "blue" },
-      { name: "Reporting exports", icon: FileText, tone: "ink" },
+      { name: "PostgreSQL", icon: SiPostgresql },
+      { name: "MySQL", icon: SiMysql },
+      { name: "Supabase", icon: SiSupabase },
+      { name: "MongoDB", icon: SiMongodb },
+      { name: "Redis", icon: SiRedis },
+      { name: "Microsoft 365", icon: BriefcaseBusiness },
     ],
   },
   {
-    title: "Deployment, Amazon AWS, CMS, and QA",
+    title: "Ecommerce and CRO",
+    summary: "Storefronts, page systems, funnels, tracking, email, and optimization.",
+    icon: ShoppingBag,
+    tools: [
+      { name: "Shopify", icon: SiShopify },
+      { name: "WooCommerce", icon: SiWoocommerce },
+      { name: "WordPress", icon: SiWordpress },
+      { name: "Webflow", icon: SiWebflow },
+      { name: "Wix", icon: SiWix },
+      { name: "Google Analytics", icon: SiGoogleanalytics },
+      { name: "Google Ads", icon: SiGoogleads },
+      { name: "Mailchimp", icon: SiMailchimp },
+    ],
+  },
+  {
+    title: "Cloud and deployment",
+    summary: "Production hosting, release workflows, observability, and infrastructure support.",
     icon: Cloud,
-    summary:
-      "Amazon/AWS hosting basics, production server configuration, CMS builds, mobile QA, SEO, and launch checks.",
     tools: [
-      { name: "Amazon Web Services", icon: Cloud, tone: "orange" },
-      { name: "Amazon EC2", icon: ServerCog, tone: "orange" },
-      { name: "Amazon S3 basics", icon: Database, tone: "yellow" },
-      { name: "CloudFront-ready CDN", icon: Zap, tone: "blue" },
-      { name: "Route 53 DNS basics", icon: Globe2, tone: "green" },
-      { name: "IAM/env hygiene", icon: ShieldCheck, tone: "violet" },
-      { name: "Google Cloud basics", icon: SiGooglecloud, tone: "blue" },
-      { name: "Cloudflare", icon: SiCloudflare, tone: "orange" },
-      { name: "Docker basics", icon: SiDocker, tone: "blue" },
-      { name: "PM2", icon: SiPm2, tone: "green" },
-      { name: "Nginx", icon: SiNginx, tone: "green" },
-      { name: "Vercel", icon: SiVercel, tone: "ink" },
-      { name: "Environment vars", icon: ServerCog, tone: "blue" },
-      { name: "YAML pipelines", icon: Code2, tone: "violet" },
-      { name: "WordPress", icon: SiWordpress, tone: "blue" },
-      { name: "WooCommerce", icon: SiWoocommerce, tone: "violet" },
-      { name: "Elementor", icon: SiElementor, tone: "pink" },
-      { name: "Bricks Builder", icon: PanelsTopLeft, tone: "orange" },
-      { name: "Wix", icon: SiWix, tone: "ink" },
-      { name: "Responsive QA", icon: MonitorSmartphone, tone: "cyan" },
-      { name: "Technical SEO", icon: LineChart, tone: "green" },
+      { name: "Amazon AWS", icon: FaAws },
+      { name: "Vercel", icon: SiVercel },
+      { name: "Nginx", icon: SiNginx },
+      { name: "Docker", icon: SiDocker },
+      { name: "Cloudflare", icon: SiCloudflare },
+      { name: "GitHub Actions", icon: SiGithubactions },
+      { name: "Sentry", icon: SiSentry },
     ],
   },
   {
-    title: "Workflow and collaboration",
-    icon: ShieldCheck,
-    summary: "Version control, communication, documentation, project tracking, and support.",
+    title: "Delivery and collaboration",
+    summary: "Clear coordination, documentation, review, version control, and handoff.",
+    icon: BriefcaseBusiness,
     tools: [
-      { name: "Git", icon: SiGit, tone: "orange" },
-      { name: "GitHub", icon: SiGithub, tone: "ink" },
-      { name: "GitLab", icon: SiGitlab, tone: "orange" },
-      { name: "Bitbucket", icon: SiBitbucket, tone: "blue" },
-      { name: "Slack", icon: SiSlack, tone: "violet" },
-      { name: "Asana", icon: SiAsana, tone: "pink" },
-      { name: "Notion", icon: SiNotion, tone: "ink" },
-      { name: "Trello", icon: SiTrello, tone: "blue" },
-      { name: "ClickUp", icon: SiClickup, tone: "violet" },
-      { name: "Documentation", icon: BadgeCheck, tone: "green" },
-      { name: "Tech support", icon: ShieldCheck, tone: "blue" },
-      { name: "Fast delivery", icon: Rocket, tone: "red" },
+      { name: "GitHub", icon: SiGithub },
+      { name: "GitLab", icon: SiGitlab },
+      { name: "Bitbucket", icon: SiBitbucket },
+      { name: "Slack", icon: SiSlack },
+      { name: "Asana", icon: SiAsana },
+      { name: "Notion", icon: SiNotion },
+      { name: "Trello", icon: SiTrello },
+      { name: "Zapier", icon: SiZapier },
     ],
   },
 ];
 
-const prioritizedToolGroups = [
-  "Full-stack engineering",
-  "Data and admin operations",
-  "Deployment, Amazon AWS, CMS, and QA",
-  "Ecommerce and funnels",
-  "Google, analytics, and growth",
-  "Workflow and collaboration",
-].map((title) => toolGroups.find((group) => group.title === title)!);
+const projectFits = [
+  {
+    number: "01",
+    icon: ServerCog,
+    title: "Build or replace a business system",
+    problem:
+      "Daily work depends on spreadsheets, repeated admin steps, disconnected records, or software that no longer matches the operation.",
+    response:
+      "I can map the workflow, design the data structure, build the application, connect the services, and prepare it for production use.",
+    scope: ["Admin dashboards", "CRM workflows", "Reporting", "Role-based tools"],
+  },
+  {
+    number: "02",
+    icon: ShoppingBag,
+    title: "Launch or improve an ecommerce experience",
+    problem:
+      "The brand is strong, but the storefront is difficult to manage, unclear on mobile, inconsistent across pages, or losing confidence before checkout.",
+    response:
+      "I can align the brand, content structure, Shopify architecture, product data, tracking, and conversion path into one maintainable storefront.",
+    scope: ["Shopify Liquid", "Reusable sections", "CRO", "Mobile buying path"],
+  },
+  {
+    number: "03",
+    icon: Network,
+    title: "Connect data, APIs, and business tools",
+    problem:
+      "Products, payments, member records, analytics, or operational data move between systems manually and create delays or avoidable errors.",
+    response:
+      "I can define the source of truth, map the fields, validate the data, build the integration, and make failures easier to identify.",
+    scope: ["REST APIs", "Data mapping", "Validation", "Automations"],
+  },
+  {
+    number: "04",
+    icon: ShieldCheck,
+    title: "Stabilize and improve a live product",
+    problem:
+      "The current system works, but releases feel risky, performance is inconsistent, tracking is unreliable, or the team needs dependable technical ownership.",
+    response:
+      "I can audit the current setup, prioritize the highest-value fixes, improve production reliability, and leave a clearer path for future work.",
+    scope: ["Technical audit", "Performance", "Deployment", "Ongoing support"],
+  },
+] as const;
 
-const liveLinks = [
-  { name: "Salted Seas", href: "https://saltedseas.com/", type: "Shopify skincare" },
-  { name: "Flowpouch", href: "https://flowpouch.com/", type: "Shopify wellness" },
-  { name: "Pagulayan Cues", href: "https://pagulayancues.com/", type: "Billiards ecommerce" },
-  { name: "Marcozo", href: "https://www.marcozo.com/", type: "Jewelry ecommerce" },
-  { name: "Two Brothers Grooming", href: "https://twobrothersgrooming.com/", type: "Grooming ecommerce" },
-  { name: "Cadence", href: "https://usecadence.com/", type: "Hydration ecommerce" },
-  { name: "Geminos", href: "https://geminos.store/password", type: "Password-protected Shopify" },
-  { name: "Angelic Motion", href: "https://angelicmotion.com/", type: "Streetwear ecommerce" },
-  { name: "Sad Boy Saga", href: "https://sadboysaga.com/", type: "Streetwear ecommerce" },
-  { name: "SudorCure", href: "https://www.sudorcure.com/", type: "Health ecommerce" },
-  { name: "Sacred Taste", href: "https://www.sacredtaste.com/", type: "Cacao ecommerce" },
-  { name: "VAG Garage", href: "https://vaggarage.net/", type: "Automotive website" },
-  { name: "The Dope Connect", href: "https://thedopeconnect.com/", type: "Supplements store" },
-  { name: "KerryBerryCo", href: "https://kerryberryco.com/", type: "Fashion ecommerce" },
-  { name: "Volts and Watts", href: "https://voltsandwatts.com/", type: "Tech ecommerce" },
-  { name: "Motovan", href: "https://motovan.com/", type: "B2B product data" },
-];
-
-function IconBox({
-  icon: Icon,
-  tone = "ink",
-}: {
-  icon: IconComponent;
-  tone?: string;
-}) {
-  return (
-    <span className={`icon-box icon-${tone}`} aria-hidden="true">
-      <Icon className="h-5 w-5" />
-    </span>
-  );
-}
-
-function Chip({ children, icon: Icon }: { children: ReactNode; icon?: IconComponent }) {
-  return (
-    <span className="chip">
-      {Icon ? <Icon className="h-3.5 w-3.5" /> : null}
-      {children}
-    </span>
-  );
-}
-
-function SectionTitle({
-  eyebrow,
-  title,
-  text,
-}: {
-  eyebrow: string;
-  title: string;
-  text: string;
-}) {
-  return (
-    <div className="section-intro max-w-4xl">
-      <p className="eyebrow">{eyebrow}</p>
-      <h2 className="section-title mt-4 text-4xl text-foreground sm:text-5xl">
-        {title}
-      </h2>
-      <p className="mt-5 text-base leading-8 text-muted sm:text-lg">{text}</p>
-    </div>
-  );
-}
+const deliveryStandards = [
+  {
+    title: "Clear scope before the build",
+    text: "Users, workflow, priorities, constraints, and success criteria are clarified before complexity is added.",
+  },
+  {
+    title: "Delivery you can plan around",
+    text: "Scope, milestones, review windows, and handoff targets stay visible so the work can move without avoidable delays.",
+  },
+  {
+    title: "Quality checked at every layer",
+    text: "Responsive states, data accuracy, edge cases, tracking, integrations, and production behavior are checked before release.",
+  },
+  {
+    title: "Handoff built for ownership",
+    text: "The result is documented, maintainable, and shaped around the team that will use and improve it after launch.",
+  },
+] as const;
 
 function ExternalAnchor({
   href,
-  children,
   className,
-  label,
-  style,
+  children,
 }: {
   href: string;
-  children?: ReactNode;
   className?: string;
-  label?: string;
-  style?: CSSProperties;
+  children: React.ReactNode;
 }) {
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={className}
-      aria-label={label}
-      style={style}
-    >
+    <a href={href} className={className} target="_blank" rel="noreferrer">
       {children}
     </a>
   );
 }
 
-function BrandSampleCard({ sample, index }: { sample: DesignSample; index: number }) {
-  const heroStyle = sample.splitHero
-    ? undefined
-    : ({
-        backgroundImage: `url("${sample.heroImage}")`,
-        backgroundPosition: sample.heroPosition,
-      } as CSSProperties);
+function RoleTypewriter() {
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [characterCount, setCharacterCount] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const role = roleTitles[roleIndex];
+    const complete = characterCount === role.length;
+    const empty = characterCount === 0;
+    const delay = complete
+      ? 1800
+      : deleting
+        ? 45
+        : empty
+          ? 250
+          : 82;
+
+    const timer = window.setTimeout(() => {
+      if (complete && !deleting) {
+        setDeleting(true);
+        return;
+      }
+
+      if (empty && deleting) {
+        setDeleting(false);
+        setRoleIndex((current) => (current + 1) % roleTitles.length);
+        return;
+      }
+
+      setCharacterCount((current) => current + (deleting ? -1 : 1));
+    }, delay);
+
+    return () => window.clearTimeout(timer);
+  }, [characterCount, deleting, roleIndex]);
 
   return (
-    <article
-      className="sample-card brand-sample-card surface-card"
-      style={
-        {
-          "--sample-a": sample.palette[0],
-          "--sample-b": sample.palette[1],
-          "--sample-c": sample.palette[2],
-          "--sample-d": sample.palette[3],
-          "--sample-logo-bg": sample.logoBg,
-          "--sample-page-bg": sample.pageBg,
-          "--sample-header-bg": sample.headerBg,
-          "--sample-header-text": sample.headerTextColor,
-          "--sample-text": sample.textColor,
-          "--sample-hero-text": sample.heroTextColor,
-          "--sample-heading-font": sample.fontHeading,
-          "--sample-body-font": sample.fontBody,
-          "--sample-heading-stack": sample.headingStack,
-          "--sample-body-stack": sample.bodyStack,
-          animationDelay: `${index * 70}ms`,
-        } as CSSProperties
-      }
-    >
-      <div className="brand-board">
-        <div className="brand-board-head">
-          <span
-            className="brand-logo-mark"
-            role="img"
-            aria-label={`${sample.project} logo`}
-            style={{ backgroundImage: `url("${sample.logo}")` }}
+    <span className="typewriter" aria-live="polite">
+      {roleTitles[roleIndex].slice(0, characterCount)}
+      <span className="typewriter-cursor" aria-hidden="true" />
+    </span>
+  );
+}
+
+function SectionHeading({
+  number,
+  eyebrow,
+  title,
+  text,
+}: {
+  number: string;
+  eyebrow: string;
+  title: string;
+  text: string;
+}) {
+  return (
+    <div className="section-heading" data-reveal>
+      <div className="section-index" aria-hidden="true">
+        {number}
+      </div>
+      <div>
+        <p className="eyebrow">{eyebrow}</p>
+        <h2>{title}</h2>
+      </div>
+      <p className="section-intro">{text}</p>
+    </div>
+  );
+}
+
+function WelcomeDialog({
+  onClose,
+}: {
+  onClose: () => void;
+}) {
+  return (
+    <div className="welcome-layer" role="presentation">
+      <button
+        type="button"
+        className="welcome-backdrop"
+        aria-label="Close welcome message"
+        onClick={onClose}
+      />
+      <section
+        className="welcome-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="welcome-title"
+      >
+        <button
+          type="button"
+          className="welcome-close"
+          aria-label="Close welcome message"
+          onClick={onClose}
+        >
+          <X />
+        </button>
+        <div className="welcome-profile">
+          <Image
+            src="/profile/junry-gallego.png"
+            alt="Junry Jumawan Gallego"
+            width={300}
+            height={300}
+            priority
           />
-          <span>
-            <small>Portfolio sample based on</small>
-            <strong>{sample.project}</strong>
-          </span>
-          <div className="brand-palette" aria-label={`${sample.project} sample color palette`}>
-            {sample.palette.map((color) => (
-              <span key={color} style={{ backgroundColor: color }} />
-            ))}
-          </div>
         </div>
-
-        <div className={`storefront-preview storefront-preview--${sample.layout}`}>
-          {sample.announcement ? (
-            <ExternalAnchor href={sample.primaryHref} className="storefront-announcement">
-              <ChevronLeft className="h-3.5 w-3.5" />
-              <span>{sample.announcement}</span>
-              <ChevronRight className="h-3.5 w-3.5" />
+        <div className="welcome-copy">
+          <p className="eyebrow">Welcome</p>
+          <h2 id="welcome-title">Hi, I&apos;m Junry. Here&apos;s how I build.</h2>
+          <p>
+            Explore the systems, storefronts, integrations, and production work
+            behind reliable digital products.
+          </p>
+          <div className="welcome-actions">
+            <a href="#systems" className="button button-primary" onClick={onClose}>
+              See how I deliver
+              <ArrowDown />
+            </a>
+            <ExternalAnchor href={site.whatsapp} className="button button-outline">
+              <MessageCircle />
+              Discuss a project
             </ExternalAnchor>
-          ) : null}
-
-          <div className="storefront-header">
-            {sample.layout === "flowpouch" ? (
-              <ExternalAnchor href={sample.primaryHref} className="storefront-menu-button" label={`${sample.project} menu`}>
-                <Menu className="h-4 w-4" />
-              </ExternalAnchor>
-            ) : null}
-            <ExternalAnchor
-              href={sample.href}
-              className="storefront-logo"
-              label={`${sample.project} storefront home`}
-              style={{ backgroundImage: `url("${sample.logo}")` }}
-            />
-            <nav className="storefront-nav" aria-label={`${sample.project} sample navigation`}>
-              {sample.nav.map((item) => (
-                <ExternalAnchor key={item.href} href={item.href}>
-                  {item.label}
-                </ExternalAnchor>
-              ))}
-            </nav>
-            <div className="storefront-icons">
-              {sample.utilityLinks.map((link, utilityIndex) => {
-                const UtilityIcon = storefrontUtilityIcons[utilityIndex % storefrontUtilityIcons.length];
-
-                return (
-                  <ExternalAnchor
-                    key={link.href}
-                    href={link.href}
-                    className="storefront-icon-link"
-                    label={`${sample.project} ${link.label}`}
-                  >
-                    <UtilityIcon className="h-4 w-4" />
-                    <span>{link.label}</span>
-                  </ExternalAnchor>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className={`storefront-hero${sample.splitHero ? " storefront-hero--split" : ""}`} style={heroStyle}>
-            <div className="storefront-copy">
-              <small>{sample.eyebrow}</small>
-              <h4>{sample.headline}</h4>
-              {sample.body ? <p>{sample.body}</p> : null}
-              <div className="storefront-actions">
-                <ExternalAnchor href={sample.primaryHref} className="storefront-primary-cta">
-                  {sample.cta}
-                </ExternalAnchor>
-                <ExternalAnchor href={sample.secondaryHref} className="storefront-secondary-cta">
-                  {sample.secondaryCta}
-                </ExternalAnchor>
-              </div>
-            </div>
-
-            {sample.splitHero ? (
-              <ExternalAnchor
-                href={sample.primaryHref}
-                label={`${sample.project} hero banner`}
-                className="storefront-media"
-                style={{
-                  backgroundImage: `url("${sample.heroImage}")`,
-                  backgroundPosition: sample.heroPosition,
-                }}
-              >
-                <div className="storefront-feature-card">
-                  <small>{sample.category}</small>
-                  <strong>{sample.feature}</strong>
-                  <span>{sample.cta} -&gt;</span>
-                </div>
-              </ExternalAnchor>
-            ) : (
-              <ExternalAnchor
-                href={sample.featureHref}
-                className="storefront-feature-card storefront-feature-card--floating"
-                label={`${sample.project} featured offer`}
-              >
-                <small>{sample.category}</small>
-                <strong>{sample.feature}</strong>
-                <span>{sample.cta} -&gt;</span>
-              </ExternalAnchor>
-            )}
-          </div>
-
-          <div className="storefront-trust-strip">
-            {sample.trustBadges.map((badge, badgeIndex) => {
-              const TrustIcon = storefrontTrustIcons[badgeIndex % storefrontTrustIcons.length];
-
-              return (
-                <ExternalAnchor
-                  key={badge}
-                  href={sample.primaryHref}
-                  className="storefront-trust-item"
-                  label={`${sample.project} ${badge}`}
-                >
-                  <TrustIcon className="h-4 w-4" />
-                  <span>{badge}</span>
-                </ExternalAnchor>
-              );
-            })}
           </div>
         </div>
-
-        <div className="brand-typography-panel">
-          <span className="type-token">Aa</span>
-          <div>
-            <small>Real typography direction</small>
-            <p>
-              <strong>{sample.fontHeading}</strong> for headings, <strong>{sample.fontBody}</strong> for body and navigation.
-            </p>
-            <em>{sample.typeStyle}</em>
-          </div>
-        </div>
-      </div>
-
-      <div className="brand-sample-copy">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <span className="sample-tag">{sample.category}</span>
-          <a href={sample.href} target="_blank" rel="noopener noreferrer" className="sample-mini-link">
-            Live brand <ExternalLink className="h-3.5 w-3.5" />
-          </a>
-        </div>
-        <h3>{sample.title}</h3>
-        <p>{sample.body}</p>
-        <ul>
-          {sample.deliverables.map((item) => (
-            <li key={item}>
-              <BadgeCheck className="h-4 w-4" />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-        <div className="mt-5 flex flex-wrap gap-2">
-          {sample.tools.map((tool) => (
-            <Chip key={tool}>{tool}</Chip>
-          ))}
-        </div>
-      </div>
-    </article>
+      </section>
+    </div>
   );
 }
 
 export default function Home() {
+  const [welcomeOpen, setWelcomeOpen] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -7% 0px" },
+    );
+
+    const progressBar = document.querySelector<HTMLElement>(".scroll-progress");
+    let progressFrame = 0;
+    const updateProgress = () => {
+      if (progressFrame) {
+        return;
+      }
+
+      progressFrame = window.requestAnimationFrame(() => {
+        const maxScroll =
+          document.documentElement.scrollHeight - window.innerHeight;
+        const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+        progressBar?.style.setProperty("--scroll-progress", `${progress * 100}%`);
+        progressFrame = 0;
+      });
+    };
+
+    document
+      .querySelectorAll<HTMLElement>("[data-reveal]")
+      .forEach((element) => revealObserver.observe(element));
+    updateProgress();
+    window.addEventListener("scroll", updateProgress, { passive: true });
+
+    return () => {
+      revealObserver.disconnect();
+      window.removeEventListener("scroll", updateProgress);
+      if (progressFrame) {
+        window.cancelAnimationFrame(progressFrame);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (welcomeOpen !== true) {
+      document.body.style.overflow = "";
+      return;
+    }
+
+    document.body.style.overflow = "hidden";
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setWelcomeOpen(false);
+      }
+    };
+    window.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [welcomeOpen]);
+
+  const closeWelcome = () => {
+    setWelcomeOpen(false);
+  };
+
+  const copyEmail = async () => {
+    await navigator.clipboard.writeText(site.email);
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 1800);
+  };
+
+  const handleProjectBrief = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    const name = String(form.get("name") || "");
+    const senderEmail = String(form.get("email") || "");
+    const projectType = String(form.get("projectType") || "");
+    const message = String(form.get("message") || "");
+    const subject = encodeURIComponent(
+      `${projectType || "Project"} inquiry from ${name || "a portfolio visitor"}`,
+    );
+    const body = encodeURIComponent(
+      `Hi Junry,\n\nMy name is ${name}.\nMy email is ${senderEmail}.\nProject type: ${projectType}.\n\n${message}\n\nI found you through your portfolio.`,
+    );
+    window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
+  };
+
   return (
-    <main className="min-h-screen">
+    <>
       <div className="scroll-progress" aria-hidden="true" />
-      <div className="loader-screen" aria-hidden="true">
-        <div className="loader-card">
-          <div className="loader-mark">{site.initials}</div>
-          <p className="loader-kicker">Loading portfolio</p>
-          <h1>Preparing Junry&apos;s software systems and full-stack work.</h1>
-          <div className="loader-track">
-            <span />
-          </div>
-          <div className="loader-stack">
-            <span>Next.js</span>
-            <span>APIs</span>
-            <span>Databases</span>
-            <span>Dashboards</span>
-          </div>
-        </div>
-      </div>
-      <div className="portfolio-shell mx-auto w-full max-w-7xl px-5 pb-28 sm:px-8 lg:px-10 lg:pb-16">
-        <header className="portfolio-header">
-          <div className="nav-shell surface-card px-4 py-3 sm:px-5">
-            <div className="header-main">
-              <a href="#top" className="brand-lockup group">
-                <span className="logo-mark">{site.initials}</span>
-                <span className="brand-copy">
-                  <span className="brand-name">
-                    {site.name}
-                  </span>
-                  <span className="brand-role">
-                    Software Engineer + Full-Stack Systems
-                  </span>
-                </span>
-              </a>
+      {welcomeOpen ? <WelcomeDialog onClose={closeWelcome} /> : null}
 
-              <div className="header-actions">
-                <a
-                  href={site.emailLink}
-                  className="contact-icon"
-                  aria-label="Email Junry with Gmail"
-                >
-                  <SiGmail className="h-4 w-4" />
-                </a>
-                <ExternalAnchor
-                  href={site.whatsapp}
-                  className="contact-icon"
-                  label="Message Junry on WhatsApp"
-                >
-                  <SiWhatsapp className="h-4 w-4" />
-                </ExternalAnchor>
-                <a
-                  href="#contact"
-                  className="button-base button-primary header-hire-link"
-                >
-                  <span>Plan a solution</span>
-                  <ArrowUpRight className="h-4 w-4" />
-                </a>
-              </div>
-            </div>
+      <header className="site-header">
+        <a href="#top" className="brand-lockup" aria-label="Go to the top">
+          <span className="brand-mark">JG</span>
+          <span>
+            <strong>{site.name}</strong>
+            <small>Ecommerce + Software Engineer</small>
+          </span>
+        </a>
 
-            <div className="desktop-nav-panel">
-              <div className="availability-pill">
-                <Sparkles className="h-4 w-4" />
-                <span>
-                  Software engineering for systems, commerce, data, and
-                  integrations
-                </span>
-              </div>
-
-              <nav className="desktop-nav" aria-label="Portfolio sections">
-                {navItems.map(({ label, href, icon: Icon }) => (
-                  <a key={label} href={href} className="nav-link">
-                    <Icon className="h-4 w-4" />
-                    {label}
-                  </a>
-                ))}
-              </nav>
-            </div>
-          </div>
-        </header>
-
-        <section
-          id="top"
-          data-motion-label="Full-stack"
-          className="motion-section hero-motion grid min-h-[calc(100vh-92px)] gap-8 pt-20 sm:pt-24 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-center"
-        >
-          <div className="page-enter">
-            <div className="hero-mobile-pill inline-flex items-center gap-3 border-l-4 border-accent bg-white/70 px-4 py-3 text-sm font-bold text-foreground shadow-sm">
-              <Sparkles className="h-4 w-4 text-accent" />
-              Building complete web systems, not only storefront pages
-            </div>
-
-            <p className="hero-intro-label mt-7">Hi, I&apos;m Junry! I&apos;m a:</p>
-
-            <h1 className="hero-title mt-3 max-w-5xl text-4xl sm:text-6xl xl:text-7xl">
-              <span className="role-rotator hero-role-rotator" aria-hidden="true">
-                {["Software Engineer", "Shopify Developer"].map((role, index) => (
-                  <span
-                    key={role}
-                    style={{ "--role-index": index } as CSSProperties}
-                  >
-                    {role}
-                  </span>
-                ))}
-              </span>
-              <span className="sr-only">Software Engineer and Shopify Developer</span>
-            </h1>
-
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-muted sm:mt-6 sm:text-xl sm:leading-9">
-              I build the full web system behind the business, from interface
-              to backend, data, APIs, and deployment. For teams that need more
-              than a page builder: I design the workflow, build the application
-              layer, connect the data, integrate the tools, deploy the system,
-              and keep improving it until the software supports the real
-              business operation.
-            </p>
-
-            <div className="mt-5 flex flex-wrap gap-3 sm:mt-8">
-              <a href={site.emailLink} className="button-base button-primary">
-                <SiGmail className="h-5 w-5" />
-                <span>Share the problem</span>
-              </a>
-              <ExternalAnchor href={site.whatsapp} className="button-base button-whatsapp">
-                <SiWhatsapp className="h-5 w-5" />
-                Discuss on WhatsApp
-              </ExternalAnchor>
-              <a href="#work" className="button-base button-secondary">
-                See systems delivered
-                <ArrowUpRight className="h-4 w-4" />
-              </a>
-            </div>
-
-            <ExternalAnchor href={site.resume} className="resume-underlink">
-              <FileText className="h-4 w-4" />
-              <span>Review resume PDF</span>
-              <ArrowUpRight className="h-4 w-4" />
-            </ExternalAnchor>
-
-            <div className="mt-9 flex flex-wrap gap-2">
-              <Chip icon={SiNextdotjs}>Next.js 16</Chip>
-              <Chip icon={SiTypescript}>TypeScript</Chip>
-              <Chip icon={SiTailwindcss}>Tailwind CSS 4</Chip>
-              <Chip icon={SiReact}>React 19</Chip>
-              <Chip icon={SiNodedotjs}>Node.js</Chip>
-              <Chip icon={Database}>SQL + Supabase</Chip>
-              <Chip icon={ServerCog}>AWS + Nginx</Chip>
-            </div>
-          </div>
-
-          <aside className="hero-console page-enter">
-            <div className="console-top">
-              <span className="status-dot" />
-              <span>Problem-to-outcome delivery standard</span>
-            </div>
-            <div className="mt-6 space-y-4">
-              {[
-                {
-                  status: "01",
-                  title: "Diagnose the real system problem",
-                  text: "Clarify users, roles, workflows, data sources, business rules, manual bottlenecks, and what the software must make easier.",
-                },
-                {
-                  status: "02",
-                  title: "Map architecture before the build",
-                  text: "Plan screens, API responsibilities, database structure, integrations, reports, permissions, and the handoff between tools.",
-                },
-                {
-                  status: "03",
-                  title: "Build the working application",
-                  text: "Develop interfaces, admin features, server logic, API integrations, database workflows, and ecommerce layers with reusable structure.",
-                },
-                {
-                  status: "04",
-                  title: "Validate the full flow",
-                  text: "Test mobile behavior, access paths, imported data, reports, checkout or payment steps, API responses, analytics, speed, and edge cases.",
-                },
-                {
-                  status: "05",
-                  title: "Hand off with clarity",
-                  text: "Explain what was built, how it works, what changed, where the value is, and what the next improvement should be.",
-                },
-                {
-                  status: "06",
-                  title: "Support and improve after launch",
-                  text: "Watch logs, analytics, reports, and client feedback so the store or system keeps becoming easier to use and trust.",
-                },
-              ].map((item, index) => (
-                <div
-                  key={item.title}
-                  className="console-row"
-                  style={{ animationDelay: `${index * 120}ms` }}
-                >
-                  <span className="console-number">{item.status}</span>
-                  <span>
-                    <strong>{item.title}</strong>
-                    <small>{item.text}</small>
-                  </span>
-                </div>
-              ))}
-            </div>
-            <div className="signal-board mt-6">
-              {["Problem brief", "System map", "UI layer", "API logic", "Database QA", "Deployment", "Launch checklist", "Support"].map(
-                (item, index) => (
-                  <span
-                    key={item}
-                    style={{ "--delay": `${index * 80}ms` } as CSSProperties}
-                  >
-                    {item}
-                  </span>
-                ),
-              )}
-            </div>
-          </aside>
-        </section>
-
-        <nav className="mobile-nav-dock lg:hidden" aria-label="Mobile portfolio navigation">
-          {navItems.map(({ label, href, icon: Icon }) => (
-            <a key={label} href={href} className="mobile-nav-link">
-              <Icon className="h-4 w-4" />
-              <span>{label}</span>
+        <nav className="desktop-nav" aria-label="Primary navigation">
+          {navItems.map((item) => (
+            <a key={item.href} href={item.href}>
+              {item.label}
             </a>
           ))}
         </nav>
 
-        <section id="impact" data-motion-label="Problems" className="motion-section pt-10">
-          <SectionTitle
-            eyebrow="Problems I solve"
-            title="Software that connects the business goal to the working system"
-            text="Clients do not need random code or isolated pages. They need software that handles the real workflow: interfaces people can use, backend logic that supports the rules, reliable data, integrations that keep tools connected, and a launch path that holds up."
-          />
+        <div className="header-actions">
+          <a className="header-contact" href={site.emailLink}>
+            Start a project
+            <ArrowUpRight />
+          </a>
+          <button
+            type="button"
+            className="menu-toggle"
+            aria-label="Toggle navigation"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((current) => !current)}
+          >
+            {menuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
 
-          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-            {metrics.map((metric, index) => (
-              <article
-                key={metric.label}
-                className="metric-card surface-card"
-                style={{ animationDelay: `${index * 90}ms` }}
+        {menuOpen ? (
+          <nav className="mobile-menu" aria-label="Mobile navigation">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
               >
-                <IconBox icon={metric.icon} tone={index === 1 ? "blue" : "green"} />
-                <p className="mt-5 font-display text-3xl font-bold text-foreground">
-                  {metric.value}
-                </p>
-                <p className="mt-2 text-sm leading-6 text-muted">{metric.label}</p>
-              </article>
+                <item.icon />
+                {item.label}
+              </a>
             ))}
+          </nav>
+        ) : null}
+      </header>
+
+      <main id="top">
+        <section className="hero blueprint-field">
+          <div className="hero-copy" data-reveal>
+            <div className="hero-kicker">
+              <span>Full-stack systems</span>
+              <span>Commerce engineering</span>
+              <span>Based in the Philippines</span>
+            </div>
+
+            <p className="hero-greeting">Hi, I&apos;m Junry. I&apos;m a</p>
+            <h1>
+              <RoleTypewriter />
+            </h1>
+            <p className="hero-lead">
+              I engineer the software behind smoother operations and stronger
+              ecommerce - interface, backend logic, data, APIs, deployment,
+              and the customer journey working as one system.
+            </p>
+            <p className="hero-support">
+              You get a build that is clear to use, reliable in production,
+              and practical for the team that owns it after launch.
+            </p>
+
+            <div className="hero-actions">
+              <a href={site.emailLink} className="button button-primary">
+                <Mail />
+                Email Junry
+              </a>
+              <ExternalAnchor href={site.whatsapp} className="button button-outline">
+                <MessageCircle />
+                WhatsApp
+              </ExternalAnchor>
+              <a href={site.phoneLink} className="button button-quiet">
+                <Phone />
+                Call Junry
+              </a>
+            </div>
+
+            <a className="hero-resume-link" href={site.resume} target="_blank" rel="noreferrer">
+              <FileText />
+              Review resume PDF
+              <ArrowUpRight />
+            </a>
           </div>
 
-          <div className="mt-14 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {impactCards.map((card, index) => (
-              <article
-                key={card.title}
-                className="feature-card surface-card"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <IconBox icon={card.icon} tone={index === 0 ? "green" : "blue"} />
-                <h2 className="mt-5 font-display text-2xl font-bold">{card.title}</h2>
-                <p className="mt-4 text-sm leading-7 text-muted">{card.text}</p>
-              </article>
-            ))}
-          </div>
-        </section>
+          <div className="hero-visual" data-reveal>
+            <div className="portrait-stage">
+              <div className="portrait-coordinates" aria-hidden="true">
+                <span>PROFILE / 01</span>
+                <span>ILIGAN CITY / PH</span>
+              </div>
+              <Image
+                className="portrait-image"
+                src="/profile/junry-gallego.png"
+                alt="Portrait of Junry Jumawan Gallego from his resume"
+                width={300}
+                height={300}
+                priority
+              />
+              <div className="portrait-note">
+                <CircleDot />
+                <span>
+                  <strong>Building for real operations</strong>
+                  Software systems, Shopify, data, and delivery
+                </span>
+              </div>
+            </div>
 
-        <section id="standard" data-motion-label="Process" className="motion-section pt-24">
-          <SectionTitle
-            eyebrow="Delivery standard"
-            title="How I turn client problems into reliable software"
-            text="The goal is not just to ship screens. The goal is to make the important details work together: business logic, user flow, admin workflow, data structure, integrations, deployment, support, and the next improvement."
-          />
-
-          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {qualityStandards.map((item, index) => (
-              <article
-                key={item.title}
-                className="feature-card surface-card"
-                style={{ animationDelay: `${index * 80}ms` }}
-              >
-                <IconBox icon={item.icon} tone={index % 2 ? "blue" : "green"} />
-                <h3 className="mt-5 font-display text-2xl font-bold">{item.title}</h3>
-                <p className="mt-4 text-sm leading-7 text-muted">{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="systems" data-motion-label="Systems" className="motion-section pt-24">
-          <div className="system-panel surface-card-strong">
-            <SectionTitle
-              eyebrow="Software engineering"
-              title="The complete system layer: interface, backend, data, APIs, and production support"
-              text="This is the part behind the polished pages. I can help plan and build the application structure that keeps a business running: dashboards, databases, records, workflows, integrations, reports, deployment, and maintenance."
-            />
-
-            <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-              {systemCapabilities.map((item, index) => (
-                <article
-                  key={item.title}
-                  className="system-card"
-                  style={{ animationDelay: `${index * 80}ms` }}
-                >
-                  <IconBox icon={item.icon} tone={index % 2 ? "blue" : "green"} />
-                  <h3 className="mt-5 font-display text-2xl font-bold">{item.title}</h3>
-                  <p className="mt-4 text-sm leading-7 text-muted">{item.text}</p>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {item.stack.map((tech) => (
-                      <Chip key={tech}>{tech}</Chip>
-                    ))}
-                  </div>
-                </article>
-              ))}
+            <div className="system-map" aria-label="Full-stack delivery map">
+              <div className="map-header">
+                <span>System architecture</span>
+                <span>END-TO-END</span>
+              </div>
+              <div className="map-flow">
+                <div className="map-node">
+                  <MonitorSmartphone />
+                  <span>Storefront and admin UI</span>
+                </div>
+                <ArrowRight className="map-arrow" />
+                <div className="map-node map-node-accent">
+                  <Workflow />
+                  <span>API and workflow logic</span>
+                </div>
+                <ArrowRight className="map-arrow" />
+                <div className="map-node">
+                  <Database />
+                  <span>Data and reporting</span>
+                </div>
+                <ArrowRight className="map-arrow" />
+                <div className="map-node">
+                  <Cloud />
+                  <span>Deployment and support</span>
+                </div>
+              </div>
+              <div className="map-status">
+                <span>
+                  <Check />
+                  Frontend
+                </span>
+                <span>
+                  <Check />
+                  Backend
+                </span>
+                <span>
+                  <Check />
+                  Commerce
+                </span>
+                <span>
+                  <Check />
+                  Production
+                </span>
+              </div>
             </div>
           </div>
+
+          <a href="#systems" className="scroll-cue">
+            Scroll to inspect
+            <ArrowDown />
+          </a>
         </section>
 
-        <section id="work" data-motion-label="Work" className="motion-section pt-24">
-          <SectionTitle
-            eyebrow="Proof of work"
-            title="Software, systems, and ecommerce builds connected to real client problems"
-            text="Each project represents a practical business need: fewer manual errors, cleaner records, useful dashboards, API-connected product data, stronger storefront journeys, faster page execution, or a more reliable admin process."
+        <section className="proof-strip" aria-label="Core delivery areas">
+          {[
+            ["01", "Complete systems", "Requirement to production"],
+            ["02", "Ecommerce", "First click to checkout"],
+            ["03", "Connected data", "Scattered records to clarity"],
+            ["04", "Production care", "Launch to steady improvement"],
+          ].map(([number, title, detail]) => (
+            <div key={number} data-reveal>
+              <span>{number}</span>
+              <strong>{title}</strong>
+              <small>{detail}</small>
+            </div>
+          ))}
+        </section>
+
+        <section id="systems" className="page-section systems-section blueprint-field">
+          <SectionHeading
+            number="01"
+            eyebrow="Software engineering"
+            title="One system, every layer accounted for."
+            text="A useful build is more than a polished screen. I connect the interface, business rules, data, integrations, deployment, and handoff so the software supports the real operation."
           />
 
-          <div className="mt-10 grid gap-4 lg:grid-cols-3">
-            {work.map((project, index) => (
+          <div className="delivery-grid">
+            {deliveryLayers.map((layer, index) => (
               <article
-                key={project.title}
-                className="work-card surface-card"
-                style={{ animationDelay: `${index * 110}ms` }}
+                key={layer.title}
+                className="delivery-card"
+                data-reveal
+                style={{ "--delay": `${index * 70}ms` } as CSSProperties}
               >
-                <div className="flex items-start justify-between gap-4">
-                  <IconBox icon={project.icon} tone={index === 1 ? "green" : "blue"} />
-                  <ExternalAnchor href={project.href} className="mini-link">
-                    Visit
-                    <ExternalLink className="h-3.5 w-3.5" />
-                  </ExternalAnchor>
+                <div className="delivery-card-top">
+                  <span>{layer.index}</span>
+                  <layer.icon />
                 </div>
-                <p className="eyebrow mt-6">{project.label}</p>
-                <h3 className="mt-3 font-display text-2xl font-bold text-foreground">
-                  {project.title}
-                </h3>
-                <p className="mt-2 text-sm font-bold uppercase tracking-[0.14em] text-muted">
-                  {project.company} / {project.period}
-                </p>
-                <p className="mt-5 text-sm leading-7 text-muted">{project.summary}</p>
-                <ul className="mt-5 space-y-3">
-                  {project.wins.map((point) => (
-                    <li key={point} className="flex gap-3 text-sm leading-7 text-muted">
-                      <BadgeCheck className="mt-1 h-4 w-4 shrink-0 text-accent" />
-                      <span>{point}</span>
-                    </li>
+                <h3>{layer.title}</h3>
+                <p>{layer.text}</p>
+                <ul>
+                  {layer.stack.map((item) => (
+                    <li key={item}>{item}</li>
                   ))}
                 </ul>
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {project.stack.map((item) => (
-                    <Chip key={item}>{item}</Chip>
-                  ))}
-                </div>
               </article>
             ))}
           </div>
-        </section>
 
-        <section id="branding" data-motion-label="Brand" className="motion-section pt-24">
-          <SectionTitle
-            eyebrow="Brand systems"
-            title="Branding and ecommerce samples that show how stores should feel"
-            text="These boards show the kind of decisions clients care about: visual trust, product clarity, readable typography, stronger hero sections, mobile-first layouts, repeated CTAs, and a shopping path that feels intentional."
-          />
-
-          <div className="mt-10 grid gap-5">
-            {designSamples.map((sample, index) => (
-              <BrandSampleCard key={sample.title} sample={sample} index={index} />
-            ))}
-          </div>
-        </section>
-
-        <section id="growth" data-motion-label="CRO" className="motion-section pt-24">
-          <div className="growth-panel surface-card-strong">
-            <SectionTitle
-              eyebrow="Funnels and CRO"
-              title="Growth work that gives shoppers fewer reasons to leave"
-              text="This highlights the business side of the build: clearer offers, stronger product pages, better CTA rhythm, heatmap learning, checkout confidence, mobile spacing, analytics checks, and realistic improvements based on behavior."
-            />
-
-            <div className="mt-10 grid gap-4 lg:grid-cols-4">
-              {funnelCroItems.map((item, index) => (
-                <article key={item.title} className="growth-card">
-                  <IconBox icon={item.icon} tone={index % 2 ? "blue" : "green"} />
-                  <h3 className="mt-5 font-display text-xl font-bold">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-muted">{item.text}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="experience" data-motion-label="Experience" className="motion-section pt-24">
-          <SectionTitle
-            eyebrow="Experience"
-            title="Delivery across store owners, agencies, admins, and product teams"
-            text="The common thread is practical ownership: understand the problem, coordinate with the team, build the useful thing, test the details, and support the work after it reaches real users."
-          />
-
-          <div className="mt-10 grid gap-3 lg:grid-cols-2">
-            {experience.map((item, index) => (
-              <ExternalAnchor
-                key={`${item.company}-${item.role}`}
-                href={item.href}
-                className="experience-row surface-card"
-              >
-                <div className="flex items-center gap-4">
-                  <IconBox icon={item.icon} tone={index % 2 ? "green" : "blue"} />
-                  <div>
-                    <p className="text-sm font-bold uppercase tracking-[0.16em] text-accent-strong">
-                      {item.company}
-                    </p>
-                    <h3 className="mt-2 font-display text-xl font-bold">{item.role}</h3>
-                  </div>
-                </div>
-                <span className="experience-period">
-                  {item.period}
-                  <ArrowUpRight className="h-4 w-4" />
-                </span>
-              </ExternalAnchor>
-            ))}
-          </div>
-        </section>
-
-        <section id="feedback" data-motion-label="Reviews" className="motion-section pt-24">
-          <SectionTitle
-            eyebrow="Client and team feedback"
-            title="The kind of trust a strong delivery process should create"
-            text="These are representative review-style summaries based on the work patterns in this portfolio. Replace them with verified client wording when exact approved testimonials are available."
-          />
-
-          <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {feedbackNotes.map((review, index) => (
-              <article
-                key={`${review.name}-${review.context}`}
-                className="review-card surface-card"
-                style={{ animationDelay: `${index * 70}ms` }}
-              >
-                <div
-                  className="review-stars"
-                  aria-label={`${review.rating.toFixed(1)} out of 5 stars`}
-                >
-                  {Array.from({ length: 5 }).map((_, starIndex) => {
-                    const fillStrength =
-                      review.rating >= starIndex + 1
-                        ? 1
-                        : review.rating > starIndex
-                          ? 0.55 + (review.rating - starIndex) * 0.4
-                          : 0.28;
-
-                    return (
-                      <Star
-                        key={starIndex}
-                        className="h-4 w-4"
-                        fill="currentColor"
-                        style={{ opacity: fillStrength }}
-                      />
-                    );
-                  })}
-                  <span>{review.rating.toFixed(1)}</span>
-                </div>
-                <p className="review-quote">&ldquo;{review.quote}&rdquo;</p>
-                <div className="review-author">
-                  <span>{review.name.charAt(0)}</span>
-                  <div>
-                    <strong>{review.name}</strong>
-                    <small>
-                      {review.role} / {review.context}
-                    </small>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="tools" data-motion-label="Tools" className="motion-section pt-24">
-          <SectionTitle
-            eyebrow="Tools and skills"
-            title="Tools chosen for full software delivery, not only storefront design"
-            text="This stack supports the complete delivery path: frontend engineering, server-side logic, databases, APIs, ecommerce platforms, analytics, deployment, QA, and remote collaboration."
-          />
-
-          <div className="mt-10 grid gap-4 lg:grid-cols-2">
-            {prioritizedToolGroups.map((group, groupIndex) => (
-              <article
-                key={group.title}
-                className="tool-panel surface-card"
-                style={{ animationDelay: `${groupIndex * 100}ms` }}
-              >
-                <div className="flex items-start gap-4">
-                  <IconBox icon={group.icon} tone={groupIndex % 2 ? "blue" : "green"} />
-                  <div>
-                    <h3 className="font-display text-2xl font-bold">{group.title}</h3>
-                    <p className="mt-2 text-sm leading-7 text-muted">{group.summary}</p>
-                  </div>
-                </div>
-                <div className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-3">
-                  {group.tools.map((tool) => (
-                    <div key={tool.name} className="tool-tile">
-                      <IconBox icon={tool.icon} tone={tool.tone} />
-                      <span>{tool.name}</span>
-                    </div>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="links" data-motion-label="Links" className="motion-section pt-24">
-          <SectionTitle
-            eyebrow="Live links"
-            title="Public brand references and ecommerce work"
-            text="Some work is public and some systems are private. The public links show brand, layout, ecommerce, and storefront experience while private admin systems are explained through case-style project notes."
-          />
-
-          <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {liveLinks.map((link, index) => (
-              <ExternalAnchor
-                key={link.href}
-                href={link.href}
-                className="site-link surface-card"
-                style={{ animationDelay: `${index * 45}ms` } as CSSProperties}
-              >
-                <span>
-                  <strong>{link.name}</strong>
-                  <small>{link.type}</small>
-                </span>
-                <ArrowUpRight className="h-5 w-5" />
-              </ExternalAnchor>
-            ))}
-          </div>
-        </section>
-
-        <section id="contact" data-motion-label="Contact" className="motion-section pt-24">
-          <div className="contact-panel surface-card-strong">
-            <div>
-              <p className="eyebrow">Contact</p>
-              <h2 className="section-title mt-4 max-w-4xl text-4xl text-foreground sm:text-5xl">
-                Bring the messy workflow, data, or system problem. I will help
-                turn it into a clear software plan.
-              </h2>
-              <p className="mt-5 max-w-3xl text-base leading-8 text-muted sm:text-lg">
-                If the problem is an admin process that wastes time, messy
-                product or member data, disconnected tools, a storefront that
-                needs stronger execution, or a workflow that needs a custom web
-                system, the first step is to define the outcome and build toward
-                it with care.
+          <div className="crm-spotlight" data-reveal>
+            <div className="crm-copy">
+              <p className="eyebrow">Production system spotlight</p>
+              <h3>Gym Debt Management and CRM</h3>
+              <p>
+                A private operational system for member accounts, arrears,
+                payments, notes, reporting, and structured follow-up across
+                SEB Group and JYM Group branches in Australia and the United
+                Kingdom.
               </p>
+              <div className="crm-results">
+                <span>
+                  <strong>19</strong>
+                  Branch workflows supported
+                </span>
+                <span>
+                  <strong>20-30%</strong>
+                  Less weekly report preparation
+                </span>
+                <span>
+                  <strong>24/7</strong>
+                  AWS-hosted production access
+                </span>
+              </div>
             </div>
-
-            <div className="mt-8 grid gap-3 md:grid-cols-2">
-              <a href={site.emailLink} className="contact-card">
-                <IconBox icon={SiGmail} tone="red" />
-                <span>
-                  <strong>{site.email}</strong>
-                  <small>Gmail</small>
-                </span>
-              </a>
-              <ExternalAnchor href={site.whatsapp} className="contact-card">
-                <IconBox icon={SiWhatsapp} tone="green" />
-                <span>
-                  <strong>{site.phone}</strong>
-                  <small>WhatsApp</small>
-                </span>
-              </ExternalAnchor>
-              <a href={site.phoneLink} className="contact-card">
-                <IconBox icon={Phone} tone="blue" />
-                <span>
-                  <strong>{site.phone}</strong>
-                  <small>Phone</small>
-                </span>
-              </a>
-              <ExternalAnchor href={site.resume} className="contact-card">
-                <IconBox icon={FileText} tone="green" />
-                <span>
-                  <strong>View resume</strong>
-                  <small>Google Drive PDF</small>
-                </span>
-              </ExternalAnchor>
-              <div className="contact-card">
-                <IconBox icon={MapPin} tone="orange" />
-                <span>
-                  <strong>{site.location}</strong>
-                  <small>Location</small>
-                </span>
+            <div className="crm-console" aria-label="CRM delivery summary">
+              <div className="console-bar">
+                <span>operations-system / production</span>
+                <span className="status-live">Live</span>
+              </div>
+              {[
+                ["Member records", "Structured"],
+                ["Payment reconciliation", "Validated"],
+                ["Arrears workflow", "Automated"],
+                ["Dashboard reports", "Ready"],
+                ["AWS deployment", "Stable"],
+              ].map(([label, status]) => (
+                <div className="console-row" key={label}>
+                  <span>{label}</span>
+                  <strong>
+                    <BadgeCheck />
+                    {status}
+                  </strong>
+                </div>
+              ))}
+              <div className="console-stack">
+                AWS EC2 / PM2 / Nginx / PostgreSQL / reporting / support
               </div>
             </div>
           </div>
         </section>
 
-      </div>
-    </main>
+        <section id="work" className="page-section work-section">
+          <SectionHeading
+            number="02"
+            eyebrow="Selected work"
+            title="Business needs translated into working software."
+            text="The projects below cover private operations software, API-connected data, reusable ecommerce systems, and measurable buying paths."
+          />
+
+          <div className="work-list">
+            {selectedWork.map((project, index) => (
+              <article
+                key={project.title}
+                className="work-row"
+                data-reveal
+                style={{ "--delay": `${index * 90}ms` } as CSSProperties}
+              >
+                <div className="work-number">{project.number}</div>
+                <div className="work-summary">
+                  <div className="work-label">
+                    <project.icon />
+                    {project.label}
+                  </div>
+                  <h3>{project.title}</h3>
+                  <p>{project.summary}</p>
+                  <ul className="tag-list">
+                    {project.stack.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="work-evidence">
+                  <div className="work-meta">
+                    <span>{project.client}</span>
+                    <span>{project.period}</span>
+                  </div>
+                  <ul>
+                    {project.impact.map((point) => (
+                      <li key={point}>
+                        <Check />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                  {project.private ? (
+                    <span className="private-label">
+                      <ShieldCheck />
+                      Private production system
+                    </span>
+                  ) : (
+                    <ExternalAnchor href={project.href} className="text-link">
+                      Visit public reference
+                      <ArrowUpRight />
+                    </ExternalAnchor>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="commerce" className="page-section commerce-section blueprint-field">
+          <SectionHeading
+            number="03"
+            eyebrow="Commerce engineering"
+            title="Storefronts where brand, product, and technology work together."
+            text="Each sample uses real live-store imagery. The work spans Shopify structure, reusable sections, product data, responsive design, customer journeys, analytics, and launch support."
+          />
+
+          <div className="commerce-list">
+            {commerceSamples.map((sample, index) => (
+              <article
+                key={sample.name}
+                className="commerce-case"
+                data-reveal
+                style={
+                  {
+                    "--brand-accent": sample.accent,
+                    "--delay": `${index * 70}ms`,
+                  } as CSSProperties
+                }
+              >
+                <div className="commerce-image">
+                  <Image
+                    src={sample.image}
+                    alt={sample.alt}
+                    fill
+                    sizes="(max-width: 900px) 100vw, 58vw"
+                  />
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                </div>
+                <div className="commerce-copy">
+                  <p className="eyebrow">{sample.category}</p>
+                  <h3>{sample.name}</h3>
+                  <h4>{sample.title}</h4>
+                  <p>{sample.text}</p>
+                  <ul className="tag-list">
+                    {sample.tools.map((tool) => (
+                      <li key={tool}>{tool}</li>
+                    ))}
+                  </ul>
+                  <ExternalAnchor href={sample.href} className="button button-brand">
+                    Open live store
+                    <ExternalLink />
+                  </ExternalAnchor>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="growth" className="page-section growth-section">
+          <SectionHeading
+            number="04"
+            eyebrow="Funnels and CRO"
+            title="Conversion work begins with clarity, not tricks."
+            text="I improve the path between the first visit and the next meaningful action by combining page structure, responsive execution, analytics, behavior signals, and checkout-aware thinking."
+          />
+
+          <div className="growth-layout">
+            <div className="growth-steps">
+              {growthChecks.map((item, index) => (
+                <article key={item.title} data-reveal>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <item.icon />
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </article>
+              ))}
+            </div>
+            <aside className="growth-readout" data-reveal>
+              <p className="eyebrow">CRO toolkit</p>
+              <h3>Observe. Prioritize. Improve. Verify.</h3>
+              <div className="signal-chart" aria-label="Illustrative optimization signal">
+                {[32, 45, 38, 60, 52, 76, 64, 82, 74, 92].map(
+                  (height, index) => (
+                    <span
+                      key={`${height}-${index}`}
+                      style={{ height: `${height}%` }}
+                    />
+                  ),
+                )}
+              </div>
+              <ul>
+                {[
+                  "GA4 funnels and events",
+                  "Microsoft Clarity heatmaps",
+                  "Shopify Analytics",
+                  "Google Merchant Center",
+                  "PageSpeed Insights",
+                  "Klaviyo flows",
+                  "Funnelish offer pages",
+                  "Mobile and checkout QA",
+                ].map((tool) => (
+                  <li key={tool}>
+                    <Check />
+                    {tool}
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          </div>
+        </section>
+
+        <section id="experience" className="page-section experience-section blueprint-field">
+          <SectionHeading
+            number="05"
+            eyebrow="Experience"
+            title="Delivery across software, ecommerce, operations, and remote teams."
+            text="The common thread is ownership: understand the goal, coordinate the details, build the useful layer, test it carefully, and support the work after launch."
+          />
+
+          <div className="experience-table" data-reveal>
+            <div className="experience-head">
+              <span>Company / project</span>
+              <span>Role</span>
+              <span>Period</span>
+              <span>Type</span>
+              <span />
+            </div>
+            {experience.map((item) => (
+              <ExternalAnchor
+                key={`${item.company}-${item.role}`}
+                href={item.href}
+                className="experience-item"
+              >
+                <strong>{item.company}</strong>
+                <span>{item.role}</span>
+                <span>{item.period}</span>
+                <small>{item.type}</small>
+                <ArrowUpRight />
+              </ExternalAnchor>
+            ))}
+          </div>
+        </section>
+
+        <section id="tools" className="page-section tools-section">
+          <SectionHeading
+            number="06"
+            eyebrow="Tools and skills"
+            title="A stack for the whole delivery path."
+            text="Tools are selected around the work: interface, backend logic, data, ecommerce, deployment, analytics, quality, and collaboration."
+          />
+
+          <div className="tools-grid">
+            {toolGroups.map((group, groupIndex) => (
+              <article
+                key={group.title}
+                className="tool-group"
+                data-reveal
+                style={{ "--delay": `${groupIndex * 70}ms` } as CSSProperties}
+              >
+                <div className="tool-group-header">
+                  <group.icon />
+                  <div>
+                    <h3>{group.title}</h3>
+                    <p>{group.summary}</p>
+                  </div>
+                </div>
+                <div className="tool-list">
+                  {group.tools.map((tool) => (
+                    <span key={tool.name}>
+                      <tool.icon />
+                      {tool.name}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="fit" className="page-section fit-section blueprint-field">
+          <SectionHeading
+            number="07"
+            eyebrow="Project fit"
+            title="Choose the outcome. I can own the technical path."
+            text="The strongest fit is a project that crosses interface, workflow, data, commerce, or production concerns and needs one developer to keep the whole system connected."
+          />
+
+          <div className="fit-grid">
+            {projectFits.map((project, index) => (
+              <article
+                key={project.title}
+                className="fit-card"
+                data-reveal
+                style={{ "--delay": `${index * 65}ms` } as CSSProperties}
+              >
+                <div className="fit-card-top">
+                  <span>{project.number}</span>
+                  <project.icon />
+                </div>
+                <h3>{project.title}</h3>
+                <p className="fit-problem">{project.problem}</p>
+                <p className="fit-response">{project.response}</p>
+                <ul>
+                  {project.scope.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+
+          <div className="delivery-assurance" data-reveal>
+            <div className="assurance-heading">
+              <p className="eyebrow">What you can expect</p>
+              <h3>A high-standard build should remain useful after launch.</h3>
+            </div>
+            <div className="assurance-list">
+              {deliveryStandards.map((standard, index) => (
+                <div key={standard.title}>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <div>
+                    <strong>{standard.title}</strong>
+                    <p>{standard.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <a href="#contact" className="button button-primary">
+              Describe your project
+              <ArrowDown />
+            </a>
+          </div>
+        </section>
+
+        <section id="contact" className="contact-section">
+          <div className="contact-intro" data-reveal>
+            <p className="eyebrow">Direct contact</p>
+            <h2>Bring the brief. Let&apos;s build what the business needs next.</h2>
+            <p>
+              Tell me what is slowing the business down or what you are ready
+              to build. I will help define the most useful technical path
+              before unnecessary complexity is added.
+            </p>
+
+            <div className="contact-methods">
+              <a href={site.emailLink}>
+                <Mail />
+                <span>
+                  <small>Email</small>
+                  <strong>{site.email}</strong>
+                </span>
+                <ArrowUpRight />
+              </a>
+              <ExternalAnchor href={site.whatsapp}>
+                <MessageCircle />
+                <span>
+                  <small>WhatsApp</small>
+                  <strong>{site.phone}</strong>
+                </span>
+                <ArrowUpRight />
+              </ExternalAnchor>
+              <a href={site.phoneLink}>
+                <Phone />
+                <span>
+                  <small>Phone</small>
+                  <strong>{site.phone}</strong>
+                </span>
+                <ArrowUpRight />
+              </a>
+              <button type="button" onClick={copyEmail}>
+                {copied ? <Check /> : <Copy />}
+                <span>
+                  <small>Quick action</small>
+                  <strong>{copied ? "Email copied" : "Copy email address"}</strong>
+                </span>
+                <ChevronRight />
+              </button>
+            </div>
+
+            <div className="contact-location">
+              <MapPin />
+              {site.location}
+            </div>
+          </div>
+
+          <form className="project-form" onSubmit={handleProjectBrief} data-reveal>
+            <div className="form-header">
+              <span>Project brief / 01</span>
+              <CircleDot />
+            </div>
+            <label>
+              Your name
+              <input name="name" type="text" placeholder="How should I address you?" required />
+            </label>
+            <label>
+              Your email
+              <input name="email" type="email" placeholder="you@company.com" required />
+            </label>
+            <label>
+              What do you need?
+              <select name="projectType" defaultValue="Custom software system">
+                <option>Custom software system</option>
+                <option>Shopify store or redesign</option>
+                <option>API and data integration</option>
+                <option>CRO or Funnelish work</option>
+                <option>Technical support and improvement</option>
+              </select>
+            </label>
+            <label>
+              Project context
+              <textarea
+                name="message"
+                rows={5}
+                placeholder="What is not working today, and what would a successful outcome look like?"
+                required
+              />
+            </label>
+            <button type="submit" className="button button-primary">
+              Open in email
+              <ArrowUpRight />
+            </button>
+            <p>
+              This opens your email app with the project details prepared. No
+              form data is stored on this site.
+            </p>
+          </form>
+        </section>
+      </main>
+
+      <footer>
+        <div>
+          <span className="brand-mark">JG</span>
+          <span>
+            <strong>{site.name}</strong>
+            <small>Software engineering + ecommerce delivery</small>
+          </span>
+        </div>
+        <a href={site.resume} target="_blank" rel="noreferrer">
+          Resume
+          <ArrowUpRight />
+        </a>
+        <a href="#top">
+          Back to top
+          <ArrowUpRight />
+        </a>
+      </footer>
+
+      <nav className="mobile-bottom-nav" aria-label="Quick navigation">
+        {navItems.slice(0, 5).map((item) => (
+          <a key={item.href} href={item.href}>
+            <item.icon />
+            <span>{item.label}</span>
+          </a>
+        ))}
+        <a href="#contact">
+          <Mail />
+          <span>Contact</span>
+        </a>
+      </nav>
+    </>
   );
 }
