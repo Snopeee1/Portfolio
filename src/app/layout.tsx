@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Bodoni_Moda, Manrope } from "next/font/google";
+import { Bodoni_Moda, IBM_Plex_Mono, Manrope } from "next/font/google";
 import "./globals.css";
 
 const bodoni = Bodoni_Moda({
@@ -12,6 +12,13 @@ const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-manrope",
   display: "swap",
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  variable: "--font-plex-mono",
+  display: "swap",
+  weight: ["400", "500", "600"],
 });
 
 const site = {
@@ -59,7 +66,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f6f1e7",
+  themeColor: "#f3f6f2",
   colorScheme: "light",
 };
 
@@ -72,7 +79,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${bodoni.variable} ${manrope.variable} h-full antialiased`}
+      className={`${bodoni.variable} ${manrope.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-background font-sans text-foreground">
         {children}

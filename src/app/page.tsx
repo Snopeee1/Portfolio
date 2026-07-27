@@ -10,7 +10,6 @@ import {
 } from "react";
 import {
   ArrowDown,
-  ArrowRight,
   ArrowUpRight,
   BadgeCheck,
   BarChart3,
@@ -663,10 +662,11 @@ function WelcomeDialog({
         </button>
         <div className="welcome-profile">
           <Image
-            src="/profile/junry-gallego.png"
+            src="/profile/junry-gallego-closeup.png"
             alt="Junry Jumawan Gallego"
-            width={300}
-            height={300}
+            width={640}
+            height={640}
+            unoptimized
             priority
           />
         </div>
@@ -844,6 +844,14 @@ export default function Home() {
 
       <main id="top">
         <section className="hero blueprint-field">
+          <div className="hero-measurement" aria-hidden="true">
+            <span>1440</span>
+            <i />
+            <span>960</span>
+            <i />
+            <span>480</span>
+          </div>
+
           <div className="hero-copy" data-reveal>
             <div className="hero-kicker">
               <span>Full-stack systems</span>
@@ -885,82 +893,61 @@ export default function Home() {
               Review resume PDF
               <ArrowUpRight />
             </a>
+
+            <a href="#systems" className="scroll-cue">
+              Scroll to inspect
+              <ArrowDown />
+            </a>
           </div>
 
           <div className="hero-visual" data-reveal>
             <div className="portrait-stage">
               <div className="portrait-coordinates" aria-hidden="true">
                 <span>PROFILE / 01</span>
-                <span>ILIGAN CITY / PH</span>
+                <span>500 × 500 / SOURCE</span>
+              </div>
+              <div className="portrait-axis portrait-axis-x" aria-hidden="true">
+                <span>0</span>
+                <span>250</span>
+                <span>500</span>
+              </div>
+              <div className="portrait-axis portrait-axis-y" aria-hidden="true">
+                <span>500</span>
+                <span>250</span>
+                <span>0</span>
               </div>
               <Image
                 className="portrait-image"
-                src="/profile/junry-gallego.png"
-                alt="Portrait of Junry Jumawan Gallego from his resume"
-                width={300}
-                height={300}
+                src="/profile/junry-gallego-crossed-arms.png"
+                alt="Junry Jumawan Gallego with crossed arms"
+                width={500}
+                height={500}
+                unoptimized
+                sizes="(max-width: 900px) 82vw, 500px"
                 priority
               />
+
+              <div className="capability-panel" aria-label="Core technical capabilities">
+                <span>Core coverage</span>
+                <ul>
+                  <li>Systems</li>
+                  <li>Commerce</li>
+                  <li>APIs</li>
+                  <li>Databases</li>
+                  <li>Reporting</li>
+                  <li>Deployments</li>
+                </ul>
+              </div>
+
               <div className="portrait-note">
                 <CircleDot />
                 <span>
-                  <strong>Building for real operations</strong>
-                  Software systems, Shopify, data, and delivery
-                </span>
-              </div>
-            </div>
-
-            <div className="system-map" aria-label="Full-stack delivery map">
-              <div className="map-header">
-                <span>System architecture</span>
-                <span>END-TO-END</span>
-              </div>
-              <div className="map-flow">
-                <div className="map-node">
-                  <MonitorSmartphone />
-                  <span>Storefront and admin UI</span>
-                </div>
-                <ArrowRight className="map-arrow" />
-                <div className="map-node map-node-accent">
-                  <Workflow />
-                  <span>API and workflow logic</span>
-                </div>
-                <ArrowRight className="map-arrow" />
-                <div className="map-node">
-                  <Database />
-                  <span>Data and reporting</span>
-                </div>
-                <ArrowRight className="map-arrow" />
-                <div className="map-node">
-                  <Cloud />
-                  <span>Deployment and support</span>
-                </div>
-              </div>
-              <div className="map-status">
-                <span>
-                  <Check />
-                  Frontend
-                </span>
-                <span>
-                  <Check />
-                  Backend
-                </span>
-                <span>
-                  <Check />
-                  Commerce
-                </span>
-                <span>
-                  <Check />
-                  Production
+                  <strong>Built across the full stack</strong>
+                  Interface to infrastructure, with a practical handoff.
                 </span>
               </div>
             </div>
           </div>
-
-          <a href="#systems" className="scroll-cue">
-            Scroll to inspect
-            <ArrowDown />
-          </a>
         </section>
 
         <section className="proof-strip" aria-label="Core delivery areas">
@@ -976,6 +963,116 @@ export default function Home() {
               <small>{detail}</small>
             </div>
           ))}
+        </section>
+
+        <section className="engineering-overview blueprint-field" aria-label="System architecture overview">
+          <div className="technical-label">
+            <span>{"//"}</span>
+            Delivery architecture
+            <i />
+          </div>
+
+          <div className="architecture-shell" data-reveal>
+            <div className="architecture-board">
+              <div className="architecture-header">
+                <span>System architecture</span>
+                <span>Interface → production</span>
+              </div>
+
+              <div className="architecture-grid">
+                <div className="architecture-column">
+                  <div className="architecture-node">
+                    <Store />
+                    <span>Web / Shopify interface</span>
+                  </div>
+                  <div className="architecture-node">
+                    <MonitorSmartphone />
+                    <span>Admin portal</span>
+                  </div>
+                  <div className="architecture-node">
+                    <BriefcaseBusiness />
+                    <span>Team workflows</span>
+                  </div>
+                </div>
+
+                <div className="architecture-core">
+                  <div className="architecture-node architecture-node-core">
+                    <Network />
+                    <span>Application services</span>
+                    <small>API gateway / business logic</small>
+                  </div>
+                  <ArrowDown className="architecture-down" />
+                  <div className="architecture-node architecture-node-wide">
+                    <Workflow />
+                    <span>Integrations and APIs</span>
+                    <small>Payments / CRM / analytics / product data</small>
+                  </div>
+                  <ArrowDown className="architecture-down" />
+                  <div className="architecture-node architecture-node-wide architecture-node-deploy">
+                    <Cloud />
+                    <span>Deployment layer</span>
+                    <small>AWS / Vercel / PM2 / Nginx</small>
+                  </div>
+                </div>
+
+                <div className="architecture-column">
+                  <div className="architecture-node">
+                    <Database />
+                    <span>PostgreSQL and data</span>
+                  </div>
+                  <div className="architecture-node">
+                    <ServerCog />
+                    <span>Jobs and automation</span>
+                  </div>
+                  <div className="architecture-node">
+                    <FileText />
+                    <span>Files and reporting</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <aside className="coverage-board" aria-label="Delivery coverage">
+              <div className="coverage-header">
+                <span>Delivery coverage</span>
+                <BadgeCheck />
+              </div>
+              {[
+                ["Interface systems", "Included"],
+                ["Application logic", "Included"],
+                ["Database workflows", "Included"],
+                ["Third-party APIs", "Included"],
+                ["Deployment support", "Included"],
+              ].map(([label, status]) => (
+                <div className="coverage-row" key={label}>
+                  <span>{label}</span>
+                  <strong>
+                    {status}
+                    <i />
+                  </strong>
+                </div>
+              ))}
+              <div className="coverage-stack">
+                <span>Primary stack</span>
+                <strong>Next.js / Shopify / PostgreSQL / AWS</strong>
+              </div>
+            </aside>
+          </div>
+
+          <div className="signal-band" data-reveal>
+            <span>
+              <LineChart />
+              System signals
+            </span>
+            {["Interfaces", "Workflows", "Data", "Integrations", "Deployment"].map(
+              (signal) => (
+                <strong key={signal}>
+                  <i />
+                  {signal}
+                </strong>
+              ),
+            )}
+          </div>
         </section>
 
         <section id="systems" className="page-section systems-section blueprint-field">
