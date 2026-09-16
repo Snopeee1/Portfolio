@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Junry Gallego — Portfolio
 
-## Getting Started
+A Next.js portfolio for web and mobile app development, admin and server-side systems, and Shopify ecommerce. Includes a searchable work library and 16 project detail pages.
 
-First, run the development server:
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev -- --hostname 127.0.0.1
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000. Development and production builds use Webpack to avoid the excessive PostCSS worker processes observed with Turbopack on this Windows workspace. Build concurrency is limited to two workers.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Update content
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `src/data/portfolio.ts`: profile, project descriptions, verified links, services, and FAQs.
+- `src/app/page.tsx`: homepage sections.
+- `src/app/work/`: searchable library and individual project pages.
+- `src/components/`: shared navigation, project previews, and contact form.
+- `src/components/tool-logo.tsx` and `src/data/tool-logos.ts`: shared brand logos for project badges, contribution details, and the toolkit.
+- `src/app/globals.css`: responsive visual system.
+- `public/projects/`: project artwork and PetMate design exports.
+- `public/tool-logos/`: local brand assets and their source URLs.
 
-## Learn More
+Read `CONTENT-NOTES.md` before changing project claims or previews. Private system illustrations are labeled; prototype and ongoing work statuses are explicit.
 
-To learn more about Next.js, take a look at the following resources:
+The contact form prepares an email draft and opens it through the visitor's email app. It does not send messages or store submissions. The email, WhatsApp, résumé, and available project links are connected through the central content file.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Manrope and IBM Plex Mono are bundled in `src/app/fonts/` with their licenses. Builds do not need to fetch fonts from Google.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Verify
 
-## Deploy on Vercel
+```bash
+npm run lint
+npx tsc --noEmit
+npm run build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+With the local server running:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+node scripts/verify-portfolio.mjs
+```
+
+The route check validates all project pages, internal destinations, image assets, missing-page behavior, and content exclusions. Reports are written to the ignored `qa-results/` directory. Browser checks should cover desktop and mobile layout, work filters and search, menu keyboard behavior, and preparing a contact draft.
+
+This redesign is intended for local review; no deployment is configured or performed by these commands.

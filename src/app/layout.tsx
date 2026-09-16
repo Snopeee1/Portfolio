@@ -1,89 +1,23 @@
 import type { Metadata, Viewport } from "next";
-import { Bodoni_Moda, IBM_Plex_Mono, Manrope } from "next/font/google";
+import localFont from "next/font/local";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { profile } from "@/data/portfolio";
 import "./globals.css";
 
-const bodoni = Bodoni_Moda({
-  subsets: ["latin"],
-  variable: "--font-bodoni",
-  display: "swap",
-});
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  variable: "--font-manrope",
-  display: "swap",
-});
-
-const plexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  variable: "--font-plex-mono",
-  display: "swap",
-  weight: ["400", "500", "600"],
-});
-
-const site = {
-  name: "Junry Jumawan Gallego",
-  title: "Junry Gallego | Software Engineer and Shopify Developer",
-  description:
-    "Software engineer building complete business systems, Shopify storefronts, APIs, data workflows, admin tools, and production-ready web experiences.",
-  portfolioUrl: "https://junry-portfolio.vercel.app",
-};
-
+const manrope = localFont({ src: "./fonts/Manrope-Variable.ttf", variable: "--font-manrope", display: "swap", weight: "200 800" });
+const plexMono = localFont({ src: [{ path: "./fonts/IBMPlexMono-Regular.ttf", weight: "400" }, { path: "./fonts/IBMPlexMono-Medium.ttf", weight: "500" }], variable: "--font-plex-mono", display: "swap" });
+const description = "Full-Stack Software Developer | Admin & Server-Side Systems | Shopify Ecommerce Developer. Explore Junry Gallego’s web and mobile applications, business systems, Shopify projects, and Figma design.";
 export const metadata: Metadata = {
-  title: site.title,
-  description: site.description,
-  applicationName: site.name,
-  authors: [{ name: site.name }],
-  creator: site.name,
-  keywords: [
-    "Junry Gallego",
-    "Software Engineer",
-    "Full-Stack Developer",
-    "Shopify Developer",
-    "Next.js portfolio",
-    "Tailwind CSS portfolio",
-    "eCommerce developer",
-    "Philippines developer portfolio",
-  ],
-  alternates: {
-    canonical: site.portfolioUrl,
-  },
-  openGraph: {
-    title: site.title,
-    description: site.description,
-    url: site.portfolioUrl,
-    siteName: site.name,
-    locale: "en_PH",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: site.title,
-    description: site.description,
-  },
-  category: "technology",
-  referrer: "origin-when-cross-origin",
+  metadataBase: new URL("https://junry-portfolio.vercel.app"),
+  title: { default: "Junry Gallego — Full-Stack Software & Shopify Developer", template: "%s | Junry Gallego" },
+  description, applicationName: "Junry Gallego Portfolio", authors: [{ name: profile.name }], creator: profile.name,
+  keywords: ["Junry Gallego", "Full-Stack Software Developer", "Shopify Ecommerce Developer", "Admin Systems", "Server-Side Development", "Mobile App Development", "React Native", "Expo", "Figma", "Philippines Developer"],
+  alternates: { canonical: "/" },
+  openGraph: { title: "Junry Gallego — Software & Ecommerce Development", description, url: "/", siteName: profile.name, locale: "en_PH", type: "website" },
+  twitter: { card: "summary_large_image", title: "Junry Gallego — Full-Stack Software & Shopify Developer", description },
 };
-
-export const viewport: Viewport = {
-  themeColor: "#f3f6f2",
-  colorScheme: "light",
-};
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html
-      lang="en"
-      data-scroll-behavior="smooth"
-      className={`${bodoni.variable} ${manrope.variable} ${plexMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full bg-background font-sans text-foreground">
-        {children}
-      </body>
-    </html>
-  );
+export const viewport: Viewport = { themeColor: "#f8f9f3", colorScheme: "light" };
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return <html lang="en" data-scroll-behavior="smooth" className={`${manrope.variable} ${plexMono.variable}`}><body><a className="skip-link" href="#main">Skip to content</a><SiteHeader />{children}<SiteFooter /></body></html>;
 }

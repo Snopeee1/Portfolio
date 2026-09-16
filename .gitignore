@@ -51,3 +51,5 @@ next-env.d.ts
 /design-qa.md
 /implementation-*.png
 /qa-*.png
+/localhost-*.png
+/qa-results/

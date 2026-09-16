@@ -1,0 +1,62 @@
+[
+  {
+    "name": "salted-seas",
+    "file": "salted-seas.png",
+    "source": "https://saltedseas.com/cdn/shop/files/SALTED_SEAS_PNG.png?v=1753848006&width=500",
+    "page": "https://saltedseas.com/"
+  },
+  {
+    "name": "marcozo",
+    "file": "marcozo.png",
+    "source": "https://www.marcozo.com/cdn/shop/files/mobilebeigeMARCOZO_Logo_Gold_crayola_CMYK_2x-8_5_1_copy.png?v=1760653211&width=500",
+    "page": "https://www.marcozo.com/"
+  },
+  {
+    "name": "flowpouch",
+    "file": "flowpouch.png",
+    "source": "https://flowpouch.com/cdn/shop/files/flow_logo_1.png?v=1779521081&width=500",
+    "page": "https://flowpouch.com/"
+  },
+  {
+    "name": "pagulayan-cues",
+    "file": "pagulayan-cues.png",
+    "source": "https://pagulayancues.com/cdn/shop/files/Logo_-_Transparent_Head_1.png?v=1697189642&width=500",
+    "page": "https://pagulayancues.com/"
+  },
+  {
+    "name": "two-brothers-grooming",
+    "file": "two-brothers-grooming.svg",
+    "source": "https://twobrothersgrooming.com/cdn/shop/files/Two_Brothers_Grooming_Logo_2d839f85-4181-4340-8577-9e4fe70f69cd.svg?v=1782622474&width=500",
+    "page": "https://twobrothersgrooming.com/"
+  },
+  {
+    "name": "sudorcure",
+    "file": "sudorcure.png",
+    "source": "https://www.sudorcure.com/cdn/shop/files/Logos_1.png?v=1757051035&width=500",
+    "page": "https://www.sudorcure.com/"
+  },
+  {
+    "name": "motovan",
+    "file": "motovan.png",
+    "source": "https://motovan.com/catalog/view/theme/OPCADD006/image/logo_motovan.png",
+    "page": "https://motovan.com/"
+  },
+  {
+    "name": "bia-skin",
+    "file": "bia-skin.png",
+    "source": "https://www.biaskin.com/cdn/shop/files/BARE-IT-ALL-LOGO-pink_8ae61eb6-55ce-4f4b-9a67-78fb80662760.png?crop=center&height=82&v=1773258128&width=500",
+    "page": "https://www.biaskin.com/"
+  },
+  {
+    "name": "geminos",
+    "file": "geminos.png",
+    "source": "https://geminos.store/cdn/shop/files/Geminos_Final_c9f2dfe3-6445-4def-9fe1-3f528d390f89.png?v=1760059847&width=500",
+    "page": "https://geminos.store/"
+  },
+  {
+    "name": "cencal-motorsport",
+    "file": "cencal-motorsport.png",
+    "source": "https://cencalmotorsport.com/cdn/shop/files/IMG_1900_2.png?v=1767040521&width=500",
+    "page": "https://cencalmotorsport.com/"
+  }
+]

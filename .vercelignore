@@ -1,0 +1,15 @@
+.git
+.next
+node_modules
+.tmp-brand
+tmp
+qa-results
+*.log
+*.tsbuildinfo
+.env*
+current-portfolio-reference.png
+design-comparison.png
+design-qa.md
+implementation-*.png
+qa-*.png
+localhost-*.png
