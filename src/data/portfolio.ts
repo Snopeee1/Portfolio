@@ -6,6 +6,11 @@ export const profile = {
   phone: "+63 965 861 4859",
   phoneHref: "tel:+639658614859",
   whatsapp: "https://wa.me/639658614859",
+  socialLinks: [
+    { platform: "LinkedIn", label: "LinkedIn", href: "https://www.linkedin.com/in/junry-jumawan-0187b2278" },
+    { platform: "GitHub", label: "Snopeee1", href: "https://github.com/Snopeee1" },
+    { platform: "GitHub", label: "Snopeeee", href: "https://github.com/Snopeeee" },
+  ],
   resume: "https://drive.google.com/file/d/1yhbb2fapt0b2Q_4wq80DgaeXCGZyoof0/view?usp=sharing",
   location: "Iligan City, Philippines",
 };
