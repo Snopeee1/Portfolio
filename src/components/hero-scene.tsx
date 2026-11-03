@@ -57,7 +57,7 @@ export function HeroScene() {
     const qa = (sel: string) => Array.from(section.querySelectorAll<HTMLElement>(sel));
 
     const n1 = q("[data-n1]"), n2 = q("[data-n2]"), n3 = q("[data-n3]");
-    const bannerTop = q("[data-btop]"), bannerBottom = q("[data-bbottom]"), roles = q("[data-roles]"), script = q("[data-script]");
+    const bannerTop = q("[data-btop]"), bannerBottom = q("[data-bbottom]"), roles = qa("[data-role]"), script = q("[data-script]");
     const photo = q("[data-photo]");
     const portal = q("[data-portal]");
     const frame = q("[data-frame]");
@@ -70,9 +70,10 @@ export function HeroScene() {
     const outro = q("[data-outro]");
     const cue = q("[data-cue]");
 
-    let raf = 0, visible = true, baseScale = 1, mobile = false, headY = 46;
+    let raf = 0, visible = true, baseScale = 1, mobile = false, stacked = false, headY = 46;
     const measure = () => {
       mobile = window.innerWidth < 760;
+      stacked = window.innerWidth < 1100;
       baseScale = Math.min(1, (window.innerWidth - 28) / 940, (window.innerHeight * .6) / 560);
       const w = photo?.offsetWidth ?? 0;
       headY = w ? clamp((window.innerHeight - w * .78) / window.innerHeight, .2, .85) * 100 : 46;
@@ -92,13 +93,13 @@ export function HeroScene() {
 
       // 1. Banner splits apart
       const s = easeInOut(range(p, .02, .2));
-      const spread = mobile ? 110 : 60;
+      const spread = stacked ? 110 : 60;
       set(n1, `translate3d(${-s * spread}vw, 0, 0)`);
       set(n2, `translate3d(${s * spread}vw, 0, 0)`);
-      set(n3, mobile ? `translate3d(0, ${s * 30}vh, 0)` : `translate3d(${s * 60}vw, ${s * 10}vh, 0)`, 1 - s);
+      set(n3, stacked ? `translate3d(0, ${s * 30}vh, 0)` : `translate3d(${s * 60}vw, ${s * 10}vh, 0)`, 1 - s);
       set(bannerTop, `translate3d(0, ${-s * 60}px, 0)`, 1 - s * 1.4);
       set(bannerBottom, `translate3d(0, ${s * 80}px, 0)`, 1 - s * 1.4);
-      set(roles, `translate3d(0, ${s * 40}px, 0)`, 1 - s * 1.6);
+      roles.forEach(el => set(el, `translate3d(0, ${s * 40}px, 0)`, 1 - s * 1.6));
       set(script, `translate3d(${-s * 20}vw, 0, 0) rotate(${-s * 18}deg)`, (1 - s) * .9);
       if (cue) cue.style.opacity = String(1 - range(p, 0, .04));
 
@@ -203,17 +204,19 @@ export function HeroScene() {
             <span>Web <i /> Ecommerce <i /> Systems <i /> Data</span>
           </div>
 
-          <h1 id="hero-title" className="banner-name">
+          <h1 id="hero-title" className="banner-main">
             <span className="sr-only">Junry Jumawan Gallego — Full-Stack Software Developer, Shopify &amp; Business Systems Developer</span>
-            <span className="nm nm-1" data-n1 aria-hidden="true">{chars("JUNRY")}</span>
-            <span className="nm nm-2" data-n2 aria-hidden="true">{chars("JUMAWAN")}</span>
-            <span className="nm nm-3" data-n3 aria-hidden="true">{chars("GALLEGO")}</span>
+            <span className="bm-side bm-left" aria-hidden="true">
+              <span className="nm nm-1" data-n1>{chars("JUNRY")}</span>
+              <span className="role role-1" data-role>Full-stack software developer</span>
+            </span>
+            <span className="bm-gap" aria-hidden="true" />
+            <span className="bm-side bm-right" aria-hidden="true">
+              <span className="nm nm-2" data-n2>{chars("JUMAWAN")}</span>
+              <span className="nm nm-3" data-n3>{chars("GALLEGO")}</span>
+              <span className="role role-2" data-role>Shopify &amp; business systems developer</span>
+            </span>
           </h1>
-
-          <div className="banner-roles container" data-roles aria-hidden="true">
-            <span>Full-stack software developer</span>
-            <span>Shopify &amp; business systems developer</span>
-          </div>
 
           <div className="banner-bottom container" data-bbottom>
             <ul>
