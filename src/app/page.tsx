@@ -1,48 +1,150 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDown, ArrowRight, ArrowUpRight, Braces, Check, Code2, FileText, Globe2, MapPin, Plus, Server, ShoppingBag, Smartphone } from "lucide-react";
+import { ArrowUpRight, Braces, FileText, MapPin, Plus, Server, ShoppingBag, Smartphone } from "lucide-react";
+import { HeroScene } from "@/components/hero-scene";
 import { ProjectMarquee } from "@/components/project-marquee";
 import { ToolLogo } from "@/components/tool-logo";
-import { Toolkit } from "@/components/toolkit";
 import { SocialLinks } from "@/components/social-links";
 import { ContactForm } from "@/components/contact-form";
 import { ProjectCard } from "@/components/project-card";
+import { RevealObserver } from "@/components/reveal-observer";
 import { expertise, faqs, featuredProjects, profile, projects } from "@/data/portfolio";
 
-
 const steps = [
-  { title: "Agree on the scope.", text: "Review the existing setup, required features, users, budget, and timeline. Agree on deliverables and what is outside the scope.", deliverable: "Scope & priorities" },
-  { title: "Plan the implementation.", text: "Map the user flows, screens, data, and integrations. Identify access requirements and decisions needed before development.", deliverable: "Flows & architecture" },
-  { title: "Build and review.", text: "Develop in agreed stages, share working versions, and collect feedback. Discuss changes to scope before adding work.", deliverable: "Working software" },
-  { title: "Test and hand over.", text: "Check the agreed workflows, data handling, browser layouts, and mobile app navigation and device behavior. Document setup, known limits, and remaining work.", deliverable: "Testing & handoff notes" },
+  { title: "Scope", text: "Your current setup, users, budget and timeline. We agree what is in, and what is not.", out: "Scope & priorities" },
+  { title: "Plan", text: "Flows, data model, integrations and access, decided before the first line of code.", out: "Flows & architecture" },
+  { title: "Build", text: "Working versions in stages, so you review real software instead of slides.", out: "Working software" },
+  { title: "Ship", text: "Tested workflows, deployment, and handoff notes your team can maintain.", out: "Handoff notes" },
+];
+
+const stack = [
+  { group: "Build", tools: ["Next.js", "React", "TypeScript", "React Native", "Node.js", "Laravel"] },
+  { group: "Data & infra", tools: ["PostgreSQL", "Supabase", "Amazon AWS", "Nginx", "Docker", "GitHub Actions"] },
+  { group: "Commerce", tools: ["Shopify", "Shopify Liquid", "Klaviyo", "Google Analytics", "Figma", "Stripe"] },
+];
+
+const experience = [
+  { date: "2024 — now", title: "Software Developer & Administrator", where: "Anytime Fitness · SEB Group & JYM Group · AU / UK", href: "/work/revive-recovery-australia" },
+  { date: "2023 — now", title: "Shopify Ecommerce Development", where: "Freelance & team projects · themes, storefronts, integrations", href: "/work?category=Shopify%20%26%20ecommerce" },
+  { date: "Recent", title: "Product systems & mobile apps", where: "PetMate · Iligan Bay · IcyBreeze · Rayo Electric", href: "/work" },
 ];
 
 export default function Home() {
-  return <main id="main">
-    <section className="hero container" aria-labelledby="hero-title">
-      <div className="hero-topline"><span className="eyebrow"><span className="status-dot" /> WEB, MOBILE & ECOMMERCE DEVELOPMENT</span><span className="hero-location"><Globe2 size={13} /> ILIGAN CITY, PHILIPPINES · REMOTE WORK</span></div>
-      <div className="hero-grid">
-        <div className="hero-copy"><p className="hero-intro">I’m Junry Gallego</p><h1 id="hero-title">Web & mobile apps.<br />Admin systems.<br />Shopify stores.</h1><p className="hero-profession">Full-Stack Software Developer<span>Admin & Server-Side Systems · Shopify Ecommerce Developer</span></p><p className="hero-description">I develop web and mobile applications, admin dashboards, APIs, and Shopify storefronts. My work includes React Native apps, member recovery systems, booking workflows, data imports, and custom themes.</p><div className="hero-actions"><Link className="button button-dark" href="#selected-work">View project work <ArrowUpRight size={19} /></Link><Link className="text-link" href="#contact">Discuss a project <ArrowRight size={16} /></Link></div></div>
-        <div className="hero-art"><div className="portrait-frame"><span className="portrait-coordinate">8.2280° N / 124.2452° E</span><div className="portrait-orbit orbit-one" /><div className="portrait-orbit orbit-two" /><div className="portrait-outline" /><Image className="hero-portrait" src="/profile/junry-gallego-crossed-arms.png" alt="Junry Gallego, full-stack software and Shopify developer" width={500} height={500} preload /><span className="portrait-label">JUNRY GALLEGO · SOFTWARE DEVELOPER</span></div><div className="floating-label label-code"><Code2 size={21} /><span>Full-stack development<small>Web & mobile apps · APIs · Shopify</small></span></div><div className="portrait-caption"><div><span className="status-dot" /> Junry Jumawan Gallego</div><span>SOFTWARE & ECOMMERCE</span></div></div>
-      </div>
-      <div className="hero-bottom"><span><span className="mini-cross">+</span> DEVELOPMENT · INTEGRATION · MAINTENANCE</span><a href="#selected-work">View selected projects <ArrowDown size={15} /></a></div>
-    </section>
-    <ProjectMarquee />
-    <section id="selected-work" className="section container">
-      <div className="section-heading"><div><p className="eyebrow"><span className="section-index">01 /</span> SELECTED WORK</p><h2>Selected projects.<br /><span className="muted-heading">Scope and contribution.</span></h2></div><div className="section-heading-aside"><p>Review the requirements, my role, the implementation, and the current status of each project.</p><Link href="/work" className="text-link">View all {projects.length} projects <ArrowUpRight size={17} /></Link></div></div>
-      <div className="project-grid">{featuredProjects.map((project, index) => <ProjectCard key={project.slug} project={project} index={index} />)}</div>
-      <div className="recent-work"><span className="eyebrow">MORE PROJECTS</span><div>{["bia-skin", "cencal-motorsport", "geminos", "revive-recovery-uk"].map(slug => { const p = projects.find(p => p.slug === slug)!; return <Link key={slug} href={`/work/${slug}`}><span>{p.name}</span><small>{p.category}</small><ArrowUpRight size={18} /></Link>; })}</div></div>
-    </section>
-    <section className="expertise-section" id="expertise"><div className="container section"><div className="section-heading"><div><p className="eyebrow"><span className="section-index">02 /</span> DEVELOPMENT SERVICES</p><h2>What I can<br /><span className="muted-heading">help you build.</span></h2></div><p className="section-intro">Web and mobile applications, admin systems, and ecommerce development. The scope depends on your requirements and current setup.</p></div>
-      <div className="expertise-grid">{expertise.map((item, i) => { const Icon = [Braces, Server, ShoppingBag, Smartphone][i]; return <article className="expertise-card" key={item.title}><div className="expertise-card-top"><span className="expertise-icon"><Icon size={27} strokeWidth={1.4} /></span><small>/{item.number}</small></div><h3>{item.title}</h3><p>{item.text}</p><ul>{item.items.map(text => <li key={text}><Plus size={12} />{text}</li>)}</ul><Link className="text-link" href={`/work?category=${encodeURIComponent(item.category)}`}>Explore related work <ArrowUpRight size={16} /></Link></article>; })}</div>
-      <div className="design-note"><ToolLogo name="Figma" size={23} /><p><strong>UI design and prototyping.</strong> I use Figma to plan screens and user flows. PetMate includes owner and clinic-admin flows and a React Native prototype.</p><Link href="/work/petmate" className="text-link">View PetMate <ArrowUpRight size={16} /></Link></div>
+  const shopifyCount = projects.filter(p => p.category === "Shopify & ecommerce").length;
+  const proof = [
+    { value: String(projects.length), label: "Projects & contributions" },
+    { value: "AU · UK", label: "Systems running in production" },
+    { value: String(shopifyCount), label: "Shopify stores & storefronts" },
+    { value: "2023", label: "Building for clients since" },
+  ];
+  const icons = [Braces, Server, ShoppingBag, Smartphone];
 
-    </div></section>
-    <section id="about" className="section container about-section"><div className="about-visual"><div className="about-photo"><Image src="/profile/junry-gallego-closeup.png" alt="Portrait of Junry Gallego" fill sizes="(max-width: 700px) 100vw, 40vw" /><span className="about-photo-label"><MapPin size={14} /> ILIGAN CITY, PHILIPPINES</span></div><div className="about-note"><span>01</span><p>Software development<br /><strong>Ecommerce & operations</strong></p><ArrowUpRight size={28} /></div></div><div className="about-copy"><p className="eyebrow"><span className="section-index">03 /</span> ABOUT</p><h2>How I started.<br />How I work today<span className="green-period">.</span></h2><p className="about-lead">I’m Junry, a full-stack software developer based in Iligan City, Philippines. I work on web and mobile applications, admin systems, and Shopify ecommerce projects.</p><p>My journey into development started during the pandemic. I was teaching myself through YouTube tutorials, spending time studying programming and practising how to write code. I wanted to become a developer, and those early lessons gave me a place to start.</p><p>Before I moved into Shopify, I spent a lot of time building my programming foundation. Learning meant trying things, running into errors, looking for explanations, and working through the code again. As I gained skills, I kept exploring new tools and technologies so I could adapt to different projects and understand more of how an application works.</p><p>That learning eventually led me to work as a junior developer and gain experience on real projects. It gave me a chance to put what I had studied into practice, work through project requirements, and learn from feedback. I continued studying alongside the work, building on what I knew as new challenges came up.</p><p>Shopify development became part of that journey, bringing my coding skills into ecommerce through custom themes, store pages, and integrations. My work now also includes web and mobile apps, admin dashboards, APIs, and business systems. I still make time to learn, choosing technologies around what a project needs and strengthening the skills needed to support it.</p><p>For a client’s project, I begin by listening: what needs to be built, who will use it, and how it should fit into their business. We agree on the scope and priorities, then review working versions in stages. I explain technical choices, work through feedback, and discuss changes before adding them to the scope. Before handoff, I check the agreed workflows and document the setup, known limits, and next steps. My aim is to leave the client with work they understand and can use.</p><div className="about-principles"><span><Check size={15} /> Agreed scope</span><span><Check size={15} /> Progress reviews</span><span><Check size={15} /> Documented handoff</span></div><a className="button button-outline" href={profile.resume} target="_blank" rel="noopener noreferrer"><FileText size={17} /> View my résumé <ArrowUpRight size={17} /></a></div></section>
-    <section className="container experience-section"><div><p className="eyebrow">WORK EXPERIENCE</p><h2>Software, ecommerce,<br />and operational work.</h2></div><div className="experience-list"><Link href="/work/revive-recovery-australia"><span className="experience-date">2024–PRESENT</span><div><h3>Software Developer & Administrator</h3><p>Anytime Fitness · SEB Group & JYM Group · AU / UK</p></div><ArrowUpRight size={21} /></Link><Link href="/work?category=Shopify%20%26%20ecommerce"><span className="experience-date">2023–PRESENT</span><div><h3>Shopify Ecommerce Development</h3><p>Freelance & team projects · Storefronts, themes & integrations</p></div><ArrowUpRight size={21} /></Link><Link href="/work"><span className="experience-date">RECENT WORK</span><div><h3>Product Systems & Mobile Experiences</h3><p>PetMate · Iligan Bay · IcyBreeze · Rayo Electric</p></div><ArrowUpRight size={21} /></Link></div></section>
-    <section id="process" className="section container process-section"><div className="section-heading"><div><p className="eyebrow"><span className="section-index">04 /</span> WORKING PROCESS</p><h2>How I work<br /><span className="muted-heading">on a project.</span></h2></div><p className="section-intro">Agree on the requirements, review work in stages, and check the result against the agreed scope.</p></div><div className="process-grid">{steps.map((step, i) => <article key={step.title}><div className="step-number"><span>{String(i + 1).padStart(2, "0")}</span><ArrowRight size={19} /></div><h3>{step.title}</h3><p>{step.text}</p><small><Check size={12} /> {step.deliverable}</small></article>)}</div></section>
-    <Toolkit />
-    <section className="faq-section container"><div><p className="eyebrow">BEFORE WE BEGIN</p><h2>Before starting<br />a project.</h2><p>Need to clarify your requirements?<br /><Link className="text-link" href="#contact">Contact me <ArrowUpRight size={15} /></Link></p></div><div className="faq-list">{faqs.map((faq, i) => <details key={faq.question}><summary><span className="faq-number">0{i + 1}</span>{faq.question}<Plus size={18} /></summary><p>{faq.answer}</p></details>)}</div></section>
-    <section id="contact" className="contact-section"><div className="container contact-grid"><div className="contact-copy"><p className="eyebrow"><span className="section-index">06 /</span> PROJECT INQUIRIES</p><h2>Discuss your<br /><span>project.</span></h2><p>Send your requirements, current platform, and target timeline. Include any existing designs or technical constraints so we can discuss the scope and next steps.</p><a className="contact-email" href={`mailto:${profile.email}`}>{profile.email}<ArrowUpRight size={23} /></a><div className="contact-direct"><a href={profile.whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp <ArrowUpRight size={14} /></a><a href={profile.phoneHref}>Call me <ArrowUpRight size={14} /></a><a href={profile.resume} target="_blank" rel="noopener noreferrer">Résumé <ArrowUpRight size={14} /></a></div><SocialLinks /><div className="contact-location"><span className="status-dot" /> Based in the Philippines · Available for remote project discussions</div></div><ContactForm /></div></section>
+  return <main id="main" className="home">
+    <RevealObserver />
+    <HeroScene />
+    <ProjectMarquee />
+
+    <section className="proof container" aria-label="At a glance">
+      {proof.map((item, i) => <div key={item.label} data-reveal style={{ ["--d" as string]: i }}><strong>{item.value}</strong><span>{item.label}</span></div>)}
+    </section>
+
+    <section id="selected-work" className="section container">
+      <div className="head" data-reveal>
+        <p className="tag"><span>01</span> Selected work</p>
+        <h2>Real systems, real stores.<br /><span className="dim">Here is what I built and what I owned.</span></h2>
+        <Link href="/work" className="arrow-link">All {projects.length} projects <ArrowUpRight size={17} /></Link>
+      </div>
+      <div className="work-grid">{featuredProjects.map((project, index) => <div key={project.slug} className={index === 0 ? "feature" : undefined} data-reveal style={{ ["--d" as string]: index % 2 }}><ProjectCard project={project} index={index} /></div>)}</div>
+      <div className="more-work" data-reveal>
+        <span className="tag">More projects</span>
+        <div>{["bia-skin", "cencal-motorsport", "geminos", "revive-recovery-uk"].map(slug => { const p = projects.find(item => item.slug === slug)!; return <Link key={slug} href={`/work/${slug}`}><span>{p.name}</span><small>{p.category}</small><ArrowUpRight size={16} /></Link>; })}</div>
+      </div>
+    </section>
+
+    <section id="expertise" className="section services">
+      <div className="container services-grid">
+        <div className="services-intro" data-reveal>
+          <p className="tag"><span>02</span> What I build</p>
+          <h2>Systems first.<br /><span className="dim">Storefronts and apps around them.</span></h2>
+          <p>Most of my work sits behind the screen: data, rules, roles and the dashboards people run their day on. The same skills carry into Shopify and mobile.</p>
+        </div>
+        <ol className="service-list">
+          {expertise.map((item, i) => {
+            const Icon = icons[i];
+            return <li key={item.title} data-reveal style={{ ["--d" as string]: i }}>
+              <Link href={`/work?category=${encodeURIComponent(item.category)}`}>
+                <span className="service-num">{item.number}</span>
+                <div>
+                  <h3><Icon size={20} strokeWidth={1.6} /> {item.title}</h3>
+                  <p>{item.text}</p>
+                  <ul>{item.items.map(text => <li key={text}>{text}</li>)}</ul>
+                </div>
+                <ArrowUpRight className="service-arrow" size={22} />
+              </Link>
+            </li>;
+          })}
+        </ol>
+      </div>
+    </section>
+
+    <section id="about" className="section container about">
+      <div className="about-media" data-reveal>
+        <div className="about-photo"><Image src="/profile/junry-gallego-closeup.png" alt="Portrait of Junry Gallego" fill sizes="(max-width: 760px) 100vw, 40vw" /></div>
+        <span className="about-loc"><MapPin size={13} /> Iligan City, Philippines</span>
+      </div>
+      <div className="about-copy">
+        <p className="tag" data-reveal><span>03</span> About</p>
+        <h2 data-reveal>Self-taught.<br /><span className="dim">Now trusted with production.</span></h2>
+        <p className="lead" data-reveal>I taught myself to code during the pandemic: YouTube tutorials, broken builds, and a lot of reading error messages until they made sense.</p>
+        <p data-reveal>That foundation led to a junior developer role, then Shopify work across freelance and team projects. Today I build and maintain the systems Anytime Fitness gym groups in Australia and the UK use every day, alongside mobile apps and storefronts.</p>
+        <p data-reveal>With clients I listen first, agree the scope, ship in stages you can review, and hand over documented work you can actually run.</p>
+        <div className="timeline" data-reveal>
+          {experience.map(item => <Link key={item.title} href={item.href}><span>{item.date}</span><div><h3>{item.title}</h3><p>{item.where}</p></div><ArrowUpRight size={18} /></Link>)}
+        </div>
+        <a className="btn btn-ghost" href={profile.resume} target="_blank" rel="noopener noreferrer" data-reveal><FileText size={16} /> Résumé <ArrowUpRight size={16} /></a>
+      </div>
+    </section>
+
+    <section id="process" className="section container">
+      <div className="head" data-reveal>
+        <p className="tag"><span>04</span> Process</p>
+        <h2>Four steps.<br /><span className="dim">No surprises.</span></h2>
+      </div>
+      <ol className="steps">{steps.map((step, i) => <li key={step.title} data-reveal style={{ ["--d" as string]: i }}><span className="step-n">0{i + 1}</span><h3>{step.title}</h3><p>{step.text}</p><small>→ {step.out}</small></li>)}</ol>
+    </section>
+
+    <section id="tools" className="section container stack">
+      <div className="head" data-reveal>
+        <p className="tag"><span>05</span> Core stack</p>
+        <h2>The tools I reach for.<br /><span className="dim">Each project page lists the full stack.</span></h2>
+      </div>
+      <div className="stack-rows">{stack.map((row, r) => <div key={row.group} className="stack-row" data-reveal style={{ ["--d" as string]: r }}><span className="tag">{row.group}</span><ul>{row.tools.map(tool => <li key={tool}><ToolLogo name={tool} size={22} /> {tool}</li>)}</ul></div>)}</div>
+    </section>
+
+    <section className="section container faq">
+      <div data-reveal>
+        <p className="tag">Before we begin</p>
+        <h2>Questions,<br /><span className="dim">answered.</span></h2>
+      </div>
+      <div className="faq-items">{faqs.map((faq, i) => <details key={faq.question} data-reveal style={{ ["--d" as string]: i }}><summary><span>0{i + 1}</span>{faq.question}<Plus size={18} /></summary><p>{faq.answer}</p></details>)}</div>
+    </section>
+
+    <section id="contact" className="contact">
+      <div className="container contact-layout">
+        <div className="contact-left" data-reveal>
+          <p className="tag"><span>06</span> Contact</p>
+          <h2>Have a system<br />to build? <span>Let’s talk.</span></h2>
+          <p>Tell me what you need, your current platform, and your timeline. I reply with questions, not a sales pitch.</p>
+          <a className="contact-mail" href={`mailto:${profile.email}`}>{profile.email}<ArrowUpRight size={22} /></a>
+          <div className="contact-links">
+            <a href={profile.whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp <ArrowUpRight size={14} /></a>
+            <a href={profile.phoneHref}>Call <ArrowUpRight size={14} /></a>
+            <a href={profile.resume} target="_blank" rel="noopener noreferrer">Résumé <ArrowUpRight size={14} /></a>
+          </div>
+          <SocialLinks />
+        </div>
+        <div data-reveal style={{ ["--d" as string]: 1 }}><ContactForm /></div>
+      </div>
+    </section>
   </main>;
 }

@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { profile } from "@/data/portfolio";
 import "./globals.css";
+import "./redesign.css";
 
 const manrope = localFont({ src: "./fonts/Manrope-Variable.ttf", variable: "--font-manrope", display: "swap", weight: "200 800" });
 const plexMono = localFont({ src: [{ path: "./fonts/IBMPlexMono-Regular.ttf", weight: "400" }, { path: "./fonts/IBMPlexMono-Medium.ttf", weight: "500" }], variable: "--font-plex-mono", display: "swap" });
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: { title: "Junry Gallego — Software & Ecommerce Development", description, url: "/", siteName: profile.name, locale: "en_PH", type: "website" },
   twitter: { card: "summary_large_image", title: "Junry Gallego — Full-Stack Software & Shopify Developer", description },
 };
-export const viewport: Viewport = { themeColor: "#f8f9f3", colorScheme: "light" };
+export const viewport: Viewport = { themeColor: "#0b0d0a", colorScheme: "dark" };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return <html lang="en" data-scroll-behavior="smooth" className={`${manrope.variable} ${plexMono.variable}`}><body><a className="skip-link" href="#main">Skip to content</a><SiteHeader />{children}<SiteFooter /></body></html>;
 }

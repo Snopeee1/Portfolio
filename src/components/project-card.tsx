@@ -7,7 +7,7 @@ import { ToolBadge, hasToolLogo } from "./tool-logo";
 export function ProjectCard({ project, index, headingLevel = 3 }: { project: Project; index?: number; headingLevel?: 2 | 3 }) {
   const Heading = headingLevel === 2 ? "h2" : "h3";
   return <article className="project-card">
-    <Link className="project-image-link" href={`/work/${project.slug}`} aria-label={`View ${project.name} case study`}><ProjectVisual project={project} /><span className="project-open"><ArrowUpRight size={22} /></span></Link>
+    <Link className="project-image-link" href={`/work/${project.slug}`} aria-label={`View ${project.name} case study`}><ProjectVisual project={project} /><span className="status-chip" data-live={/ongoing|public|present|development/i.test(project.status + project.year)}><i />{project.status}</span><span className="project-open"><ArrowUpRight size={22} /></span></Link>
     <div className="project-meta"><span>{project.category}</span><span>{project.year}</span></div>
     <Link className="project-title-link" href={`/work/${project.slug}`}><Heading>{project.name}</Heading><ArrowUpRight size={21} /></Link>
     <p className="project-subtitle">{project.subtitle}</p>

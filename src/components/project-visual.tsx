@@ -21,7 +21,7 @@ export function ProjectVisual({ project, large = false }: { project: Project; la
           <div className="mock-chart"><div><strong>Recovery activity</strong><span>WORKFLOW OVERVIEW</span></div><div className="chart-bars">{[30, 49, 38, 64, 54, 78, 65, 88, 76, 100, 92, 115].map((height, i) => <i key={i} style={{ height }} />)}</div><div className="chart-labels"><span>Records</span><span>Follow-ups</span><span>Reporting</span></div></div>
           <div className="mock-status-row"><CheckCircle2 size={13} /><span>Imports, member records & reporting — connected</span></div>
         </div></div>
-      </div><span className="visual-corner">Illustrative interface</span>
+      </div><span className="visual-corner">Private system · recreated UI</span>
     </> : project.visual === "coastal" ? <>
       <div className="coastal-word"><Waves size={27} /><strong>Iligan Bay</strong><span>COASTAL REPORTING SYSTEM</span></div>
       <div className="map-art" aria-hidden="true"><div className="map-land" /><i className="map-road road-one" /><i className="map-road road-two" /><div className="map-pin pin-one"><MapPin size={22} fill="currentColor" /></div><div className="map-pin pin-two"><MapPin size={22} fill="currentColor" /></div><div className="map-pin pin-three"><MapPin size={22} fill="currentColor" /></div><span className="map-sea-label">ILIGAN BAY</span><div className="map-report"><span><CheckCircle2 size={19} /></span><div><strong>Report review and cleanup assignment</strong><small>Location → Evidence → Cleanup</small></div></div></div><span className="visual-corner">Workflow illustration · Web & mobile</span>
