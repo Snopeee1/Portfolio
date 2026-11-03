@@ -4,21 +4,22 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { profile } from "@/data/portfolio";
 import "./globals.css";
-import "./redesign.css";
+import "./brand.css";
 
 const manrope = localFont({ src: "./fonts/Manrope-Variable.ttf", variable: "--font-manrope", display: "swap", weight: "200 800" });
+const anton = localFont({ src: "./fonts/Anton-Regular.woff2", variable: "--font-anton", display: "swap", weight: "400" });
 const plexMono = localFont({ src: [{ path: "./fonts/IBMPlexMono-Regular.ttf", weight: "400" }, { path: "./fonts/IBMPlexMono-Medium.ttf", weight: "500" }], variable: "--font-plex-mono", display: "swap" });
-const description = "Full-Stack Software Developer | Admin & Server-Side Systems | Shopify Ecommerce Developer. Explore Junry Gallego’s web and mobile applications, business systems, Shopify projects, and Figma design.";
+const description = "Full-Stack Software Developer | Admin & Server-Side Systems | Shopify Ecommerce Developer. Explore Junry Jumawan Gallego’s web and mobile applications, business systems, Shopify projects, and Figma design.";
 export const metadata: Metadata = {
   metadataBase: new URL("https://junry-portfolio.vercel.app"),
-  title: { default: "Junry Gallego — Full-Stack Software & Shopify Developer", template: "%s | Junry Gallego" },
-  description, applicationName: "Junry Gallego Portfolio", authors: [{ name: profile.name }], creator: profile.name,
-  keywords: ["Junry Gallego", "Full-Stack Software Developer", "Shopify Ecommerce Developer", "Admin Systems", "Server-Side Development", "Mobile App Development", "React Native", "Expo", "Figma", "Philippines Developer"],
+  title: { default: "Junry Jumawan Gallego — Full-Stack Software & Shopify Developer", template: "%s | Junry Jumawan Gallego" },
+  description, applicationName: "Junry Jumawan Gallego Portfolio", authors: [{ name: profile.name }], creator: profile.name,
+  keywords: ["Junry Jumawan Gallego", "Junry Jumawan", "Junry Gallego", "Full-Stack Software Developer", "Shopify Ecommerce Developer", "Admin Systems", "Server-Side Development", "Mobile App Development", "React Native", "Expo", "Figma", "Philippines Developer"],
   alternates: { canonical: "/" },
-  openGraph: { title: "Junry Gallego — Software & Ecommerce Development", description, url: "/", siteName: profile.name, locale: "en_PH", type: "website" },
-  twitter: { card: "summary_large_image", title: "Junry Gallego — Full-Stack Software & Shopify Developer", description },
+  openGraph: { title: "Junry Jumawan Gallego — Software & Ecommerce Development", description, url: "/", siteName: profile.name, locale: "en_PH", type: "website" },
+  twitter: { card: "summary_large_image", title: "Junry Jumawan Gallego — Full-Stack Software & Shopify Developer", description },
 };
-export const viewport: Viewport = { themeColor: "#0b0d0a", colorScheme: "dark" };
+export const viewport: Viewport = { themeColor: "#eef0f4", colorScheme: "light" };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" data-scroll-behavior="smooth" className={`${manrope.variable} ${plexMono.variable}`}><body><a className="skip-link" href="#main">Skip to content</a><SiteHeader />{children}<SiteFooter /></body></html>;
+  return <html lang="en" data-scroll-behavior="smooth" className={`${manrope.variable} ${plexMono.variable} ${anton.variable}`} suppressHydrationWarning><body suppressHydrationWarning><a className="skip-link" href="#main">Skip to content</a><SiteHeader />{children}<SiteFooter /></body></html>;
 }

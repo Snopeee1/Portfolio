@@ -6,9 +6,13 @@ import { ProjectMarquee } from "@/components/project-marquee";
 import { ToolLogo } from "@/components/tool-logo";
 import { SocialLinks } from "@/components/social-links";
 import { ContactForm } from "@/components/contact-form";
-import { ProjectCard } from "@/components/project-card";
 import { RevealObserver } from "@/components/reveal-observer";
-import { expertise, faqs, featuredProjects, profile, projects } from "@/data/portfolio";
+import { WorkRail } from "@/components/work-rail";
+import { CountUp } from "@/components/count-up";
+import { expertise, faqs, profile, projects } from "@/data/portfolio";
+import { allTools, toolGroups } from "@/data/tools";
+
+const railSlugs = ["revive-recovery-australia", "petmate", "iligan-bay", "salted-seas", "cencal-motorsport", "motovan-shopify", "icybreeze", "bia-skin", "revive-recovery-uk"];
 
 const steps = [
   { title: "Scope", text: "Your current setup, users, budget and timeline. We agree what is in, and what is not.", out: "Scope & priorities" },
@@ -17,10 +21,11 @@ const steps = [
   { title: "Ship", text: "Tested workflows, deployment, and handoff notes your team can maintain.", out: "Handoff notes" },
 ];
 
-const stack = [
-  { group: "Build", tools: ["Next.js", "React", "TypeScript", "React Native", "Node.js", "Laravel"] },
-  { group: "Data & infra", tools: ["PostgreSQL", "Supabase", "Amazon AWS", "Nginx", "Docker", "GitHub Actions"] },
-  { group: "Commerce", tools: ["Shopify", "Shopify Liquid", "Klaviyo", "Google Analytics", "Figma", "Stripe"] },
+const clubs = [
+  { group: "SEB Group", region: "Australia", count: 19 },
+  { group: "JYM Group", region: "New South Wales", count: 11 },
+  { group: "JYM Group", region: "Victoria", count: 8 },
+  { group: "JYM Group", region: "United Kingdom", count: 1 },
 ];
 
 const experience = [
@@ -30,56 +35,42 @@ const experience = [
 ];
 
 export default function Home() {
-  const shopifyCount = projects.filter(p => p.category === "Shopify & ecommerce").length;
-  const proof = [
-    { value: String(projects.length), label: "Projects & contributions" },
-    { value: "AU · UK", label: "Systems running in production" },
-    { value: String(shopifyCount), label: "Shopify stores & storefronts" },
-    { value: "2023", label: "Building for clients since" },
-  ];
+  const rail = railSlugs.map(slug => projects.find(p => p.slug === slug)).filter((p): p is (typeof projects)[number] => Boolean(p));
   const icons = [Braces, Server, ShoppingBag, Smartphone];
+  const half = Math.ceil(allTools.length / 2);
 
   return <main id="main" className="home">
     <RevealObserver />
     <HeroScene />
     <ProjectMarquee />
 
-    <section className="proof container" aria-label="At a glance">
-      {proof.map((item, i) => <div key={item.label} data-reveal style={{ ["--d" as string]: i }}><strong>{item.value}</strong><span>{item.label}</span></div>)}
+    <section className="stats container" aria-label="At a glance">
+      <div data-reveal><strong className="display"><CountUp value={20} suffix="+" /></strong><span>Projects delivered &amp; contributed to</span></div>
+      <div data-reveal style={{ ["--d" as string]: 1 }}><strong className="display"><CountUp value={10} suffix="+" /></strong><span>Shopify stores &amp; storefronts</span></div>
+      <div data-reveal style={{ ["--d" as string]: 2 }}><strong className="display"><CountUp value={39} /></strong><span>Anytime Fitness clubs supported</span></div>
+      <div data-reveal style={{ ["--d" as string]: 3 }}><strong className="display">AU<em>·</em>UK</strong><span>Systems running in production</span></div>
     </section>
 
-    <section id="selected-work" className="section container">
-      <div className="head" data-reveal>
-        <p className="tag"><span>01</span> Selected work</p>
-        <h2>Real systems, real stores.<br /><span className="dim">Here is what I built and what I owned.</span></h2>
-        <Link href="/work" className="arrow-link">All {projects.length} projects <ArrowUpRight size={17} /></Link>
-      </div>
-      <div className="work-grid">{featuredProjects.map((project, index) => <div key={project.slug} className={index === 0 ? "feature" : undefined} data-reveal style={{ ["--d" as string]: index % 2 }}><ProjectCard project={project} index={index} /></div>)}</div>
-      <div className="more-work" data-reveal>
-        <span className="tag">More projects</span>
-        <div>{["bia-skin", "cencal-motorsport", "geminos", "revive-recovery-uk"].map(slug => { const p = projects.find(item => item.slug === slug)!; return <Link key={slug} href={`/work/${slug}`}><span>{p.name}</span><small>{p.category}</small><ArrowUpRight size={16} /></Link>; })}</div>
-      </div>
-    </section>
+    <WorkRail projects={rail} />
 
-    <section id="expertise" className="section services">
-      <div className="container services-grid">
-        <div className="services-intro" data-reveal>
+    <section id="expertise" className="services">
+      <div className="container">
+        <div className="sec-head" data-reveal>
           <p className="tag"><span>02</span> What I build</p>
-          <h2>Systems first.<br /><span className="dim">Storefronts and apps around them.</span></h2>
-          <p>Most of my work sits behind the screen: data, rules, roles and the dashboards people run their day on. The same skills carry into Shopify and mobile.</p>
+          <h2 className="display">Systems first.<br /><span className="stroke-text">Then everything around them.</span></h2>
         </div>
-        <ol className="service-list">
+        <ol className="svc-list">
           {expertise.map((item, i) => {
             const Icon = icons[i];
             return <li key={item.title} data-reveal style={{ ["--d" as string]: i }}>
               <Link href={`/work?category=${encodeURIComponent(item.category)}`}>
-                <span className="service-num">{item.number}</span>
-                <div>
-                  <h3><Icon size={20} strokeWidth={1.6} /> {item.title}</h3>
+                <span className="svc-num">{item.number}</span>
+                <h3 className="display">{item.title}</h3>
+                <div className="svc-body">
                   <p>{item.text}</p>
                   <ul>{item.items.map(text => <li key={text}>{text}</li>)}</ul>
                 </div>
-                <ArrowUpRight className="service-arrow" size={22} />
+                <span className="svc-icon"><Icon size={26} strokeWidth={1.5} /></span>
               </Link>
             </li>;
           })}
@@ -87,53 +78,80 @@ export default function Home() {
       </div>
     </section>
 
-    <section id="about" className="section container about">
-      <div className="about-media" data-reveal>
-        <div className="about-photo"><Image src="/profile/junry-gallego-closeup.png" alt="Portrait of Junry Gallego" fill sizes="(max-width: 760px) 100vw, 40vw" /></div>
-        <span className="about-loc"><MapPin size={13} /> Iligan City, Philippines</span>
+    <section id="about" className="about container">
+      <div className="about-card" data-reveal>
+        <span className="about-mono display" aria-hidden="true">JJG</span>
+        <Image src="/profile/junry-gallego-crossed-arms.png" alt="Junry Jumawan Gallego" width={500} height={500} sizes="(max-width: 900px) 90vw, 40vw" />
+        <div className="about-card-label"><span>Junry Jumawan Gallego</span><small><MapPin size={12} /> Iligan City, Philippines</small></div>
       </div>
       <div className="about-copy">
         <p className="tag" data-reveal><span>03</span> About</p>
-        <h2 data-reveal>Self-taught.<br /><span className="dim">Now trusted with production.</span></h2>
+        <h2 className="display" data-reveal>Self-taught.<br /><span className="stroke-text">Trusted with production.</span></h2>
         <p className="lead" data-reveal>I taught myself to code during the pandemic: YouTube tutorials, broken builds, and a lot of reading error messages until they made sense.</p>
         <p data-reveal>That foundation led to a junior developer role, then Shopify work across freelance and team projects. Today I build and maintain the systems Anytime Fitness gym groups in Australia and the UK use every day, alongside mobile apps and storefronts.</p>
         <p data-reveal>With clients I listen first, agree the scope, ship in stages you can review, and hand over documented work you can actually run.</p>
+
+        <div className="clubs" data-reveal>
+          <div className="clubs-head"><span className="tag">Anytime Fitness network I support</span><strong className="display"><CountUp value={39} /> clubs</strong></div>
+          <ul>{clubs.map(c => <li key={c.region}><b className="display">{c.count}</b><span>{c.group}<small>{c.region}</small></span></li>)}</ul>
+        </div>
+
         <div className="timeline" data-reveal>
           {experience.map(item => <Link key={item.title} href={item.href}><span>{item.date}</span><div><h3>{item.title}</h3><p>{item.where}</p></div><ArrowUpRight size={18} /></Link>)}
         </div>
-        <a className="btn btn-ghost" href={profile.resume} target="_blank" rel="noopener noreferrer" data-reveal><FileText size={16} /> Résumé <ArrowUpRight size={16} /></a>
+        <a className="btn btn-line" href={profile.resume} target="_blank" rel="noopener noreferrer" data-reveal><FileText size={16} /> View résumé <ArrowUpRight size={16} /></a>
       </div>
     </section>
 
-    <section id="process" className="section container">
-      <div className="head" data-reveal>
-        <p className="tag"><span>04</span> Process</p>
-        <h2>Four steps.<br /><span className="dim">No surprises.</span></h2>
+    <section id="process" className="process">
+      <div className="container process-layout">
+        <div className="process-intro" data-reveal>
+          <p className="tag"><span>04</span> Process</p>
+          <h2 className="display">Four steps.<br /><span className="stroke-text">No surprises.</span></h2>
+          <p>Every project runs the same way, whether it is a Shopify section or a full admin platform.</p>
+        </div>
+        <ol className="stack-cards">
+          {steps.map((step, i) => <li key={step.title} style={{ ["--i" as string]: i }}>
+            <span className="display step-big">0{i + 1}</span>
+            <div><h3 className="display">{step.title}</h3><p>{step.text}</p><small>→ {step.out}</small></div>
+          </li>)}
+        </ol>
       </div>
-      <ol className="steps">{steps.map((step, i) => <li key={step.title} data-reveal style={{ ["--d" as string]: i }}><span className="step-n">0{i + 1}</span><h3>{step.title}</h3><p>{step.text}</p><small>→ {step.out}</small></li>)}</ol>
     </section>
 
-    <section id="tools" className="section container stack">
-      <div className="head" data-reveal>
-        <p className="tag"><span>05</span> Core stack</p>
-        <h2>The tools I reach for.<br /><span className="dim">Each project page lists the full stack.</span></h2>
+    <section id="tools" className="tools">
+      <div className="container sec-head" data-reveal>
+        <p className="tag"><span>05</span> Toolkit</p>
+        <h2 className="display">{allTools.length} tools.<br /><span className="stroke-text">One way of working.</span></h2>
       </div>
-      <div className="stack-rows">{stack.map((row, r) => <div key={row.group} className="stack-row" data-reveal style={{ ["--d" as string]: r }}><span className="tag">{row.group}</span><ul>{row.tools.map(tool => <li key={tool}><ToolLogo name={tool} size={22} /> {tool}</li>)}</ul></div>)}</div>
+      <div className="logo-rows" aria-hidden="true">
+        {[allTools.slice(0, half), allTools.slice(half)].map((row, r) => (
+          <div key={r} className={`logo-row${r ? " reverse" : ""}`}>
+            <div className="logo-track">{[...row, ...row].map((tool, i) => <span key={i}><ToolLogo name={tool} size={26} />{tool}</span>)}</div>
+          </div>
+        ))}
+      </div>
+      <div className="container tool-grid">
+        {toolGroups.map((group, i) => <article key={group.title} data-reveal style={{ ["--d" as string]: i % 3 }}>
+          <header><span className="display">{String(i + 1).padStart(2, "0")}</span><div><h3>{group.title}</h3><p>{group.summary}</p></div></header>
+          <ul>{group.tools.map(tool => <li key={tool}><ToolLogo name={tool} size={22} />{tool}</li>)}</ul>
+        </article>)}
+      </div>
     </section>
 
-    <section className="section container faq">
+    <section className="faq container">
       <div data-reveal>
         <p className="tag">Before we begin</p>
-        <h2>Questions,<br /><span className="dim">answered.</span></h2>
+        <h2 className="display">Questions,<br /><span className="stroke-text">answered.</span></h2>
       </div>
-      <div className="faq-items">{faqs.map((faq, i) => <details key={faq.question} data-reveal style={{ ["--d" as string]: i }}><summary><span>0{i + 1}</span>{faq.question}<Plus size={18} /></summary><p>{faq.answer}</p></details>)}</div>
+      <div className="faq-items">{faqs.map((faq, i) => <details key={faq.question} data-reveal style={{ ["--d" as string]: i }}><summary><span>0{i + 1}</span>{faq.question}<Plus size={20} /></summary><p>{faq.answer}</p></details>)}</div>
     </section>
 
     <section id="contact" className="contact">
       <div className="container contact-layout">
         <div className="contact-left" data-reveal>
           <p className="tag"><span>06</span> Contact</p>
-          <h2>Have a system<br />to build? <span>Let’s talk.</span></h2>
+          <h2 className="display">Let&apos;s build<br />something<br /><em>that works.</em></h2>
           <p>Tell me what you need, your current platform, and your timeline. I reply with questions, not a sales pitch.</p>
           <a className="contact-mail" href={`mailto:${profile.email}`}>{profile.email}<ArrowUpRight size={22} /></a>
           <div className="contact-links">

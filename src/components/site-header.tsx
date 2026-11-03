@@ -30,7 +30,7 @@ export function SiteHeader() {
   return (
     <header className="site-header">
       <div className="container header-inner">
-        <Link className="wordmark" href="/" aria-label="Junry Gallego home" onClick={() => setOpen(false)}>junry<span className="brand-dot">.</span><span className="wordmark-tag">WEB · MOBILE · ECOMMERCE</span></Link>
+        <Link className="wordmark" href="/" aria-label="Junry Jumawan Gallego home" onClick={() => setOpen(false)}>junry<span className="brand-dot">.</span><span className="wordmark-tag">WEB · MOBILE · ECOMMERCE</span></Link>
         <nav className="desktop-nav" aria-label="Main navigation">
           {links.map(link => <Link key={link.label} href={link.href === "/work" && pathname === "/" ? "/#selected-work" : link.href} aria-current={link.href === "/work" && pathname.startsWith("/work") ? "page" : undefined}>{link.label}</Link>)}
         </nav>

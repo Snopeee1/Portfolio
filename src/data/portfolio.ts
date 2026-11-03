@@ -1,6 +1,6 @@
 export const profile = {
   name: "Junry Jumawan Gallego",
-  shortName: "Junry Gallego",
+  shortName: "Junry Jumawan Gallego",
   profession: "Full-Stack Software Developer | Admin & Server-Side Systems | Shopify Ecommerce Developer",
   email: "junry.jumawan4@gmail.com",
   phone: "+63 965 861 4859",

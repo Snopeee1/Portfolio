@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { categories, type Category } from "@/data/portfolio";
 import { WorkLibrary } from "@/components/work-library";
 
-export const metadata: Metadata = { title: "Selected Work", description: "Explore Junry Gallego’s full-stack systems, Shopify ecommerce projects, API integrations, Figma design, and mobile applications.", alternates: { canonical: "/work" } };
+export const metadata: Metadata = { title: "Selected Work", description: "Explore Junry Jumawan Gallego’s full-stack systems, Shopify ecommerce projects, API integrations, Figma design, and mobile applications.", alternates: { canonical: "/work" } };
 
 export default async function WorkPage({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
   const { category } = await searchParams;
