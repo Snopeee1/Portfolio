@@ -11,7 +11,7 @@ export function generateStaticParams() { return projects.map(({ slug }) => ({ sl
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const project = projects.find(p => p.slug === slug);
-  return project ? { title: `${project.name} — Case Study`, description: project.summary, alternates: { canonical: `/work/${slug}` }, openGraph: { title: `${project.name} — Junry Gallego`, description: project.summary, url: `/work/${slug}` } } : { title: "Project not found" };
+  return project ? { title: `${project.name} — Case Study`, description: project.summary, alternates: { canonical: `/work/${slug}` }, openGraph: { title: `${project.name} — Junry Jumawan Gallego`, description: project.summary, url: `/work/${slug}` } } : { title: "Project not found" };
 }
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
