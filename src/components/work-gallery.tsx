@@ -31,7 +31,7 @@ export function WorkGallery({ projects, order }: { projects: Project[]; order: s
       </div>
       <div className="work-grid" key={active}>
         {shown.map((p, i) => (
-          <div key={p.slug} className={i === 0 ? "wg-item wg-lead" : "wg-item"} style={{ ["--d" as string]: i }}>
+          <div key={p.slug} className={i === 0 ? "wg-item wg-lead" : "wg-item"} data-build data-label="Card · Project" style={{ ["--d" as string]: i }}>
             <ProjectCard project={p} index={i} />
           </div>
         ))}

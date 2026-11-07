@@ -66,7 +66,7 @@ export default function Home() {
     {/* 01 Work */}
     <section id="work" className="section container">
       <div className="sec-head" data-reveal>
-        <div><p className="tag"><span>01</span> Selected work</p><h2 className="display">Work that <em className="serif">ships.</em></h2></div>
+        <div><p className="tag"><span>01</span> Selected work</p><h2 className="display" data-build data-mode="text">Work that <em className="serif">ships.</em></h2></div>
         <p className="sec-note">Production systems, Shopify storefronts and mobile apps. Each card shows my role and the project&apos;s real status.</p>
       </div>
       <div data-reveal><WorkGallery projects={projects} order={order} /></div>
@@ -75,13 +75,13 @@ export default function Home() {
     {/* What I build */}
     <section id="expertise" className="section container">
       <div className="sec-head" data-reveal>
-        <div><p className="tag"><span>02</span> What I build</p><h2 className="display">Made to <em className="serif">run.</em></h2></div>
+        <div><p className="tag"><span>02</span> What I build</p><h2 className="display" data-build data-mode="text">Made to <em className="serif">run.</em></h2></div>
         <Link href="#contact" className="link-arrow">Start a project <ArrowUpRight size={15} /></Link>
       </div>
       <div className="svc-grid">
         {expertise.map((item, i) => {
           const link = serviceLinks[item.category];
-          return <article key={item.title} className="svc-card" data-reveal style={{ ["--d" as string]: i % 2 }}>
+          return <article key={item.title} className="svc-card" data-reveal data-build data-label="Card · Service" style={{ ["--d" as string]: i % 2 }}>
             <ServiceVisual kind={i} />
             <div className="svc-copy">
               <h3>{item.title}</h3>
@@ -97,7 +97,7 @@ export default function Home() {
     {/* Data flow */}
     <section className="section container" id="systems">
       <div className="sec-head" data-reveal>
-        <div><p className="tag"><span>03</span> The engineering side</p><h2 className="display">Data that <em className="serif">flows.</em></h2></div>
+        <div><p className="tag"><span>03</span> The engineering side</p><h2 className="display" data-build data-mode="text">Data that <em className="serif">flows.</em></h2></div>
         <p className="sec-note">Behind every dashboard is a pipeline. This is the one I run for Revive Recovery. Pick a stage to follow the data.</p>
       </div>
       <div data-reveal><DataFlow /></div>
@@ -108,7 +108,7 @@ export default function Home() {
       <div className="container spot-grid">
         <div className="spot-copy" data-reveal>
           <p className="tag"><span>Now running</span></p>
-          <h2 className="display spot-title">Revive<br />Recovery<b>.</b></h2>
+          <h2 className="display spot-title" data-build data-mode="text">Revive<br />Recovery<b>.</b></h2>
           <p className="spot-lede">A payment-recovery system for Anytime Fitness gym groups: imports from two billing platforms, recovery cases, follow-ups and reporting in one admin workspace.</p>
           <ul className="spot-features">
             <li><Upload size={17} /><div><strong>Validated imports</strong><span>ClubWise and DebitSuccess, row by row</span></div></li>
@@ -118,7 +118,7 @@ export default function Home() {
           </ul>
           <Link href="/work/revive-recovery-australia" className="btn btn-glow">Read the case study <ArrowUpRight size={16} /></Link>
         </div>
-        <div className="spot-mock" data-reveal style={{ ["--d" as string]: 1 }} aria-hidden="true">
+        <div className="spot-mock" data-reveal data-build data-label="Frame · Dashboard" style={{ ["--d" as string]: 1 }} aria-hidden="true">
           <div className="mock-chrome"><i /><i /><i /><span>revive · admin workspace</span><b>Demo data</b></div>
           <div className="mock-body">
             <aside><strong><Activity size={15} /> revive</strong><span className="on"><LayoutDashboard size={13} /> Overview</span><span><Users size={13} /> Members</span><span><Activity size={13} /> Recovery</span><span><FileCheck2 size={13} /> Reports</span><span><Upload size={13} /> Imports</span></aside>
@@ -138,11 +138,11 @@ export default function Home() {
     {/* About + process */}
     <section id="about" className="section container about">
       <div className="sec-head" data-reveal>
-        <div><p className="tag"><span>04</span> Behind the builds</p><h2 className="display">Engineering precision.<br /><em className="serif">Creative instinct.</em></h2></div>
+        <div><p className="tag"><span>04</span> Behind the builds</p><h2 className="display" data-build data-mode="text">Engineering precision.<br /><em className="serif">Creative instinct.</em></h2></div>
         <p className="sec-note">I taught myself to code during the pandemic. Today I build and maintain systems that gym groups in two countries run their day on, alongside mobile apps and storefronts.</p>
       </div>
       <div className="about-grid">
-        <div className="about-col" data-reveal>
+        <div className="about-col" data-reveal data-build data-label="Column · Roles">
           <p className="col-label">Roles &amp; skills</p>
           <ul className="roles">
             <li><div><strong>Software Developer &amp; Administrator</strong><span>Admin systems, data imports, deployment</span></div><em>Current</em></li>
@@ -151,11 +151,11 @@ export default function Home() {
           </ul>
           <div className="mini-logos">{["Next.js", "React", "TypeScript", "Laravel", "PostgreSQL", "Shopify", "Amazon AWS", "Figma"].map(t => <span key={t} title={t}><ToolLogo name={t} size={20} /></span>)}</div>
         </div>
-        <div className="about-col" data-reveal style={{ ["--d" as string]: 1 }}>
+        <div className="about-col" data-reveal data-build data-label="Column · Process" style={{ ["--d" as string]: 1 }}>
           <p className="col-label">From idea to live system</p>
           <ol className="idea-steps">{process.map((s, i) => <li key={s.title}><span>0{i + 1}</span><div><strong>{s.title}</strong><p>{s.text}</p></div></li>)}</ol>
         </div>
-        <figure className="quote-card" data-reveal style={{ ["--d" as string]: 2 }}>
+        <figure className="quote-card" data-reveal data-build data-label="Card · Quote" style={{ ["--d" as string]: 2 }}>
           <Image src="/profile/junry-gallego-closeup.png" alt="" width={120} height={120} className="quote-photo" />
           <blockquote>I build systems.<br />I design experiences.</blockquote>
           <figcaption className="serif">Junry</figcaption>
@@ -169,12 +169,12 @@ export default function Home() {
       <div className="journey-grid">
         <div data-reveal>
           <p className="tag"><span>05</span> The journey</p>
-          <h2 className="display">Always building.<br /><em className="serif">Always shipping.</em></h2>
-          <ol className="timeline">{journey.map(j => <li key={j.title}><span>{j.when}</span><div><strong>{j.title}</strong><p>{j.where}</p></div></li>)}</ol>
+          <h2 className="display" data-build data-mode="text">Always building.<br /><em className="serif">Always shipping.</em></h2>
+          <ol className="timeline" data-build data-label="List · Timeline">{journey.map(j => <li key={j.title}><span>{j.when}</span><div><strong>{j.title}</strong><p>{j.where}</p></div></li>)}</ol>
         </div>
         <div data-reveal style={{ ["--d" as string]: 1 }}>
           <h3 className="display wins-title">Little wins,<br /><em className="serif">big meaning.</em></h3>
-          <ul className="wins">{wins.map((w, i) => <li key={w.title}><span>0{i + 1}</span><div><strong>{w.title}</strong><small>{w.meta}</small></div><CheckCircle2 size={16} /></li>)}</ul>
+          <ul className="wins" data-build data-label="List · Wins">{wins.map((w, i) => <li key={w.title}><span>0{i + 1}</span><div><strong>{w.title}</strong><small>{w.meta}</small></div><CheckCircle2 size={16} /></li>)}</ul>
         </div>
       </div>
     </section>
@@ -182,7 +182,7 @@ export default function Home() {
     {/* Tools */}
     <section id="tools" className="section tools">
       <div className="container sec-head" data-reveal>
-        <div><p className="tag"><span>06</span> Toolkit</p><h2 className="display">{allTools.length} tools.<br /><em className="serif">One way of working.</em></h2></div>
+        <div><p className="tag"><span>06</span> Toolkit</p><h2 className="display" data-build data-mode="text">{allTools.length} tools.<br /><em className="serif">One way of working.</em></h2></div>
       </div>
       <div className="logo-rows" aria-hidden="true">
         {[allTools.slice(0, half), allTools.slice(half)].map((row, r) => (
@@ -190,7 +190,7 @@ export default function Home() {
         ))}
       </div>
       <div className="container tool-grid">
-        {toolGroups.map((g, i) => <article key={g.title} data-reveal style={{ ["--d" as string]: i % 3 }}>
+        {toolGroups.map((g, i) => <article key={g.title} data-reveal data-build data-label="Card · Tools" style={{ ["--d" as string]: i % 3 }}>
           <header><span className="display">{String(i + 1).padStart(2, "0")}</span><div><h3>{g.title}</h3><p>{g.summary}</p></div></header>
           <ul>{g.tools.map(t => <li key={t}><ToolLogo name={t} size={20} />{t}</li>)}</ul>
         </article>)}
@@ -204,7 +204,7 @@ export default function Home() {
 
     {/* FAQ */}
     <section className="section container faq">
-      <div data-reveal><p className="tag">Before we begin</p><h2 className="display">Questions,<br /><em className="serif">answered.</em></h2></div>
+      <div data-reveal><p className="tag">Before we begin</p><h2 className="display" data-build data-mode="text">Questions,<br /><em className="serif">answered.</em></h2></div>
       <div className="faq-items">{faqs.map((f, i) => <details key={f.question} data-reveal style={{ ["--d" as string]: i }}><summary><span>0{i + 1}</span>{f.question}<Plus size={18} /></summary><p>{f.answer}</p></details>)}</div>
     </section>
 
@@ -213,7 +213,7 @@ export default function Home() {
       <div className="container ct-grid">
         <div className="contact-left" data-reveal>
           <p className="tag"><span>07</span> Your next build</p>
-          <h2 className="display">Let&apos;s work<br /><em className="serif">together.</em></h2>
+          <h2 className="display" data-build data-mode="text">Let&apos;s work<br /><em className="serif">together.</em></h2>
           <p className="sec-note">Tell me what you need, your current platform and your timeline. I reply with questions, not a sales pitch.</p>
           <ul className="contact-rows">
             <li><a href={`mailto:${profile.email}`}><Mail size={17} /><span><small>Email</small>{profile.email}</span><ArrowUpRight size={15} /></a></li>
@@ -222,7 +222,7 @@ export default function Home() {
           </ul>
           <SocialLinks />
         </div>
-        <div data-reveal style={{ ["--d" as string]: 1 }}><ContactForm /></div>
+        <div data-reveal data-build data-label="Form · Contact" style={{ ["--d" as string]: 1 }}><ContactForm /></div>
       </div>
     </section>
   </main>;

@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { FloatingCursors } from "@/components/floating-cursors";
+import { StudioDirector } from "@/components/studio-director";
 import { profile } from "@/data/portfolio";
 import "./globals.css";
 import "./cinema.css";
@@ -21,7 +21,9 @@ export const metadata: Metadata = {
   openGraph: { title: "Junry Jumawan Gallego — Software & Ecommerce Development", description, url: "/", siteName: profile.name, locale: "en_PH", type: "website" },
   twitter: { card: "summary_large_image", title: "Junry Jumawan Gallego — Full-Stack Software & Shopify Developer", description },
 };
+/* Set before first paint so the hero starts "unbuilt" instead of flashing in. */
+const studioFlag = "try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.dataset.studio='on'}catch(e){}";
 export const viewport: Viewport = { themeColor: "#06080f", colorScheme: "dark" };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" data-scroll-behavior="smooth" className={`${manrope.variable} ${plexMono.variable} ${anton.variable} ${serif.variable}`} suppressHydrationWarning><body suppressHydrationWarning><a className="skip-link" href="#main">Skip to content</a><SiteHeader />{children}<SiteFooter /><FloatingCursors /></body></html>;
+  return <html lang="en" data-scroll-behavior="smooth" className={`${manrope.variable} ${plexMono.variable} ${anton.variable} ${serif.variable}`} suppressHydrationWarning><head><script dangerouslySetInnerHTML={{ __html: studioFlag }} /></head><body suppressHydrationWarning><a className="skip-link" href="#main">Skip to content</a><SiteHeader />{children}<SiteFooter /><StudioDirector /></body></html>;
 }

@@ -24,7 +24,7 @@ export function DataFlow() {
 
   return (
     <div className="flow">
-      <div className="flow-diagram" aria-hidden="true">
+      <div className="flow-diagram" aria-hidden="true" data-build data-label="Frame · Pipeline">
         <div className="flow-top"><span>Revive · recovery pipeline</span><b>RUNNING</b><span>39 clubs · AU / UK</span></div>
         <div className="flow-row">
           {nodes.map((n, i) => (
@@ -41,7 +41,7 @@ export function DataFlow() {
         <div className="flow-base"><ServerCog size={14} /> Deployed on AWS · Nginx · PM2 <span>Last import: 12,480 rows · 18 flagged</span></div>
       </div>
 
-      <ol className="flow-steps">
+      <ol className="flow-steps" data-build data-label="List · Steps">
         {steps.map((s, i) => (
           <li key={s.key} data-open={open === i}>
             <button type="button" aria-expanded={open === i} onClick={() => setOpen(open === i ? -1 : i)}>
