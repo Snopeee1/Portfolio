@@ -29,23 +29,23 @@ export function Hero() {
           <p className="op-role" data-intro="4" data-mode="text">Full-stack software developer <span>&amp;</span> Shopify / business systems developer</p>
           <p className="op-lede" data-intro="5" data-mode="text">I build admin platforms, data imports, APIs and mobile apps, plus the Shopify stores in front of them. Running in production for gym groups in Australia and the UK.</p>
           <div className="op-ctas" data-intro="6" data-label="Buttons">
-            <Link href="/#work" className="btn btn-glow">See my work <ArrowDown size={16} /></Link>
-            <Link href="#contact" className="btn btn-ghost">Let&apos;s talk <ArrowUpRight size={16} /></Link>
+            <Link href="/#work" className="btn btn-glow" data-intro="6.5" data-label="Button">See my work <ArrowDown size={16} /></Link>
+            <Link href="#contact" className="btn btn-ghost" data-intro="6.5" data-label="Button">Let&apos;s talk <ArrowUpRight size={16} /></Link>
           </div>
         </div>
 
         <div className="op-portrait" data-intro="3" data-label="Image · portrait.png">
           <span className="portrait-ring" aria-hidden="true" />
           <Image src="/profile/junry-gallego-crossed-arms.png" alt="Junry Jumawan Gallego" width={500} height={500} preload sizes="(max-width: 900px) 80vw, 34vw" />
-          <span className="portrait-tag"><MapPin size={12} /> Iligan City, PH · Remote</span>
+          <span className="portrait-tag" data-intro="3.5" data-label="Tag"><MapPin size={12} /> Iligan City, PH · Remote</span>
         </div>
 
         <aside className="op-side" data-intro="7" data-label="Stack · auto">
           <div className="op-panel" data-intro="9" data-mode="paint" aria-hidden="true" />
-          <p className="side-intro"><Sparkle size={14} /> Every system,<br />a different story.</p>
+          <p className="side-intro" data-intro="7.2" data-mode="text"><Sparkle size={14} /> Every system,<br />a different story.</p>
           <ul>
-            {stats.map(s => <li key={s.label}><strong className="display"><CountUp value={s.value} suffix={s.suffix} /></strong><span>{s.label}</span></li>)}
-            <li><strong className="display">AU<em>·</em>UK</strong><span>Systems running in production</span></li>
+            {stats.map(s => <li key={s.label} data-intro="7.5" data-label="Stat"><strong className="display"><CountUp value={s.value} suffix={s.suffix} /></strong><span>{s.label}</span></li>)}
+            <li data-intro="7.5" data-label="Stat"><strong className="display">AU<em>·</em>UK</strong><span>Systems running in production</span></li>
           </ul>
         </aside>
       </div>

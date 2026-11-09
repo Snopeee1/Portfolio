@@ -556,7 +556,8 @@ html[data-studio="on"] .op-portrait[data-built] img { animation: photoIn 1.1s va
 html[data-sd="ready"] [data-build]:not([data-built]) { opacity: 0; }
 html[data-sd="ready"] [data-build][data-built="typing"] { opacity: 1; }
 [data-build]:not([data-reveal]) { transition: opacity .55s var(--ease-out), filter .55s var(--ease-out); }
-html[data-sd="ready"] [data-build][data-built="true"]:not([data-reveal]) { animation: builtIn .55s var(--ease-out) both; }
+html[data-sd="ready"] [data-build][data-built="true"]:not([data-reveal]):not([data-keep]) { animation: builtIn .55s var(--ease-out) both; }
+[data-build][data-keep] { transition: opacity .5s var(--ease-out); }
 @keyframes builtIn { from { opacity: 0; filter: blur(6px); } to { opacity: 1; filter: none; } }
 
 @media (max-width: 760px) {

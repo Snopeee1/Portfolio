@@ -27,6 +27,62 @@ const TEAM = [
   { color: "#b69cff", name: "UI" },
   { color: "#ff8fb1", name: "Data" },
   { color: "#6fd3ff", name: "API" },
+  { color: "#ff9f5a", name: "Motion" },
+  { color: "#9ef06b", name: "QA" },
+  { color: "#f6e27a", name: "Copy" },
+  { color: "#ff6b8b", name: "Brand" },
+];
+
+/* Everything below the hero that a cursor builds, in document order. Parents
+   are built first; their children wait until the parent block is filled.
+   [selector, mode, label, keepOwnAnimation?] */
+const AUTO: [string, Mode, string?, boolean?][] = [
+  [".home .ticker", "block", "Strip · Ticker"],
+  [".marquee-heading .eyebrow", "text"],
+  [".marquee-heading > div", "block", "Actions"],
+  [".marquee-window", "block", "Marquee · Projects"],
+  [".home .tag", "text"],
+  [".sec-note", "text"],
+  [".chips", "block", "Tabs · Filter"],
+  [".chips-all", "block", "Link"],
+  [".wg-item .project-title-link", "text"],
+  [".wg-item .project-subtitle", "text"],
+  [".wg-item .project-tags", "block", "Tags"],
+  [".svc-card .sv", "block", "Frame · Visual"],
+  [".svc-copy > *", "text"],
+  [".flow-top", "block", "Bar"],
+  [".flow-node", "block", "Node"],
+  [".flow-base", "text"],
+  [".flow-steps > li", "block", "Row"],
+  [".spot-lede", "text"],
+  [".spot-features > li", "block", "Feature"],
+  [".spot-copy .btn", "block", "Button"],
+  [".mock-chrome", "block", "Bar"],
+  [".m-stat", "block", "Stat"],
+  [".m-chart", "block", "Chart"],
+  [".m-log", "block", "Log"],
+  [".mock-toast", "block", "Toast", true],
+  [".col-label", "text"],
+  [".roles > li", "block", "Role"],
+  [".mini-logos", "block", "Logos"],
+  [".idea-steps > li", "block", "Step"],
+  [".quote-card > *", "block"],
+  [".timeline > li", "block", "Item"],
+  [".wins-title", "text"],
+  [".wins > li", "block", "Item"],
+  [".logo-rows > .logo-row", "block", "Marquee · Logos"],
+  [".tool-grid > article header", "block", "Header"],
+  [".tool-grid > article ul", "block", "Logos"],
+  [".home .strip", "block", "Strip"],
+  [".faq-items > details", "block", "Accordion"],
+  [".contact-rows > li", "block", "Row"],
+  [".contact-socials", "block", "Links"],
+  [".contact-form-title", "text"],
+  [".contact-form .form-row", "block", "Field"],
+  [".contact-submit", "block", "Button"],
+  [".footer-top > *", "block"],
+  [".footer-giant .display", "text"],
+  [".footer-bottom", "block", "Bar"],
 ];
 
 const IDLE_TARGETS = [
@@ -74,6 +130,19 @@ export function StudioDirector() {
     });
 
     const mobile = window.innerWidth < 760;
+    /* an element waits while any ancestor is still unbuilt */
+    const blocked = (el: HTMLElement) => !!el.parentElement?.closest("[data-build]:not([data-built]), [data-intro]:not([data-built])");
+    const autoTag = () => {
+      for (const [sel, mode, label, keep] of AUTO) {
+        document.querySelectorAll<HTMLElement>(sel).forEach(el => {
+          if (el.hasAttribute("data-build") || el.hasAttribute("data-built") || el.closest(".opening")) return;
+          el.dataset.build = "";
+          el.dataset.mode = mode;
+          if (label && !el.dataset.label) el.dataset.label = label;
+          if (keep) el.dataset.keep = "";
+        });
+      }
+    };
     const vw = () => document.documentElement.clientWidth;
     const view = () => ({ top: window.scrollY, bottom: window.scrollY + window.innerHeight, w: vw() });
     const pageRect = (el: Element) => {
@@ -83,7 +152,7 @@ export function StudioDirector() {
 
     /* ---------- cursors ---------- */
     layer.innerHTML = "";
-    const cursors: Cursor[] = TEAM.slice(0, mobile ? 3 : TEAM.length).map(t => {
+    const cursors: Cursor[] = TEAM.slice(0, mobile ? 5 : TEAM.length).map(t => {
       const el = document.createElement("div");
       el.className = "sd-cursor";
       el.style.color = t.color;
@@ -109,7 +178,7 @@ export function StudioDirector() {
     const move = (c: Cursor, x: number, y: number, dur?: number) => {
       x = clamp(x, 4, vw() - 60);
       const sx = c.x, sy = c.y, job = c.job;
-      const d = dur ?? clamp(Math.hypot(x - sx, y - sy) * .9, 260, 820);
+      const d = dur ?? clamp(Math.hypot(x - sx, y - sy) * .6, 200, 600);
       return tween(d, p => place(c, sx + (x - sx) * p, sy + (y - sy) * p), easeInOut, () => c.job !== job);
     };
     /* bring a cursor that scrolled out of view back in from the nearest edge */
@@ -139,7 +208,7 @@ export function StudioDirector() {
     const drag = async (c: Cursor, r: { x: number; y: number; w: number; h: number }, fast: boolean, label?: string) => {
       const b = makeBlock(r.x, r.y, label);
       const badge = b.querySelector<HTMLElement>(".sd-badge")!;
-      const dur = clamp((r.w + r.h) * (fast ? .55 : .85), fast ? 280 : 420, fast ? 620 : 1000);
+      const dur = clamp((r.w + r.h) * (fast ? .4 : .8), fast ? 220 : 420, fast ? 480 : 950);
       await tween(dur, p => {
         const w = r.w * p, h = r.h * p;
         b.style.width = `${w}px`; b.style.height = `${h}px`;
@@ -186,7 +255,7 @@ export function StudioDirector() {
           setBeam(c, true);
           el.dataset.built = "typing";
           const len = (el.textContent || "").length;
-          const dur = clamp(len * (fast ? 9 : 16), 320, fast ? 700 : 1150);
+          const dur = clamp(len * (fast ? 6 : 15), fast ? 240 : 320, fast ? 600 : 1100);
           const lines = Math.max(1, Math.round(r.h / 30));
           await tween(dur, p => {
             el.style.clipPath = `inset(0 ${(1 - p) * 100}% 0 0)`;
@@ -212,14 +281,17 @@ export function StudioDirector() {
       const t0 = performance.now();
       while (alive && performance.now() - t0 < ms) {
         const c = freeCursor(true);
-        if (c) return c;
-        await later(60);
+        if (c) { claim(c, false); return c; }
+        await later(50);
       }
-      return freeCursor(true);
+      const c = freeCursor(true);
+      if (c) claim(c, false);
+      return c;
     };
 
     /* ---------- hero intro ---------- */
     const hero = document.querySelector<HTMLElement>(".opening");
+    autoTag();
     const introTargets = Array.from(document.querySelectorAll<HTMLElement>("[data-intro]:not([data-built])"))
       .sort((a, b) => Number(a.dataset.intro) - Number(b.dataset.intro));
 
@@ -235,14 +307,15 @@ export function StudioDirector() {
       await later(520);
       cursors.forEach(c => { c.el.style.transitionDelay = ""; });
 
-      const jobs: Promise<void>[] = [];
-      for (const el of introTargets) {
-        if (!alive) return;
+      /* every element gets its own job: it waits for its parent block, then
+         for a free cursor, so many things are built at the same time */
+      const jobs = introTargets.map((el, n) => (async () => {
+        await later(n * (mobile ? 90 : 100));
+        for (let w = 0; blocked(el) && w < 3000 && alive; w += 50) await later(50);
         const c = await waitCursor(4000);
-        if (!c) { el.dataset.built = "true"; continue; }
-        jobs.push(build(el, c, (el.dataset.mode as Mode) || "block", mobile));
-        await later(mobile ? 140 : 200);
-      }
+        if (!c) { el.dataset.built = el.dataset.mode === "text" ? "typed" : "true"; return; }
+        await build(el, c, (el.dataset.mode as Mode) || "block", mobile);
+      })());
       await Promise.all(jobs);
       hero?.setAttribute("data-phase", "done");
     };
@@ -258,17 +331,26 @@ export function StudioDirector() {
       await later(240);
     };
     const queue: HTMLElement[] = [];
+    const deferred = new Set<HTMLElement>();
+    const requeue = () => {
+      deferred.forEach(el => {
+        if (!el.isConnected || el.dataset.built) { deferred.delete(el); return; }
+        if (!blocked(el)) { deferred.delete(el); queue.push(el); }
+      });
+      void pump();
+    };
     let pumping = false;
     const pump = async () => {
       if (pumping) return;
       pumping = true;
       while (alive && queue.length) {
         const el = queue.shift()!;
-        if (el.dataset.built) continue;
-        const c = await waitCursor(700);
-        if (!c) { el.dataset.built = "true"; continue; }
-        void build(el, c, (el.dataset.mode as Mode) || "block", true);
-        await later(110);
+        if (el.dataset.built || !el.isConnected) continue;
+        if (blocked(el)) { deferred.add(el); continue; }
+        const c = await waitCursor(900);
+        if (!c) { el.dataset.built = el.dataset.mode === "text" ? "typed" : "true"; requeue(); continue; }
+        void build(el, c, (el.dataset.mode as Mode) || "block", true).then(requeue);
+        await later(70);
       }
       pumping = false;
     };
@@ -281,8 +363,15 @@ export function StudioDirector() {
         void whenRevealed(el).then(() => { queue.push(el); void pump(); });
       }
     }, { threshold: [0, .22, .4] });
-    const watch = () => document.querySelectorAll<HTMLElement>("[data-build]:not([data-built])").forEach(el => io.observe(el));
-    const mo = new MutationObserver(() => watch());
+    const watch = () => { autoTag(); document.querySelectorAll<HTMLElement>("[data-build]:not([data-built])").forEach(el => io.observe(el)); };
+    /* new content (e.g. a different work filter) gets built too; the layer's
+       own blocks and selection boxes are ignored */
+    let pendingWatch = 0;
+    const mo = new MutationObserver(list => {
+      if (list.every(m => m.target === layer || layer.contains(m.target))) return;
+      cancelAnimationFrame(pendingWatch);
+      pendingWatch = requestAnimationFrame(watch);
+    });
     mo.observe(document.body, { childList: true, subtree: true });
 
     /* ---------- idle: wander + select ---------- */
@@ -332,11 +421,12 @@ export function StudioDirector() {
     };
     const idleLoop = async () => {
       while (alive) {
-        await later(rand(500, 900));
+        await later(rand(300, 600));
         if (document.hidden) continue;
         const c = freeCursor();
         if (!c) continue;
-        if (Math.random() < .55) void select(c); else void wander(c);
+        const selecting = layer.querySelectorAll(".sd-select:not([data-state])").length;
+        if (selecting < (mobile ? 2 : 4) && Math.random() < .6) void select(c); else void wander(c);
       }
     };
 
@@ -344,7 +434,7 @@ export function StudioDirector() {
     root.dataset.sd = "ready";
     watch();
     (async () => {
-      if (hero && introTargets.length) await runIntro();
+      if (introTargets.length) await runIntro();
       else {
         const v = view();
         cursors.forEach(c => { place(c, rand(40, v.w - 80), rand(v.top + 120, v.bottom - 80)); show(c); });

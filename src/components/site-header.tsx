@@ -30,12 +30,12 @@ export function SiteHeader() {
   return (
     <header className="site-header">
       <div className="container header-inner">
-        <Link className="wordmark" href="/" aria-label="Junry Jumawan Gallego home" onClick={() => setOpen(false)}>junry<span className="brand-dot">.</span><span className="wordmark-tag">WEB · MOBILE · ECOMMERCE</span></Link>
-        <nav className="desktop-nav" aria-label="Main navigation">
+        <Link className="wordmark" data-intro="0.2" data-label="Logo" href="/" aria-label="Junry Jumawan Gallego home" onClick={() => setOpen(false)}>junry<span className="brand-dot">.</span><span className="wordmark-tag">WEB · MOBILE · ECOMMERCE</span></Link>
+        <nav className="desktop-nav" data-intro="0.4" data-label="Nav" aria-label="Main navigation">
           {links.map(link => <Link key={link.label} href={link.href === "/work" && pathname === "/" ? "/#selected-work" : link.href} aria-current={link.href === "/work" && pathname.startsWith("/work") ? "page" : undefined}>{link.label}</Link>)}
         </nav>
-        <Link className="button button-small header-cta" href="/#contact">Contact <ArrowUpRight size={16} /></Link>
-        <button ref={toggle} className="menu-toggle" aria-label={open ? "Close navigation" : "Open navigation"} aria-controls="mobile-nav" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
+        <Link className="button button-small header-cta" data-intro="0.6" data-label="Button" href="/#contact">Contact <ArrowUpRight size={16} /></Link>
+        <button ref={toggle} className="menu-toggle" data-intro="0.7" data-label="Icon" aria-label={open ? "Close navigation" : "Open navigation"} aria-controls="mobile-nav" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
       </div>
       {open && <nav id="mobile-nav" className="mobile-nav" aria-label="Mobile navigation">
         {links.map(link => <Link key={link.label} href={link.href === "/work" && pathname === "/" ? "/#selected-work" : link.href} onClick={() => setOpen(false)}>{link.label}<ArrowUpRight size={18} /></Link>)}
